@@ -1,10 +1,12 @@
-# 内容：OpenAi Bard anthropic
+# 内容：OpenAi Bard Anthropic
 # 域名关键字匹配
 DOMAIN-KEYWORD,openai
 DOMAIN-KEYWORD,anthropic
 DOMAIN-KEYWORD,Claude
 DOMAIN-KEYWORD,copilot
 DOMAIN-KEYWORD,grazie
+DOMAIN-KEYWORD,openaicom
+
 # 域名后缀匹配
 DOMAIN-SUFFIX,perplexity.ai
 DOMAIN-SUFFIX,chatgpt.com
@@ -31,3 +33,31 @@ DOMAIN-SUFFIX,githubcopilot.com
 DOMAIN-SUFFIX,copilot-proxy.githubusercontent.com
 DOMAIN-SUFFIX,copilot-telemetry-service.githubusercontent.com
 DOMAIN-SUFFIX,api.app.prod.grazie.aws.intellij.net
+DOMAIN-SUFFIX,grazie.ai
+
+# OpenAI
+DOMAIN,api.statsig.com
+DOMAIN,api-iam.intercom.io
+DOMAIN,chatgpt.livekit.cloud
+DOMAIN,o33249.ingest.sentry.io
+DOMAIN,sfo3.turn.livekit.cloud
+
+# Anthropic
+DOMAIN-SUFFIX,claude.ai
+
+# Google
+# > Gemini
+DOMAIN,ai.google.dev
+DOMAIN,generativelanguage.googleapis.com
+# > AI Studio
+DOMAIN,aistudio.google.com
+DOMAIN,alkalimakersuite-pa.clients6.google.com
+
+# Microsoft
+# > Copilot
+DOMAIN,copilot.microsoft.com
+DOMAIN,sydney.bing.com
+DOMAIN,www.bing.com
+
+# Meta
+DOMAIN,imagine.meta.com
