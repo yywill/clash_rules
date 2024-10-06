@@ -37,6 +37,10 @@ DOMAIN-SUFFIX,api.app.prod.grazie.aws.intellij.net
 DOMAIN-SUFFIX,grazie.ai
 DOMAIN-SUFFIX,notebooklm.google.com
 DOMAIN-SUFFIX,notebooklm.google
+DOMAIN-SUFFIX,cursor.sh
+DOMAIN-SUFFIX,grammarly.com
+DOMAIN-SUFFIX,grammarly.ai
+DOMAIN-SUFFIX,warp.dev
 
 # OpenAI
 DOMAIN,api.statsig.com
