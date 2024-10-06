@@ -34,6 +34,7 @@ DOMAIN-SUFFIX,copilot-proxy.githubusercontent.com
 DOMAIN-SUFFIX,copilot-telemetry-service.githubusercontent.com
 DOMAIN-SUFFIX,api.app.prod.grazie.aws.intellij.net
 DOMAIN-SUFFIX,grazie.ai
+DOMAIN-SUFFIX,notebooklm.google.com
 
 # OpenAI
 DOMAIN,api.statsig.com
@@ -49,6 +50,8 @@ DOMAIN-SUFFIX,claude.ai
 # > Gemini
 DOMAIN,ai.google.dev
 DOMAIN,generativelanguage.googleapis.com
+DOMAIN,notebooklm.google.com
+
 # > AI Studio
 DOMAIN,aistudio.google.com
 DOMAIN,alkalimakersuite-pa.clients6.google.com
