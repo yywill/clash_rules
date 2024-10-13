@@ -1,0 +1,15 @@
+# 内容：上班时，需要告诉保障的 例如视频会议等等
+
+# Google Meeting
+DOMAIN-SUFFIX, googlevideo.com
+
+# GitHub
+DOMAIN-SUFFIX,github.com
+
+
+# Slack
+DOMAIN-SUFFIX,slack.com
+
+
+# Asana
+DOMAIN-SUFFIX,asana.com
