@@ -7,7 +7,7 @@
 #!category =  iRingo
 #!date = 2024-10-18 06:32:19
 #!version = 3.1.5
-#!arguments=Proxy:🇺🇸美国,CountryCode:"US",NewsPlusUser:true
+#!arguments=Proxy:美国,CountryCode:"US",NewsPlusUser:true
 #!arguments-desc=Proxy: News 分流规则使用的策略名\nCountryCode: 国家或地区代码\n    ├ AUTO: 🇺🇳自动（跟随地区检测结果）\n    ├ CN: 🇨🇳中国大陆\n    ├ HK: 🇭🇰香港\n    ├ TW: 🇹🇼台湾\n    ├ SG: 🇸🇬新加坡\n    ├ US: 🇺🇸美国\n    ├ JP: 🇯🇵日本\n    ├ AU: 🇦🇺澳大利亚\n    ├ GB: 🇬🇧英国\n    ├ KR: 🇰🇷韩国\n    ├ CA: 🇨🇦加拿大\n    └ IE: 🇮🇪爱尔兰\n不同国家或地区提供的内容或有差别。\n\nNewsPlusUser: [搜索]显示News+内容\n是否显示News+搜索结果。\n
 
 [Rule]
