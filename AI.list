@@ -7,6 +7,9 @@ DOMAIN-KEYWORD,copilot
 DOMAIN-KEYWORD,grazie
 DOMAIN-KEYWORD,openaicom
 DOMAIN-KEYWORD,notebooklm
+DOMAIN-KEYWORD,analytics
+DOMAIN-KEYWORD,perplexity
+
 
 # 域名后缀匹配
 DOMAIN-SUFFIX,perplexity.ai
@@ -79,6 +82,11 @@ DOMAIN,imagine.meta.com
 DOMAIN-SUFFIX,perplexity.ai
 DOMAIN-SUFFIX,pplx-api.com
 DOMAIN-SUFFIX,perplexity.cloud
+DOMAIN-SUFFIX,discover-audio.perplexity.ai
 
 # 可选：Stripe（支付相关）
 DOMAIN-SUFFIX,stripe.com
+
+
+# 其他值得怀疑的 分析软件和app
+DOMAIN-SUFFIX,app-analytics-services.com
