@@ -55,7 +55,6 @@ DOMAIN-SUFFIX,anthropic.com
 DOMAIN-SUFFIX,s-cdn.anthropic.com
 DOMAIN-SUFFIX,console.anthropic.com
 
-
 # Google
 # > Gemini
 DOMAIN,ai.google.dev
@@ -75,3 +74,11 @@ DOMAIN,www.bing.com
 
 # Meta
 DOMAIN,imagine.meta.com
+
+# Perplexity AI
+DOMAIN-SUFFIX,perplexity.ai
+DOMAIN-SUFFIX,pplx-api.com
+DOMAIN-SUFFIX,perplexity.cloud
+
+# 可选：Stripe（支付相关）
+DOMAIN-SUFFIX,stripe.com
