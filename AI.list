@@ -2,7 +2,7 @@
 # 域名关键字匹配
 DOMAIN-KEYWORD,openai
 DOMAIN-KEYWORD,anthropic
-DOMAIN-KEYWORD,Claude
+DOMAIN-KEYWORD,claude
 DOMAIN-KEYWORD,copilot
 DOMAIN-KEYWORD,grazie
 DOMAIN-KEYWORD,openaicom
@@ -28,7 +28,6 @@ DOMAIN-SUFFIX,bard.google.com
 DOMAIN-SUFFIX,gemini.google.com
 DOMAIN-SUFFIX,makersuite.google.com
 DOMAIN-SUFFIX,anthropic.com
-DOMAIN-SUFFIX,claude.ai.com
 DOMAIN-SUFFIX,grazie.aws.intellij.net
 DOMAIN-SUFFIX,githubcopilot.com
 DOMAIN-SUFFIX,copilot-proxy.githubusercontent.com
@@ -51,6 +50,11 @@ DOMAIN,sfo3.turn.livekit.cloud
 
 # Anthropic
 DOMAIN-SUFFIX,claude.ai
+DOMAIN-SUFFIX,claudeusercontent.com
+DOMAIN-SUFFIX,anthropic.com
+DOMAIN-SUFFIX,s-cdn.anthropic.com
+DOMAIN-SUFFIX,console.anthropic.com
+
 
 # Google
 # > Gemini
