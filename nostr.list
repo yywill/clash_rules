@@ -1,0 +1,23 @@
+# 内容：OpenAi Bard Anthropic
+# 域名关键字匹配
+DOMAIN-KEYWORD,nostr
+DOMAIN-KEYWORD,damus
+DOMAIN-KEYWORD,yakki
+DOMAIN-KEYWORD,hala
+DOMAIN-KEYWORD,iris
+DOMAIN-KEYWORD,irisapp
+DOMAIN-KEYWORD,primal
+
+# Nostr 公共 Relay（DOMAIN-SUFFIX 形式）
+DOMAIN-SUFFIX,wirednet.jp
+DOMAIN-SUFFIX,nostr-relay.org
+
+# 域名后缀匹配
+DOMAIN-SUFFIX,relay.damus.io
+DOMAIN-SUFFIX,nostr.wine
+DOMAIN-SUFFIX,purplepag.es
+DOMAIN-SUFFIX,nos.lol
+DOMAIN-SUFFIX,rsslay.nostr.moe
+
+
+
