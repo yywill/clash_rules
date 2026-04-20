@@ -1,0 +1,61 @@
+# GitHub 完整规则列表
+# 包含 GitHub 平台、API、Actions、Packages、Copilot、Codespaces 等所有服务域名
+# 注意：Copilot 代理/遥测域名已在 AI.list 中处理，此处不重复
+
+# 核心平台域名
+DOMAIN-SUFFIX,github.com
+DOMAIN-SUFFIX,github.io
+DOMAIN-SUFFIX,github.dev
+DOMAIN-SUFFIX,githubusercontent.com
+DOMAIN-SUFFIX,githubassets.com
+DOMAIN-SUFFIX,githubapp.com
+DOMAIN-SUFFIX,githubstatus.com
+
+# GitHub 产品 / 品牌站点
+DOMAIN-SUFFIX,github.blog
+DOMAIN-SUFFIX,github.community
+DOMAIN-SUFFIX,github.ai
+DOMAIN-SUFFIX,githubnext.com
+DOMAIN-SUFFIX,githubuniverse.com
+DOMAIN-SUFFIX,githubcopilot.com
+DOMAIN-SUFFIX,githubpreview.dev
+
+# 短链 / 重定向
+DOMAIN-SUFFIX,gh.io
+DOMAIN-SUFFIX,git.io
+DOMAIN-SUFFIX,repo.new
+
+# GitHub Packages / Container Registry
+DOMAIN-SUFFIX,ghcr.io
+
+# GitHub Enterprise Cloud
+DOMAIN-SUFFIX,ghe.com
+
+# npm (GitHub 旗下)
+DOMAIN-SUFFIX,npmjs.com
+DOMAIN-SUFFIX,npmjs.org
+
+# CAPTCHA / 验证
+DOMAIN-SUFFIX,octocaptcha.com
+DOMAIN,github-api.arkoselabs.com
+
+# Copilot 实验服务
+DOMAIN-SUFFIX,default.exp-tas.com
+
+# Dependabot
+DOMAIN-SUFFIX,dependabot.com
+
+# CDN / Fastly
+DOMAIN,github.map.fastly.net
+DOMAIN,github.global.ssl.fastly.net
+
+# AWS S3 (Release assets, user content, repository files)
+DOMAIN,github-cloud.s3.amazonaws.com
+DOMAIN,github-com.s3.amazonaws.com
+DOMAIN,github-production-release-asset-2e65be.s3.amazonaws.com
+DOMAIN,github-production-user-asset-6210df.s3.amazonaws.com
+DOMAIN,github-production-repository-file-5c1aeb.s3.amazonaws.com
+
+# 遗留域名 (仍有解析)
+DOMAIN-SUFFIX,rawgit.com
+DOMAIN-SUFFIX,rawgithub.com
