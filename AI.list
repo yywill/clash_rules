@@ -104,5 +104,17 @@ DOMAIN-SUFFIX,discover-audio.perplexity.ai
 DOMAIN-SUFFIX,stripe.com
 
 
+# Google Antigravity IDE
+DOMAIN-KEYWORD,antigravity
+DOMAIN,daily-cloudcode-pa.googleapis.com
+DOMAIN,cloudcode-pa.googleapis.com
+DOMAIN,autopush-cloudcode-pa.sandbox.googleapis.com
+DOMAIN,daily-cloudcode-pa.sandbox.googleapis.com
+DOMAIN,storage.googleapis.com
+DOMAIN,play.googleapis.com
+DOMAIN,oauth2.googleapis.com
+DOMAIN,www.googleapis.com
+DOMAIN,lh3.googleusercontent.com
+
 # 其他值得怀疑的 分析软件和app
 DOMAIN-SUFFIX,app-analytics-services.com
