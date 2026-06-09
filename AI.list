@@ -119,16 +119,11 @@ DOMAIN,lh3.googleusercontent.com
 # 其他值得怀疑的 分析软件和app
 DOMAIN-SUFFIX,app-analytics-services.com
 
-# 进程名匹配 (Process name)
-# 含空格的进程名同时提供字面量(Clash/mihomo 精确匹配)与 %20 编码(Surge)两种写法
+# 进程名匹配 (Process name) — Surge 专用：空格用 %20 编码，支持通配符 * ?
 # Antigravity AI 语言服务进程
 PROCESS-NAME,language_server
-# Antigravity Helper 渲染/GPU/插件子进程
-PROCESS-NAME,Antigravity Helper
-PROCESS-NAME,Antigravity%20Helper
-PROCESS-NAME,Antigravity Helper (GPU)
-PROCESS-NAME,Antigravity%20Helper%20(GPU)
-PROCESS-NAME,Antigravity Helper (Plugin)
-PROCESS-NAME,Antigravity%20Helper%20(Plugin)
-PROCESS-NAME,Antigravity Helper (Renderer)
-PROCESS-NAME,Antigravity%20Helper%20(Renderer)
+# Antigravity Helper（含 GPU/Plugin/Renderer 子进程）
+PROCESS-NAME,Antigravity%20Helper*
+# Claude Code CLI：可执行文件以版本号命名(~/.local/share/claude/versions/<version>)
+# 用完整路径通配匹配，避免版本升级后失效
+PROCESS-NAME,*/claude/versions/*
