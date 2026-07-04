@@ -281,12 +281,8 @@ DOMAIN-SUFFIX,sohuno.com
 DOMAIN-SUFFIX,sohurdc.com
 DOMAIN-SUFFIX,v-56.com
 
-# Sony
-DOMAIN-SUFFIX,playstation.com
-DOMAIN-SUFFIX,playstation.net
-DOMAIN-SUFFIX,playstationnetwork.com
-DOMAIN-SUFFIX,sony.com
-DOMAIN-SUFFIX,sonyentertainmentnetwork.com
+# Sony 已移除：PS 游戏域名改由 🎮 游戏平台 组处理，走代理而非直连
+# 如需 sony.com 企业站直连可单独加回，但 playstation* 应走游戏代理
 
 # Tencent
 DOMAIN-SUFFIX,foxmail.com
