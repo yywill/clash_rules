@@ -118,6 +118,32 @@ DOMAIN,lh3.googleusercontent.com
 
 # 其他值得怀疑的 分析软件和app
 DOMAIN-SUFFIX,app-analytics-services.com
+DOMAIN,api.segment.io
+
+# 统计 / 遥测 / 分析类（Datadog、Segment、Sentry、Amplitude 等）全部走 AI
+DOMAIN-KEYWORD,telemetry
+DOMAIN-KEYWORD,datadog
+DOMAIN-KEYWORD,segment
+DOMAIN-KEYWORD,statsig
+DOMAIN-SUFFIX,datadoghq.com
+DOMAIN-SUFFIX,datadoghq.eu
+DOMAIN-SUFFIX,datadog-browser-agent.com
+DOMAIN-SUFFIX,segment.io
+DOMAIN-SUFFIX,segment.com
+DOMAIN-SUFFIX,sentry.io
+DOMAIN-SUFFIX,ingest.sentry.io
+DOMAIN-SUFFIX,statsig.com
+DOMAIN-SUFFIX,statsigapi.net
+DOMAIN-SUFFIX,amplitude.com
+DOMAIN-SUFFIX,mixpanel.com
+DOMAIN-SUFFIX,posthog.com
+DOMAIN-SUFFIX,i.posthog.com
+DOMAIN-SUFFIX,heap.io
+DOMAIN-SUFFIX,heapanalytics.com
+DOMAIN-SUFFIX,fullstory.com
+DOMAIN-SUFFIX,bugsnag.com
+DOMAIN-SUFFIX,rollbar.com
+DOMAIN-SUFFIX,launchdarkly.com
 
 # 进程名匹配 (Process name) — Surge 专用：空格用 %20 编码，支持通配符 * ?
 # Antigravity AI 语言服务进程
@@ -127,3 +153,5 @@ PROCESS-NAME,Antigravity%20Helper*
 # Claude Code CLI：可执行文件以版本号命名(~/.local/share/claude/versions/<version>)
 # 用完整路径通配匹配，避免版本升级后失效
 PROCESS-NAME,*/claude/versions/*
+# ChatGPT 桌面 App
+PROCESS-NAME,ChatGPT
