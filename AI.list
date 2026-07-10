@@ -88,7 +88,11 @@ DOMAIN,copilot.microsoft.com
 DOMAIN,sydney.bing.com
 DOMAIN,www.bing.com
 
-# Meta
+# Meta AI
+DOMAIN-SUFFIX,meta.ai
+DOMAIN-SUFFIX,ai.meta.com
+DOMAIN-SUFFIX,llama.com
+DOMAIN-SUFFIX,llama.meta.com
 DOMAIN,imagine.meta.com
 
 # OpenRouter
