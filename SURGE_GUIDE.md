@@ -12,8 +12,9 @@ clash_rules/
 ├── clash.ini           # Subconverter custom config (for Clash clients)
 ├── AI.list             # Custom: OpenAI, Claude, Gemini, Copilot, Perplexity, Cursor, etc.
 ├── Shadowrocket/
-│   └── AI.list         # Shadowrocket-safe AI rules (no PROCESS-NAME / broad Google catch-alls)
-├── yywill-custom.sgmodule  # Shadowrocket module: personal rules with priority
+│   ├── AI.list         # Shadowrocket-safe AI rules (no PROCESS-NAME / broad Google catch-alls)
+│   └── custom.conf     # Full Shadowrocket config (multi-country groups + personal rules)
+├── custom-priority.sgmodule  # Shadowrocket module: personal rules with priority
 ├── nostr.list          # Custom: Nostr relays & clients (Damus, Primal, etc.)
 ├── work.list           # Custom: Work essentials (Google Meet, Slack)
 ├── Direct.list         # Custom: China direct-connect supplement
@@ -26,8 +27,8 @@ clash_rules/
 
 | Repo | Purpose | Customizations |
 |------|---------|----------------|
-| `yywill/ACL4SSR` | ACL4SSR rule sets | ByteDance, Wechat, Crypto, Apple, HBO, Porn, etc. |
-| `yywill/ios_rule_script` | blackmatrix7 rules | YouTube, Google, Telegram, GitHub, Speedtest |
+| Personal ACL4SSR fork | ACL4SSR rule sets | ByteDance, Wechat, Crypto, Apple, HBO, Porn, etc. |
+| Personal ios_rule_script fork | blackmatrix7 rules | YouTube, Google, Telegram, GitHub, Speedtest |
 
 Forking allows pulling upstream updates while keeping personal customizations.
 
@@ -161,7 +162,7 @@ Shadowrocket evaluates **module rules before configuration rules**. Install this
 ### Install URL
 
 ```
-https://raw.githubusercontent.com/yywill/clash_rules/main/yywill-custom.sgmodule
+https://raw.githubusercontent.com/yywill/clash_rules/main/custom-priority.sgmodule
 ```
 
 ### Steps
@@ -181,6 +182,29 @@ https://raw.githubusercontent.com/yywill/clash_rules/main/yywill-custom.sgmodule
 
 `Direct.list` is intentionally **not** in the module (large China direct catch-all; keep it in the main config if needed).
 
+## Shadowrocket Full Config (`custom.conf`)
+
+Richer replacement for simple `lazy_group.conf`: multi-country `url-test` groups, service `select` groups, and your personal rule order (AI / games / streaming / China).
+
+### Install URL
+
+```
+https://raw.githubusercontent.com/yywill/clash_rules/main/Shadowrocket/custom.conf
+```
+
+### Design notes
+
+- **Country groups** use `url-test` (stable on iOS). Regex filters HK / TW / JP / SG / KR / US / UK / DE / CA / AU / Hysteria / residential.
+- **Fallback groups** (`🔯 *故转`) for AI / streaming when a node dies.
+- **Service groups** are `select` pointing at country groups (same idea as your `clash.ini`).
+- Shadowrocket **does** support `load-balance`, but this config prefers `url-test` for countries to avoid flaky sticky hashing on mobile. Use the module + this conf together if you want module-level priority for AI.
+
+### Steps
+
+1. Shadowrocket → **配置** → **下载** / 添加配置 → paste the URL
+2. Add your node subscription(s) as usual
+3. Optionally also enable `custom-priority.sgmodule` so AI rules always beat GFW fallbacks
+
 ## How to Modify
 
 ### Adding a new service rule
@@ -199,5 +223,5 @@ https://raw.githubusercontent.com/yywill/clash_rules/main/yywill-custom.sgmodule
 # In forked repos (ACL4SSR, ios_rule_script):
 git fetch upstream
 git merge upstream/master
-# Push to yywill/ fork — surge.conf references raw.githubusercontent.com/yywill/...
+# Push to personal fork — surge.conf references raw.githubusercontent.com/...
 ```
