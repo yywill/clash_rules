@@ -194,7 +194,7 @@ https://raw.githubusercontent.com/yywill/clash_rules/main/Shadowrocket/custom.co
 
 ### Design notes
 
-- **Country groups** use `url-test` (stable on iOS). Regex filters HK / TW / JP / SG / KR / US / UK / DE / CA / AU / Hysteria / residential.
+- **Country groups** use `url-test` (stable on iOS). Regex filters HK / TW / JP / SG / KR / US / UK / DE / CA / AU / residential.
 - **Fallback groups** (`🔯 *故转`) for AI / streaming when a node dies.
 - **Service groups** are `select` pointing at country groups (same idea as your `clash.ini`).
 - Shadowrocket **does** support `load-balance`, but this config prefers `url-test` for countries to avoid flaky sticky hashing on mobile. Use the module + this conf together if you want module-level priority for AI.
