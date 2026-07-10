@@ -11,6 +11,9 @@ clash_rules/
 ├── surge.conf          # Native Surge config (used directly)
 ├── clash.ini           # Subconverter custom config (for Clash clients)
 ├── AI.list             # Custom: OpenAI, Claude, Gemini, Copilot, Perplexity, Cursor, etc.
+├── Shadowrocket/
+│   └── AI.list         # Shadowrocket-safe AI rules (no PROCESS-NAME / broad Google catch-alls)
+├── yywill-custom.sgmodule  # Shadowrocket module: personal rules with priority
 ├── nostr.list          # Custom: Nostr relays & clients (Damus, Primal, etc.)
 ├── work.list           # Custom: Work essentials (Google Meet, Slack)
 ├── Direct.list         # Custom: China direct-connect supplement
@@ -149,6 +152,34 @@ FINAL                   → 🐟 漏网之鱼
 5. **Region-aware routing** — US for Apple News/HBO, HK for YouTube/Netflix, JP/SG for AI
 6. **Forked upstreams** — Maintain control over rule sets while tracking community updates
 7. **Dual format** — surge.conf for Surge, clash.ini for Subconverter/Clash
+8. **Shadowrocket module for priority** — personal AI/custom rules via `.sgmodule` so they beat config GFW/GEOSITE fallbacks
+
+## Shadowrocket Module (Personal Priority)
+
+Shadowrocket evaluates **module rules before configuration rules**. Install this module so your personal AI / Nostr / Work / ProxyLite rules win over subscription GFW lists.
+
+### Install URL
+
+```
+https://raw.githubusercontent.com/yywill/clash_rules/main/yywill-custom.sgmodule
+```
+
+### Steps
+
+1. Shadowrocket → **配置** → **模块** → **+** / 安装
+2. Paste the URL above and enable the module
+3. Default policies are all `PROXY`. If you have a dedicated AI policy group, edit module arguments and set `AI` to that policy name
+
+### What it includes
+
+| Resource | Policy arg | Notes |
+|----------|------------|-------|
+| `Shadowrocket/AI.list` | `AI` | Cleaned AI domains (Meta AI login `auth.meta.com` included); no PROCESS-NAME |
+| `nostr.list` | `Nostr` | Nostr relays / clients |
+| `work.list` | `Work` | Slack etc. |
+| `ProxyLite.list` | `ProxyLite` | Foreign DNS / proxy supplements |
+
+`Direct.list` is intentionally **not** in the module (large China direct catch-all; keep it in the main config if needed).
 
 ## How to Modify
 

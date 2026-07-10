@@ -1,0 +1,15 @@
+#!name=yywill Custom Priority
+#!desc=个人定制优先：AI / Nostr / Work / ProxyLite\nModule 规则优先于配置文件规则，避免被 GFW/GEOSITE 兜底抢走。\n默认策略均为 PROXY，可在模块参数中改成你的策略组名。
+#!author=yywill
+#!homepage=https://github.com/yywill/clash_rules
+#!category=Custom
+#!arguments=AI:PROXY,Nostr:PROXY,Work:PROXY,ProxyLite:PROXY
+#!arguments-desc=AI: AI 服务策略（OpenAI/Claude/Gemini/Meta AI 等）\nNostr: Nostr 相关策略\nWork: 工作相关（Slack 等）\nProxyLite: 代理补充（国外 DNS 等）
+
+[Rule]
+# 1) AI 优先（含 Meta AI 登录 auth.meta.com）
+RULE-SET,https://raw.githubusercontent.com/yywill/clash_rules/main/Shadowrocket/AI.list,{{{AI}}}
+# 2) 其他个人定制
+RULE-SET,https://raw.githubusercontent.com/yywill/clash_rules/main/nostr.list,{{{Nostr}}}
+RULE-SET,https://raw.githubusercontent.com/yywill/clash_rules/main/work.list,{{{Work}}}
+RULE-SET,https://raw.githubusercontent.com/yywill/clash_rules/main/ProxyLite.list,{{{ProxyLite}}}

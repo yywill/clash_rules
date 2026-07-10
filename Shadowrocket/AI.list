@@ -1,0 +1,128 @@
+# Shadowrocket AI ruleset (cleaned from AI.list)
+# - No PROCESS-NAME (unsupported on iOS Shadowrocket)
+# - No overly broad Google/analytics catch-alls that would steal global traffic
+# 内容：OpenAI / Claude / Gemini / Copilot / Meta AI / Perplexity / Cursor 等
+
+# 域名关键字匹配
+DOMAIN-KEYWORD,openai
+DOMAIN-KEYWORD,anthropic
+DOMAIN-KEYWORD,claude
+DOMAIN-KEYWORD,copilot
+DOMAIN-KEYWORD,grazie
+DOMAIN-KEYWORD,openaicom
+DOMAIN-KEYWORD,notebooklm
+DOMAIN-KEYWORD,perplexity
+DOMAIN-KEYWORD,antigravity
+
+# OpenAI
+DOMAIN-SUFFIX,chatgpt.com
+DOMAIN-SUFFIX,oaistatic.com
+DOMAIN-SUFFIX,oaiusercontent.com
+DOMAIN-SUFFIX,openai.com
+DOMAIN-SUFFIX,openaiapi-site.azureedge.net
+DOMAIN-SUFFIX,auth0.com
+DOMAIN-SUFFIX,client-api.arkoselabs.com
+DOMAIN-SUFFIX,events.statsigapi.net
+DOMAIN-SUFFIX,featuregates.org
+DOMAIN-SUFFIX,identrust.com
+DOMAIN-SUFFIX,intercom.io
+DOMAIN-SUFFIX,intercomcdn.com
+DOMAIN-SUFFIX,sentry.io
+DOMAIN-SUFFIX,ingest.sentry.io
+DOMAIN-SUFFIX,stripe.com
+DOMAIN-SUFFIX,statsig.com
+DOMAIN-SUFFIX,statsigapi.net
+DOMAIN,api.statsig.com
+DOMAIN,api-iam.intercom.io
+DOMAIN,chatgpt.livekit.cloud
+DOMAIN,o33249.ingest.sentry.io
+DOMAIN,sfo3.turn.livekit.cloud
+
+# Anthropic / Claude
+DOMAIN-SUFFIX,anthropic.com
+DOMAIN-SUFFIX,claude.ai
+DOMAIN-SUFFIX,claudeusercontent.com
+DOMAIN-SUFFIX,s-cdn.anthropic.com
+DOMAIN-SUFFIX,console.anthropic.com
+DOMAIN-SUFFIX,api.anthropic.com
+DOMAIN-SUFFIX,claude-api.anthropic.com
+DOMAIN-SUFFIX,files.anthropic.com
+DOMAIN-SUFFIX,telemetry.anthropic.com
+DOMAIN-SUFFIX,cdn.anthropic.com
+
+# Google Gemini / NotebookLM / AI Studio
+DOMAIN-SUFFIX,bard.google.com
+DOMAIN-SUFFIX,gemini.google.com
+DOMAIN-SUFFIX,gemini.google
+DOMAIN-SUFFIX,makersuite.google.com
+DOMAIN-SUFFIX,generativelanguage.googleapis.com
+DOMAIN-SUFFIX,ai.google.dev
+DOMAIN-SUFFIX,gemini-pa.googleapis.com
+DOMAIN-SUFFIX,generativeai.google
+DOMAIN-SUFFIX,aistudio.google.com
+DOMAIN-SUFFIX,aistudio-pa.clients6.google.com
+DOMAIN-SUFFIX,alkalimakersuite-pa.clients6.google.com
+DOMAIN-SUFFIX,machinelearning.googleapis.com
+DOMAIN-SUFFIX,notebooklm.google.com
+DOMAIN-SUFFIX,notebooklm.google
+DOMAIN,notebooklm.google.com
+DOMAIN,notebooklm.google
+DOMAIN,aistudio.google.com
+DOMAIN,alkalimakersuite-pa.clients6.google.com
+DOMAIN,daily-cloudcode-pa.googleapis.com
+DOMAIN,cloudcode-pa.googleapis.com
+DOMAIN,autopush-cloudcode-pa.sandbox.googleapis.com
+DOMAIN,daily-cloudcode-pa.sandbox.googleapis.com
+
+# Microsoft Copilot
+DOMAIN-SUFFIX,githubcopilot.com
+DOMAIN-SUFFIX,copilot-proxy.githubusercontent.com
+DOMAIN-SUFFIX,copilot-telemetry-service.githubusercontent.com
+DOMAIN,copilot.microsoft.com
+DOMAIN,sydney.bing.com
+
+# JetBrains Grazie
+DOMAIN-SUFFIX,grazie.aws.intellij.net
+DOMAIN-SUFFIX,grazie.ai
+DOMAIN-SUFFIX,api.app.prod.grazie.aws.intellij.net
+
+# Meta AI（登录走 auth.meta.com，仅 meta.ai 不够）
+DOMAIN-SUFFIX,meta.ai
+DOMAIN-SUFFIX,llama.com
+DOMAIN,auth.meta.com
+DOMAIN,ai.meta.com
+DOMAIN,imagine.meta.com
+DOMAIN,llama.meta.com
+DOMAIN,www.meta.com
+DOMAIN,accountscenter.meta.com
+
+# OpenRouter / Perplexity / Cursor / 其他 AI 工具
+DOMAIN-SUFFIX,openrouter.ai
+DOMAIN-SUFFIX,perplexity.ai
+DOMAIN-SUFFIX,pplx-api.com
+DOMAIN-SUFFIX,perplexity.cloud
+DOMAIN-SUFFIX,discover-audio.perplexity.ai
+DOMAIN-SUFFIX,cursor.sh
+DOMAIN-SUFFIX,cursor.com
+DOMAIN-SUFFIX,grammarly.com
+DOMAIN-SUFFIX,grammarly.ai
+DOMAIN-SUFFIX,warp.dev
+
+# AI 相关遥测（限定后缀，避免 DOMAIN-KEYWORD 误伤）
+DOMAIN-SUFFIX,app-analytics-services.com
+DOMAIN,api.segment.io
+DOMAIN-SUFFIX,segment.io
+DOMAIN-SUFFIX,segment.com
+DOMAIN-SUFFIX,datadoghq.com
+DOMAIN-SUFFIX,datadoghq.eu
+DOMAIN-SUFFIX,datadog-browser-agent.com
+DOMAIN-SUFFIX,amplitude.com
+DOMAIN-SUFFIX,mixpanel.com
+DOMAIN-SUFFIX,posthog.com
+DOMAIN-SUFFIX,i.posthog.com
+DOMAIN-SUFFIX,heap.io
+DOMAIN-SUFFIX,heapanalytics.com
+DOMAIN-SUFFIX,fullstory.com
+DOMAIN-SUFFIX,bugsnag.com
+DOMAIN-SUFFIX,rollbar.com
+DOMAIN-SUFFIX,launchdarkly.com
