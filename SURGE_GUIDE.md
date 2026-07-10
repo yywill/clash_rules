@@ -12,7 +12,8 @@ clash_rules/
 ├── clash.ini           # Subconverter custom config (for Clash clients)
 ├── AI.list             # Custom: OpenAI, Claude, Gemini, Copilot, Perplexity, Cursor, etc.
 ├── Shadowrocket/
-│   └── AI.list         # Shadowrocket-safe AI rules (no PROCESS-NAME / broad Google catch-alls)
+│   ├── AI.list         # Shadowrocket-safe AI rules (no PROCESS-NAME / broad Google catch-alls)
+│   └── yywill.conf     # Full Shadowrocket config (multi-country groups + personal rules)
 ├── yywill-custom.sgmodule  # Shadowrocket module: personal rules with priority
 ├── nostr.list          # Custom: Nostr relays & clients (Damus, Primal, etc.)
 ├── work.list           # Custom: Work essentials (Google Meet, Slack)
@@ -180,6 +181,29 @@ https://raw.githubusercontent.com/yywill/clash_rules/main/yywill-custom.sgmodule
 | `ProxyLite.list` | `ProxyLite` | Foreign DNS / proxy supplements |
 
 `Direct.list` is intentionally **not** in the module (large China direct catch-all; keep it in the main config if needed).
+
+## Shadowrocket Full Config (`yywill.conf`)
+
+Richer replacement for simple `lazy_group.conf`: multi-country `url-test` groups, service `select` groups, and your personal rule order (AI / games / streaming / China).
+
+### Install URL
+
+```
+https://raw.githubusercontent.com/yywill/clash_rules/main/Shadowrocket/yywill.conf
+```
+
+### Design notes
+
+- **Country groups** use `url-test` (stable on iOS). Regex filters HK / TW / JP / SG / KR / US / UK / DE / CA / AU / Hysteria / residential.
+- **Fallback groups** (`🔯 *故转`) for AI / streaming when a node dies.
+- **Service groups** are `select` pointing at country groups (same idea as your `clash.ini`).
+- Shadowrocket **does** support `load-balance`, but this config prefers `url-test` for countries to avoid flaky sticky hashing on mobile. Use the module + this conf together if you want module-level priority for AI.
+
+### Steps
+
+1. Shadowrocket → **配置** → **下载** / 添加配置 → paste the URL
+2. Add your node subscription(s) as usual
+3. Optionally also enable `yywill-custom.sgmodule` so AI rules always beat GFW fallbacks
 
 ## How to Modify
 
