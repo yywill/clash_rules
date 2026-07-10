@@ -1,7 +1,7 @@
 # 内容：上班时，需要告诉保障的 例如视频会议等等
 
 # Google Meeting
-DOMAIN-SUFFIX, googlevideo.com
+DOMAIN-SUFFIX,googlevideo.com
 
 
 # Slack
