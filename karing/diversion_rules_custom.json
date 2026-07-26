@@ -31,7 +31,26 @@
       "outbound": "direct",
       "switch": true,
       "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-XboxCDN.json"
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-XboxCDN.json",
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-UnBan.json",
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-ChinaCompanyIp.json",
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Download.json",
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-LocalAreaNetwork.json",
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-GoogleCN.json",
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-SteamCN.json",
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-ChinaDomain.json"
+      ],
+      "rule_set_build_in": [
+        "geoip:CN"
+      ],
+      "ip_cidr": [
+        "240e::/20",
+        "2408::/16",
+        "2409::/16",
+        "240c::/16",
+        "2001:da8::/32",
+        "2402:f000::/20",
+        "2401::/16"
       ]
     },
     {
@@ -41,13 +60,20 @@
       "rule_set": [
         "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Sony.json",
         "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Xbox.json",
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Minecraft.json"
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Minecraft.json",
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Epic.json",
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Origin.json",
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Steam.json",
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Nintendo.json"
       ]
     },
     {
       "name": "🤖 AI",
       "outbound": "currentSelected",
       "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-AI.json"
+      ],
       "processName": [
         "agy",
         "Antigravity",
@@ -79,14 +105,6 @@
       "switch": true,
       "rule_set": [
         "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Bing.json"
-      ]
-    },
-    {
-      "name": "🤖 AI ·2",
-      "outbound": "currentSelected",
-      "switch": true,
-      "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-AI.json"
       ]
     },
     {
@@ -202,16 +220,6 @@
       ]
     },
     {
-      "name": "🎯 全球直连 ·2",
-      "outbound": "direct",
-      "switch": true,
-      "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-UnBan.json",
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-ChinaCompanyIp.json",
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Download.json"
-      ]
-    },
-    {
       "name": "📲 Telegram",
       "outbound": "currentSelected",
       "switch": true,
@@ -236,28 +244,11 @@
       ]
     },
     {
-      "name": "🎯 全球直连 ·3",
-      "outbound": "direct",
-      "switch": true,
-      "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-LocalAreaNetwork.json"
-      ]
-    },
-    {
       "name": "📢 谷歌FCM",
       "outbound": "direct",
       "switch": true,
       "rule_set": [
         "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-GoogleFCM.json"
-      ]
-    },
-    {
-      "name": "🎯 全球直连 ·4",
-      "outbound": "direct",
-      "switch": true,
-      "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-GoogleCN.json",
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-SteamCN.json"
       ]
     },
     {
@@ -285,30 +276,11 @@
       ]
     },
     {
-      "name": "📲 电报消息 ·2",
-      "outbound": "currentSelected",
-      "switch": true,
-      "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Telegram.json"
-      ]
-    },
-    {
       "name": "🎶 网易音乐",
       "outbound": "direct",
       "switch": true,
       "rule_set": [
         "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-NetEaseMusic.json"
-      ]
-    },
-    {
-      "name": "🎮 游戏平台 ·2",
-      "outbound": "currentSelected",
-      "switch": true,
-      "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Epic.json",
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Origin.json",
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Steam.json",
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Nintendo.json"
       ]
     },
     {
@@ -345,14 +317,6 @@
       ]
     },
     {
-      "name": "🎯 全球直连 ·5",
-      "outbound": "direct",
-      "switch": true,
-      "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-ChinaDomain.json"
-      ]
-    },
-    {
       "name": "🍃 应用净化",
       "outbound": "block",
       "switch": true,
@@ -366,23 +330,6 @@
       "switch": true,
       "rule_set": [
         "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-BanAD.json"
-      ]
-    },
-    {
-      "name": "🎯 全球直连 ·6",
-      "outbound": "direct",
-      "switch": true,
-      "rule_set_build_in": [
-        "geoip:CN"
-      ],
-      "ip_cidr": [
-        "240e::/20",
-        "2408::/16",
-        "2409::/16",
-        "240c::/16",
-        "2001:da8::/32",
-        "2402:f000::/20",
-        "2401::/16"
       ]
     },
     {

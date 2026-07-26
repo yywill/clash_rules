@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import re
 import time
 import urllib.request
 from collections import OrderedDict
@@ -15,6 +16,7 @@ OUT = Path(__file__).resolve().parent
 OUT_RS = OUT / "ruleset"
 BASE = "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset"
 SURGE_CONF = ROOT / "surge.conf"
+URLTEST_CONFIG = OUT / "urltest_groups.json"
 
 LOCAL_MAP = {
     "https://raw.githubusercontent.com/yywill/clash_rules/main/Direct.list": ROOT
@@ -293,58 +295,35 @@ def _group_has_matchers(g: dict[str, Any]) -> bool:
 def build_rules(
     entries: list[dict[str, str]], url_to_slug: dict[str, str]
 ) -> list[dict]:
-    """Preserve surge.conf [Rule] order. Merge only consecutive same policy."""
+    """One diversion group per Surge policy name (no AI / AI ·2 duplicates).
 
-    rules: list[dict] = []
-    name_counts: dict[str, int] = {}
-    current: dict | None = None
-    current_base: str | None = None
+    First appearance decides order; later RULE-SET / PROCESS-NAME for the same
+    policy are merged into that group (Surge still evaluates line-by-line, but
+    Karing groups OR their matchers — same policy ⇒ same outbound).
+    """
 
-    def flush() -> None:
-        nonlocal current
-        if not current or not _group_has_matchers(current):
-            current = None
-            return
-        r: dict = {
-            "name": current["name"],
-            "outbound": current["outbound"],
-            "switch": True,
-        }
-        for key in (
-            "rule_set",
-            "rule_set_build_in",
-            "processName",
-            "ip_cidr",
-            "domain",
-            "domain_suffix",
-            "domain_keyword",
-        ):
-            if current.get(key):
-                r[key] = current[key]
-        rules.append(r)
-        current = None
+    order: list[str] = []
+    groups: dict[str, dict[str, Any]] = {}
 
-    def start_group(base_name: str) -> dict:
-        nonlocal current, current_base
-        flush()
-        # Surge PROCESS-NAME,...,DIRECT — keep separate from 全球直连 RULE-SET bands
-        display_base = "🖥 进程直连" if base_name == "DIRECT" else base_name
-        count = name_counts.get(display_base, 0) + 1
-        name_counts[display_base] = count
-        display = display_base if count == 1 else f"{display_base} ·{count}"
-        current_base = base_name
-        current = {
-            "name": display,
-            "outbound": DEFAULT_OUTBOUND.get(display_base, "currentSelected"),
-            "rule_set": [],
-            "rule_set_build_in": [],
-            "processName": [],
-            "ip_cidr": [],
-            "domain": [],
-            "domain_suffix": [],
-            "domain_keyword": [],
-        }
-        return current
+    def display_name(policy: str) -> str:
+        return "🖥 进程直连" if policy == "DIRECT" else policy
+
+    def ensure(policy: str) -> dict[str, Any]:
+        key = display_name(policy)
+        if key not in groups:
+            order.append(key)
+            groups[key] = {
+                "name": key,
+                "outbound": DEFAULT_OUTBOUND.get(key, "currentSelected"),
+                "rule_set": [],
+                "rule_set_build_in": [],
+                "processName": [],
+                "ip_cidr": [],
+                "domain": [],
+                "domain_suffix": [],
+                "domain_keyword": [],
+            }
+        return groups[key]
 
     for entry in entries:
         policy = entry["policy"]
@@ -352,14 +331,9 @@ def build_rules(
         value = entry["value"]
 
         if kind == "final":
-            # Karing unmatched traffic uses default selection; skip empty FINAL group
             continue
 
-        if current is None or current_base != policy:
-            g = start_group(policy)
-        else:
-            g = current
-            assert g is not None
+        g = ensure(policy)
 
         if kind == "ruleset":
             slug = url_to_slug.get(value)
@@ -369,7 +343,6 @@ def build_rules(
             if url not in g["rule_set"]:
                 g["rule_set"].append(url)
         elif kind == "process":
-            # Skip Surge wildcards / percent-encoded patterns Karing can't use
             if "*" in value or "%" in value or "/" in value:
                 continue
             if value not in g["processName"]:
@@ -391,11 +364,45 @@ def build_rules(
             if value not in g["domain_keyword"]:
                 g["domain_keyword"].append(value)
 
-    flush()
+    rules: list[dict] = []
+    for key in order:
+        g = groups[key]
+        if key == "🤖 AI":
+            # Always attach full AI process list
+            for p in AI_PROCESS_NAMES:
+                if p not in g["processName"]:
+                    g["processName"].append(p)
+        if not _group_has_matchers(g):
+            continue
+        r: dict = {
+            "name": g["name"],
+            "outbound": g["outbound"],
+            "switch": True,
+        }
+        for field in (
+            "rule_set",
+            "rule_set_build_in",
+            "processName",
+            "ip_cidr",
+            "domain",
+            "domain_suffix",
+            "domain_keyword",
+        ):
+            if g.get(field):
+                r[field] = g[field]
+        rules.append(r)
     return rules
 
 
 def write_runtime(rules: list[dict]) -> None:
+    urltest_config = json.loads(URLTEST_CONFIG.read_text(encoding="utf-8"))
+    bindings: dict[str, str] = urltest_config.get("bindings", {})
+    default_urltest = urltest_config["default_urltest"]
+    valid_urltests = {item["remark"] for item in urltest_config["urltests"]}
+    invalid = sorted(set(bindings.values()) - valid_urltests)
+    if invalid:
+        raise ValueError(f"unknown urltest bindings: {invalid}")
+
     groups = []
     diversion_use = []
     rule_set_items = []
@@ -456,16 +463,36 @@ def write_runtime(rules: list[dict]) -> None:
                     "dns_servers": [],
                 }
             )
+        elif r["name"] in bindings:
+            diversion_use.append(
+                {
+                    "diversion_groupid": "custom",
+                    "diversion_name": r["name"],
+                    "server_groupid": "urltest",
+                    "server_name": bindings[r["name"]],
+                    "dns_servers": [],
+                }
+            )
         else:
             diversion_use.append(
                 {
                     "diversion_groupid": "custom",
                     "diversion_name": r["name"],
-                    "server_groupid": "currentSelected",
-                    "server_name": "",
+                    "server_groupid": "urltest",
+                    "server_name": default_urltest,
                     "dns_servers": [],
                 }
             )
+
+    diversion_use.append(
+        {
+            "diversion_groupid": "final",
+            "diversion_name": "",
+            "server_groupid": "urltest",
+            "server_name": default_urltest,
+            "dns_servers": [],
+        }
+    )
 
     routing = {
         "items": [
@@ -546,9 +573,56 @@ def apply_local(rules: list[dict]) -> None:
     setting_path.write_text(
         json.dumps(setting, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
+
+    # Keep the user's subscriptions/servers, but rebuild the custom automatic
+    # selection groups from their declarative region/protocol matchers.
+    subscribe_path = karing / "karing_subscribe.json"
+    subscribe = json.loads(subscribe_path.read_text(encoding="utf-8"))
+    urltest_config = json.loads(URLTEST_CONFIG.read_text(encoding="utf-8"))
+    custom = next(
+        (item for item in subscribe.get("items", []) if item.get("groupid") == "custom"),
+        None,
+    )
+    if custom is None:
+        raise RuntimeError("local Karing custom subscription profile not found")
+
+    servers = [
+        server
+        for item in subscribe.get("items", [])
+        for server in item.get("servers", [])
+        if server.get("tag")
+    ]
+    new_urltests = []
+    for wanted in urltest_config["urltests"]:
+        patterns = [
+            re.compile(pattern, re.IGNORECASE) for pattern in wanted.get("regexs", [])
+        ]
+        protocols = set(wanted.get("protocols", []))
+        tags: list[str] = []
+        seen_tags: set[str] = set()
+        for server in servers:
+            tag = server["tag"]
+            protocol_match = bool(protocols and server.get("type") in protocols)
+            name_match = any(pattern.search(tag) for pattern in patterns)
+            if not (protocol_match or name_match) or tag in seen_tags:
+                continue
+            tags.append(tag)
+            seen_tags.add(tag)
+        new_urltests.append(
+            {
+                "remark": wanted["remark"],
+                "tags": tags,
+                "regexs": wanted["regexs"],
+            }
+        )
+    custom["urltests"] = new_urltests
+    subscribe_path.write_text(
+        json.dumps(subscribe, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
     print(
         f"applied local Karing: groups={len(routing['items'][0]['groups'])} "
-        f"remote={len(routing['rule_set_items'])}"
+        f"remote={len(routing['rule_set_items'])} urltests={len(new_urltests)}"
     )
 
 
@@ -598,18 +672,6 @@ def main() -> None:
         print(f"FAILED downloads: {len(failed)}")
         for url, err in failed:
             print(f"  {url}: {err}")
-
-    # Ensure AI process names are complete (Karing: exact match only)
-    for r in rules:
-        if r.get("name") == "🤖 AI" and "processName" in r:
-            r["processName"] = list(AI_PROCESS_NAMES)
-            break
-    # rewrite diversion file with updated process names
-    (OUT / "diversion_rules_custom.json").write_text(
-        json.dumps({"rules": rules}, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
-    )
-    write_runtime(rules)
 
     apply_local(rules)
 
