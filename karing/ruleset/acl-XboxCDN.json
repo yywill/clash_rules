@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "rules": [
+    {
+      "domain_suffix": [
+        "xboxcdn.com",
+        "dlassets.xboxlive.com",
+        "dlassets-ssl.xboxlive.com",
+        "assets1.xboxlive.com",
+        "assets2.xboxlive.com",
+        "dl.delivery.mp.microsoft.com",
+        "do.dsp.mp.microsoft.com"
+      ],
+      "domain_keyword": [
+        "dlassets",
+        "delivery.mp.microsoft"
+      ]
+    }
+  ]
+}

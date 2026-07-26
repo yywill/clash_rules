@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "rules": [
+    {
+      "domain": [
+        "sessionserver.mojang.com",
+        "api.minecraftservices.com",
+        "mcoapi.minecraft.net",
+        "authserver.mojang.com",
+        "pc.realms.minecraft.net",
+        "login.live.com",
+        "login.microsoftonline.com",
+        "user.auth.xboxlive.com",
+        "xsts.auth.xboxlive.com"
+      ],
+      "domain_suffix": [
+        "minecraft.net",
+        "mojang.com",
+        "minecraftservices.com",
+        "minecraft-services.net",
+        "realms.minecraft.net",
+        "pocket.realms.minecraft.net",
+        "realms.gg",
+        "msauth.net",
+        "msftauth.net"
+      ],
+      "domain_keyword": [
+        "realms"
+      ]
+    }
+  ]
+}

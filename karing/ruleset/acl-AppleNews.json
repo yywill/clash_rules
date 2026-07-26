@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "rules": [
+    {
+      "domain": [
+        "gspe1-ssl.ls.apple.com",
+        "news-edge.apple.com",
+        "news-events.apple.com",
+        "apple.comscoreresearch.com"
+      ],
+      "domain_suffix": [
+        "news-assets.apple.com",
+        "news-todayconfig-edge.apple.com",
+        "news-events.apple.com",
+        "news-sports-events.apple.com",
+        "news-edge.apple.com",
+        "c.apple.news",
+        "newsletter-edge.apple.com",
+        "apple.com.akadns.net",
+        "news.iadsdk.apple.com",
+        "webproxy.advp.apple.com",
+        "news-app-events.apple.com",
+        "fpinit.itunes.apple.com",
+        "bag.itunes.apple.com",
+        "amp-api.apps.apple.com",
+        "apple-relay.apple.com",
+        "relay.apple.com"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "rules": [
+    {
+      "domain_suffix": [
+        "smtp"
+      ],
+      "domain_keyword": [
+        "aria2"
+      ]
+    }
+  ]
+}

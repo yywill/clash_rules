@@ -2,13 +2,6 @@
   "diversion_group": [
     {
       "diversion_groupid": "custom",
-      "diversion_name": "🗑 字节网站",
-      "server_groupid": "direct",
-      "server_name": "direct_out",
-      "dns_servers": []
-    },
-    {
-      "diversion_groupid": "custom",
       "diversion_name": "🟢 微信",
       "server_groupid": "direct",
       "server_name": "direct_out",
@@ -16,7 +9,14 @@
     },
     {
       "diversion_groupid": "custom",
-      "diversion_name": "🎯 游戏下载直连",
+      "diversion_name": "🗑 字节网站",
+      "server_groupid": "direct",
+      "server_name": "direct_out",
+      "dns_servers": []
+    },
+    {
+      "diversion_groupid": "custom",
+      "diversion_name": "🎯 全球直连",
       "server_groupid": "direct",
       "server_name": "direct_out",
       "dns_servers": []
@@ -24,6 +24,20 @@
     {
       "diversion_groupid": "custom",
       "diversion_name": "🎮 游戏平台",
+      "server_groupid": "currentSelected",
+      "server_name": "",
+      "dns_servers": []
+    },
+    {
+      "diversion_groupid": "custom",
+      "diversion_name": "🎯 全球直连 ·2",
+      "server_groupid": "direct",
+      "server_name": "direct_out",
+      "dns_servers": []
+    },
+    {
+      "diversion_groupid": "custom",
+      "diversion_name": "🚀 节点选择",
       "server_groupid": "currentSelected",
       "server_name": "",
       "dns_servers": []
@@ -51,7 +65,14 @@
     },
     {
       "diversion_groupid": "custom",
-      "diversion_name": "👨🏿‍💻 GitHub",
+      "diversion_name": "📲 Telegram",
+      "server_groupid": "currentSelected",
+      "server_name": "",
+      "dns_servers": []
+    },
+    {
+      "diversion_groupid": "custom",
+      "diversion_name": "💧 Copilot",
       "server_groupid": "currentSelected",
       "server_name": "",
       "dns_servers": []
@@ -65,9 +86,51 @@
     },
     {
       "diversion_groupid": "custom",
-      "diversion_name": "🎵 TikTok",
+      "diversion_name": "🎯 全球直连 ·3",
+      "server_groupid": "direct",
+      "server_name": "direct_out",
+      "dns_servers": []
+    },
+    {
+      "diversion_groupid": "custom",
+      "diversion_name": "📢 FCM",
       "server_groupid": "currentSelected",
       "server_name": "",
+      "dns_servers": []
+    },
+    {
+      "diversion_groupid": "custom",
+      "diversion_name": "👨🏿‍💻 GitHub",
+      "server_groupid": "currentSelected",
+      "server_name": "",
+      "dns_servers": []
+    },
+    {
+      "diversion_groupid": "custom",
+      "diversion_name": "🪟 Microsoft",
+      "server_groupid": "currentSelected",
+      "server_name": "",
+      "dns_servers": []
+    },
+    {
+      "diversion_groupid": "custom",
+      "diversion_name": "🍎 AppleNews",
+      "server_groupid": "currentSelected",
+      "server_name": "",
+      "dns_servers": []
+    },
+    {
+      "diversion_groupid": "custom",
+      "diversion_name": "🍎 Apple",
+      "server_groupid": "direct",
+      "server_name": "direct_out",
+      "dns_servers": []
+    },
+    {
+      "diversion_groupid": "custom",
+      "diversion_name": "♻️ Speedtest",
+      "server_groupid": "direct",
+      "server_name": "direct_out",
       "dns_servers": []
     },
     {
@@ -80,20 +143,6 @@
     {
       "diversion_groupid": "custom",
       "diversion_name": "🎥 Netflix",
-      "server_groupid": "currentSelected",
-      "server_name": "",
-      "dns_servers": []
-    },
-    {
-      "diversion_groupid": "custom",
-      "diversion_name": "🍀 Google",
-      "server_groupid": "currentSelected",
-      "server_name": "",
-      "dns_servers": []
-    },
-    {
-      "diversion_groupid": "custom",
-      "diversion_name": "🍎 AppleNews",
       "server_groupid": "currentSelected",
       "server_name": "",
       "dns_servers": []
@@ -142,9 +191,30 @@
     },
     {
       "diversion_groupid": "custom",
+      "diversion_name": "🍀 Google",
+      "server_groupid": "currentSelected",
+      "server_name": "",
+      "dns_servers": []
+    },
+    {
+      "diversion_groupid": "custom",
       "diversion_name": "👙 porn",
       "server_groupid": "currentSelected",
       "server_name": "",
+      "dns_servers": []
+    },
+    {
+      "diversion_groupid": "custom",
+      "diversion_name": "🎵 TikTok",
+      "server_groupid": "currentSelected",
+      "server_name": "",
+      "dns_servers": []
+    },
+    {
+      "diversion_groupid": "custom",
+      "diversion_name": "🎞️ 国内媒体",
+      "server_groupid": "direct",
+      "server_name": "direct_out",
       "dns_servers": []
     },
     {
@@ -156,84 +226,21 @@
     },
     {
       "diversion_groupid": "custom",
-      "diversion_name": "🎯 直连补充",
+      "diversion_name": "🎯 全球直连 ·4",
       "server_groupid": "direct",
       "server_name": "direct_out",
       "dns_servers": []
     },
     {
       "diversion_groupid": "custom",
-      "diversion_name": "🎯 全球直连",
-      "server_groupid": "direct",
-      "server_name": "direct_out",
-      "dns_servers": []
-    },
-    {
-      "diversion_groupid": "custom",
-      "diversion_name": "📢 FCM",
+      "diversion_name": "🚀 节点选择 ·2",
       "server_groupid": "currentSelected",
       "server_name": "",
       "dns_servers": []
     },
     {
       "diversion_groupid": "custom",
-      "diversion_name": "🪟 Microsoft",
-      "server_groupid": "currentSelected",
-      "server_name": "",
-      "dns_servers": []
-    },
-    {
-      "diversion_groupid": "custom",
-      "diversion_name": "🍎 Apple",
-      "server_groupid": "direct",
-      "server_name": "direct_out",
-      "dns_servers": []
-    },
-    {
-      "diversion_groupid": "custom",
-      "diversion_name": "📲 Telegram",
-      "server_groupid": "currentSelected",
-      "server_name": "",
-      "dns_servers": []
-    },
-    {
-      "diversion_groupid": "custom",
-      "diversion_name": "🚀 代理补充",
-      "server_groupid": "currentSelected",
-      "server_name": "",
-      "dns_servers": []
-    },
-    {
-      "diversion_groupid": "custom",
-      "diversion_name": "🚀 节点选择",
-      "server_groupid": "currentSelected",
-      "server_name": "",
-      "dns_servers": []
-    },
-    {
-      "diversion_groupid": "custom",
-      "diversion_name": "🛑 广告拦截",
-      "server_groupid": "block",
-      "server_name": "block_out",
-      "dns_servers": []
-    },
-    {
-      "diversion_groupid": "custom",
-      "diversion_name": "🍃 应用净化",
-      "server_groupid": "block",
-      "server_name": "block_out",
-      "dns_servers": []
-    },
-    {
-      "diversion_groupid": "custom",
-      "diversion_name": "📺 哔哩哔哩",
-      "server_groupid": "direct",
-      "server_name": "direct_out",
-      "dns_servers": []
-    },
-    {
-      "diversion_groupid": "custom",
-      "diversion_name": "🎶 网易音乐",
+      "diversion_name": "🎯 全球直连 ·5",
       "server_groupid": "direct",
       "server_name": "direct_out",
       "dns_servers": []
