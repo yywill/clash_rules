@@ -1,17 +1,20 @@
 #!/usr/bin/env python3
-"""Generate Karing diversion + sing-box rulesets from clash.ini (full ruleset list)."""
+"""Generate Karing diversion + sing-box rulesets from surge.conf [Rule]."""
 
 from __future__ import annotations
 
 import json
+import time
 import urllib.request
 from collections import OrderedDict
 from pathlib import Path
+from typing import Any
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = Path(__file__).resolve().parent
 OUT_RS = OUT / "ruleset"
 BASE = "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset"
+SURGE_CONF = ROOT / "surge.conf"
 
 LOCAL_MAP = {
     "https://raw.githubusercontent.com/yywill/clash_rules/main/Direct.list": ROOT
@@ -27,32 +30,97 @@ LOCAL_MAP = {
     / "GitHub.list",
 }
 
+# Default Karing outbound = first option in surge.conf [Proxy Group] select lists.
 DEFAULT_OUTBOUND = {
+    "DIRECT": "direct",
+    "🖥 进程直连": "direct",
     "🎯 全球直连": "direct",
     "🗑 字节网站": "direct",
     "🟢 微信": "direct",
-    "🎞️ 国内媒体": "direct",
-    "🍎 Apple": "direct",
-    "♻️ Speedtest": "direct",
+    "🌏 国内媒体": "direct",
+    "📺 哔哩哔哩": "direct",
+    "🍎 苹果服务": "direct",
+    "Ⓜ️ 微软云盘": "direct",
+    "Ⓜ️ 微软服务": "direct",
+    "📢 谷歌FCM": "direct",
+    "🎶 网易音乐": "direct",
     "🛑 广告拦截": "block",
     "🍃 应用净化": "block",
     "🐟 漏网之鱼": "currentSelected",
     "🚀 节点选择": "currentSelected",
+    "🎮 游戏平台": "currentSelected",
+    "💬 OpenAi": "currentSelected",
+    "💧 Copilot": "currentSelected",
+    "🤖 AI": "currentSelected",
+    "🤖 Nostr": "currentSelected",
+    "👨🏿‍💻 GitHub": "currentSelected",
+    "🪙 Crypto": "currentSelected",
+    "🎵 TikTok": "currentSelected",
+    "📹 油管视频": "currentSelected",
+    "🎥 奈飞视频": "currentSelected",
+    "🍃 Google": "currentSelected",
+    "🍎 AppleNews": "currentSelected",
+    "🎥 DiscoveryPlus": "currentSelected",
+    "🎥 MAX美国": "currentSelected",
+    "🎥 HBO香港亚洲": "currentSelected",
+    "🎥 PBS": "currentSelected",
+    "🎵 Spotify": "currentSelected",
+    "🌍 国外媒体": "currentSelected",
+    "📲 Telegram": "currentSelected",
+    "📲 电报消息": "currentSelected",
+    "👙 porn": "currentSelected",
+    "📺 巴哈姆特": "currentSelected",
 }
 
 
-def parse_clash_ini_rulesets() -> list[tuple[str, str]]:
-    text = (ROOT / "clash.ini").read_text(encoding="utf-8")
-    entries: list[tuple[str, str]] = []
-    for line in text.splitlines():
-        line = line.strip()
-        if not line.startswith("ruleset="):
+def parse_surge_rules() -> list[dict[str, str]]:
+    """Parse surge.conf [Rule] into ordered entries.
+
+    Each entry: {kind, policy, value}
+      kind=ruleset|process|geoip|ip_cidr|final
+    """
+    text = SURGE_CONF.read_text(encoding="utf-8")
+    in_rule = False
+    entries: list[dict[str, str]] = []
+    for raw in text.splitlines():
+        line = raw.strip()
+        if line.startswith("[") and line.endswith("]"):
+            in_rule = line == "[Rule]"
             continue
-        body = line[len("ruleset=") :]
-        parts = body.split(",", 1)
-        if len(parts) < 2:
+        if not in_rule or not line or line.startswith("#"):
             continue
-        entries.append((parts[0].strip(), parts[1].strip()))
+
+        # Strip trailing inline comments carefully — Surge rules rarely have them
+        parts = [p.strip() for p in line.split(",")]
+        typ = parts[0].upper()
+
+        if typ == "RULE-SET" and len(parts) >= 3:
+            url = parts[1]
+            policy = parts[2]
+            if policy.startswith("update-interval"):
+                continue
+            entries.append({"kind": "ruleset", "policy": policy, "value": url})
+        elif typ == "PROCESS-NAME" and len(parts) >= 3:
+            entries.append(
+                {"kind": "process", "policy": parts[2], "value": parts[1]}
+            )
+        elif typ == "GEOIP" and len(parts) >= 3:
+            entries.append({"kind": "geoip", "policy": parts[2], "value": parts[1]})
+        elif typ in ("IP-CIDR", "IP-CIDR6") and len(parts) >= 3:
+            entries.append({"kind": "ip_cidr", "policy": parts[2], "value": parts[1]})
+        elif typ == "FINAL" and len(parts) >= 2:
+            entries.append({"kind": "final", "policy": parts[1], "value": ""})
+        elif typ == "DOMAIN" and len(parts) >= 3:
+            entries.append({"kind": "domain", "policy": parts[2], "value": parts[1]})
+        elif typ == "DOMAIN-SUFFIX" and len(parts) >= 3:
+            entries.append(
+                {"kind": "domain_suffix", "policy": parts[2], "value": parts[1]}
+            )
+        elif typ == "DOMAIN-KEYWORD" and len(parts) >= 3:
+            entries.append(
+                {"kind": "domain_keyword", "policy": parts[2], "value": parts[1]}
+            )
+
     return entries
 
 
@@ -126,19 +194,17 @@ def slugify(url: str) -> str:
     return f"{prefix}-{name}"
 
 
-def convert_lists(entries: list[tuple[str, str]]) -> tuple[dict[str, str], list]:
+def convert_lists(entries: list[dict[str, str]]) -> tuple[dict[str, str], list]:
     OUT_RS.mkdir(parents=True, exist_ok=True)
-    # Keep existing json as download cache; remove orphans at end.
     keep_slugs: set[str] = set()
-
     url_to_slug: OrderedDict[str, str] = OrderedDict()
     failed: list[tuple[str, str]] = []
     used_slugs: set[str] = set()
 
-    for _, rest in entries:
-        if not rest.startswith("http"):
+    for entry in entries:
+        if entry["kind"] != "ruleset":
             continue
-        url = rest
+        url = entry["value"]
         if url in url_to_slug:
             continue
         slug = slugify(url)
@@ -158,8 +224,6 @@ def convert_lists(entries: list[tuple[str, str]]) -> tuple[dict[str, str], list]
             except Exception as exc:  # noqa: BLE001
                 last_err = str(exc)
                 if attempt < 2:
-                    import time
-
                     time.sleep(1.5 * (attempt + 1))
 
         if content is None:
@@ -193,14 +257,22 @@ def convert_lists(entries: list[tuple[str, str]]) -> tuple[dict[str, str], list]
     return dict(url_to_slug), failed
 
 
-def build_rules(
-    entries: list[tuple[str, str]], url_to_slug: dict[str, str]
-) -> list[dict]:
-    """Preserve clash.ini order. Only merge *consecutive* same-name rulesets.
+def _group_has_matchers(g: dict[str, Any]) -> bool:
+    return bool(
+        g.get("rule_set")
+        or g.get("rule_set_build_in")
+        or g.get("processName")
+        or g.get("ip_cidr")
+        or g.get("domain")
+        or g.get("domain_suffix")
+        or g.get("domain_keyword")
+    )
 
-    Non-consecutive repeats (e.g. early XboxCDN 全球直连 vs late ChinaDomain
-    全球直连) become separate groups so late catch-alls cannot steal priority.
-    """
+
+def build_rules(
+    entries: list[dict[str, str]], url_to_slug: dict[str, str]
+) -> list[dict]:
+    """Preserve surge.conf [Rule] order. Merge only consecutive same policy."""
 
     rules: list[dict] = []
     name_counts: dict[str, int] = {}
@@ -209,9 +281,7 @@ def build_rules(
 
     def flush() -> None:
         nonlocal current
-        if not current:
-            return
-        if not current.get("rule_set") and not current.get("rule_set_build_in"):
+        if not current or not _group_has_matchers(current):
             current = None
             return
         r: dict = {
@@ -219,63 +289,89 @@ def build_rules(
             "outbound": current["outbound"],
             "switch": True,
         }
-        if current["rule_set"]:
-            r["rule_set"] = current["rule_set"]
-        if current["rule_set_build_in"]:
-            r["rule_set_build_in"] = current["rule_set_build_in"]
+        for key in (
+            "rule_set",
+            "rule_set_build_in",
+            "processName",
+            "ip_cidr",
+            "domain",
+            "domain_suffix",
+            "domain_keyword",
+        ):
+            if current.get(key):
+                r[key] = current[key]
         rules.append(r)
         current = None
 
     def start_group(base_name: str) -> dict:
         nonlocal current, current_base
         flush()
-        count = name_counts.get(base_name, 0) + 1
-        name_counts[base_name] = count
-        display = base_name if count == 1 else f"{base_name} ·{count}"
+        # Surge PROCESS-NAME,...,DIRECT — keep separate from 全球直连 RULE-SET bands
+        display_base = "🖥 进程直连" if base_name == "DIRECT" else base_name
+        count = name_counts.get(display_base, 0) + 1
+        name_counts[display_base] = count
+        display = display_base if count == 1 else f"{display_base} ·{count}"
         current_base = base_name
         current = {
             "name": display,
-            "outbound": DEFAULT_OUTBOUND.get(base_name, "currentSelected"),
+            "outbound": DEFAULT_OUTBOUND.get(display_base, "currentSelected"),
             "rule_set": [],
             "rule_set_build_in": [],
+            "processName": [],
+            "ip_cidr": [],
+            "domain": [],
+            "domain_suffix": [],
+            "domain_keyword": [],
         }
         return current
 
-    for name, rest in entries:
-        if current is None or current_base != name:
-            g = start_group(name)
+    for entry in entries:
+        policy = entry["policy"]
+        kind = entry["kind"]
+        value = entry["value"]
+
+        if kind == "final":
+            # Karing unmatched traffic uses default selection; skip empty FINAL group
+            continue
+
+        if current is None or current_base != policy:
+            g = start_group(policy)
         else:
             g = current
             assert g is not None
 
-        if rest.startswith("http"):
-            slug = url_to_slug.get(rest)
+        if kind == "ruleset":
+            slug = url_to_slug.get(value)
             if not slug:
                 continue
             url = f"{BASE}/{slug}.json"
             if url not in g["rule_set"]:
                 g["rule_set"].append(url)
-        elif rest.startswith("[]GEOSITE,"):
-            code = rest.split(",", 1)[1].strip()
-            tag = f"geosite:{code}"
+        elif kind == "process":
+            # Skip Surge wildcards / percent-encoded patterns Karing can't use
+            if "*" in value or "%" in value or "/" in value:
+                continue
+            if value not in g["processName"]:
+                g["processName"].append(value)
+        elif kind == "geoip":
+            tag = f"geoip:{value}"
             if tag not in g["rule_set_build_in"]:
                 g["rule_set_build_in"].append(tag)
-        elif rest.startswith("[]GEOIP,"):
-            code = rest.split(",")[1].strip()
-            tag = f"geoip:{code}"
-            if tag not in g["rule_set_build_in"]:
-                g["rule_set_build_in"].append(tag)
-        elif rest.startswith("[]FINAL"):
-            # unmatched traffic uses Karing default; no matcher to add
-            pass
+        elif kind == "ip_cidr":
+            if value not in g["ip_cidr"]:
+                g["ip_cidr"].append(value)
+        elif kind == "domain":
+            if value not in g["domain"]:
+                g["domain"].append(value)
+        elif kind == "domain_suffix":
+            if value not in g["domain_suffix"]:
+                g["domain_suffix"].append(value)
+        elif kind == "domain_keyword":
+            if value not in g["domain_keyword"]:
+                g["domain_keyword"].append(value)
 
     flush()
-
-    # Match Surge priority: ByteDance / WeChat must be before broad China/proxy lists.
-    priority_prefix = ("🗑 字节网站", "🟢 微信")
-    head = [r for r in rules if r["name"].startswith(priority_prefix)]
-    tail = [r for r in rules if not r["name"].startswith(priority_prefix)]
-    return head + tail
+    return rules
 
 
 def write_runtime(rules: list[dict]) -> None:
@@ -291,7 +387,15 @@ def write_runtime(rules: list[dict]) -> None:
             "or": True,
             "index": idx,
         }
-        for key in ("rule_set_build_in", "rule_set"):
+        for key in (
+            "rule_set_build_in",
+            "rule_set",
+            "processName",
+            "ip_cidr",
+            "domain",
+            "domain_suffix",
+            "domain_keyword",
+        ):
             if key in r:
                 g[key] = r[key]
         if "rule_set" in r:
@@ -364,7 +468,7 @@ def write_runtime(rules: list[dict]) -> None:
     )
 
 
-def apply_local(rules: list[dict], routing_path: Path | None = None) -> None:
+def apply_local(rules: list[dict]) -> None:
     """Apply to local Karing app config, inlining ruleset JSON so it works pre-push."""
     karing = Path.home() / "Library/Group Containers/group.com.nebula.karing"
     if not karing.exists():
@@ -405,7 +509,9 @@ def apply_local(rules: list[dict], routing_path: Path | None = None) -> None:
         (OUT / "karing_subscribe_use.diversion.json").read_text(encoding="utf-8")
     )
     use["diversion_group"] = div["diversion_group"]
-    use_path.write_text(json.dumps(use, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    use_path.write_text(
+        json.dumps(use, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
 
     setting_path = karing / "karing_setting.json"
     setting = json.loads(setting_path.read_text(encoding="utf-8"))
@@ -426,8 +532,8 @@ def apply_local(rules: list[dict], routing_path: Path | None = None) -> None:
 
 
 def main() -> None:
-    entries = parse_clash_ini_rulesets()
-    print(f"clash.ini ruleset lines: {len(entries)}")
+    entries = parse_surge_rules()
+    print(f"surge.conf [Rule] entries: {len(entries)}")
     url_to_slug, failed = convert_lists(entries)
     rules = build_rules(entries, url_to_slug)
 
@@ -439,6 +545,7 @@ def main() -> None:
     (OUT / "ruleset_sources.json").write_text(
         json.dumps(
             {
+                "source": "surge.conf",
                 "url_to_slug": url_to_slug,
                 "failed": failed,
                 "groups": [r["name"] for r in rules],
@@ -450,12 +557,18 @@ def main() -> None:
         encoding="utf-8",
     )
 
-    print("\n=== GROUPS ===")
+    print("\n=== GROUPS (from surge.conf) ===")
     for r in rules:
+        extras = []
+        if r.get("processName"):
+            extras.append(f"proc={len(r['processName'])}")
+        if r.get("ip_cidr"):
+            extras.append(f"cidr={len(r['ip_cidr'])}")
         print(
             f"  [{r['outbound']:16}] {r['name']}  "
             f"remote={len(r.get('rule_set', []))} "
-            f"builtin={len(r.get('rule_set_build_in', []))}"
+            f"builtin={len(r.get('rule_set_build_in', []))} "
+            f"{' '.join(extras)}"
         )
     rs_count = len(list(OUT_RS.glob("*.json")))
     print(f"\nwrote diversion_rules_custom.json ({len(rules)} groups)")

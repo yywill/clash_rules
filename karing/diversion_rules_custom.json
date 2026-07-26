@@ -1,11 +1,12 @@
 {
   "rules": [
     {
-      "name": "🟢 微信",
+      "name": "🖥 进程直连",
       "outbound": "direct",
       "switch": true,
-      "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Wechat.json"
+      "processName": [
+        "Keet",
+        "bare"
       ]
     },
     {
@@ -14,6 +15,14 @@
       "switch": true,
       "rule_set": [
         "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-ByteDance.json"
+      ]
+    },
+    {
+      "name": "🟢 微信",
+      "outbound": "direct",
+      "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Wechat.json"
       ]
     },
     {
@@ -35,51 +44,19 @@
       ]
     },
     {
-      "name": "🎯 全球直连 ·2",
-      "outbound": "direct",
-      "switch": true,
-      "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-Direct.json"
-      ]
-    },
-    {
-      "name": "🚀 节点选择",
-      "outbound": "currentSelected",
-      "switch": true,
-      "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-ProxyLite.json"
-      ]
-    },
-    {
       "name": "🤖 AI",
       "outbound": "currentSelected",
       "switch": true,
-      "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-AI.json"
+      "processName": [
+        "agy"
       ]
     },
     {
-      "name": "📲 nostr",
+      "name": "💬 OpenAi",
       "outbound": "currentSelected",
       "switch": true,
       "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-nostr.json"
-      ]
-    },
-    {
-      "name": "🖥 Work",
-      "outbound": "currentSelected",
-      "switch": true,
-      "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-work.json"
-      ]
-    },
-    {
-      "name": "📲 Telegram",
-      "outbound": "currentSelected",
-      "switch": true,
-      "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Telegram.json"
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-OpenAi.json"
       ]
     },
     {
@@ -91,34 +68,19 @@
       ]
     },
     {
-      "name": "🪙 Crypto",
+      "name": "🤖 AI ·2",
       "outbound": "currentSelected",
       "switch": true,
       "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Crypto.json"
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-AI.json"
       ]
     },
     {
-      "name": "🎯 全球直连 ·3",
-      "outbound": "direct",
-      "switch": true,
-      "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-LocalAreaNetwork.json",
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-UnBan.json",
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-GoogleCN.json",
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-SteamCN.json",
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-ChinaDomain.json",
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-ChinaCompanyIp.json",
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Download.json",
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/bm7-China.json"
-      ]
-    },
-    {
-      "name": "📢 FCM",
+      "name": "🤖 Nostr",
       "outbound": "currentSelected",
       "switch": true,
       "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/bm7-GoogleFCM.json"
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-nostr.json"
       ]
     },
     {
@@ -130,11 +92,43 @@
       ]
     },
     {
-      "name": "🪟 Microsoft",
+      "name": "🪙 Crypto",
       "outbound": "currentSelected",
       "switch": true,
       "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Microsoft.json"
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Crypto.json"
+      ]
+    },
+    {
+      "name": "🎵 TikTok",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/bm7-TikTok.json"
+      ]
+    },
+    {
+      "name": "📹 油管视频",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-YouTube.json"
+      ]
+    },
+    {
+      "name": "🎥 奈飞视频",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Netflix.json"
+      ]
+    },
+    {
+      "name": "🍃 Google",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Google.json"
       ]
     },
     {
@@ -146,51 +140,11 @@
       ]
     },
     {
-      "name": "🍎 Apple",
-      "outbound": "direct",
-      "switch": true,
-      "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Apple.json"
-      ]
-    },
-    {
-      "name": "♻️ Speedtest",
-      "outbound": "direct",
-      "switch": true,
-      "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Speedtest.json"
-      ]
-    },
-    {
-      "name": "📹 YouTube",
-      "outbound": "currentSelected",
-      "switch": true,
-      "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-YouTube.json"
-      ]
-    },
-    {
-      "name": "🎥 Netflix",
-      "outbound": "currentSelected",
-      "switch": true,
-      "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Netflix.json"
-      ]
-    },
-    {
       "name": "🎥 DiscoveryPlus",
       "outbound": "currentSelected",
       "switch": true,
       "rule_set": [
         "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-DiscoveryPlus.json"
-      ]
-    },
-    {
-      "name": "🎥 DisneyPlus",
-      "outbound": "currentSelected",
-      "switch": true,
-      "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-DisneyPlus.json"
       ]
     },
     {
@@ -214,7 +168,7 @@
       "outbound": "currentSelected",
       "switch": true,
       "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-PBS.json"
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-PBS.json"
       ]
     },
     {
@@ -222,39 +176,7 @@
       "outbound": "currentSelected",
       "switch": true,
       "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Spotify.json"
-      ]
-    },
-    {
-      "name": "🍀 Google",
-      "outbound": "currentSelected",
-      "switch": true,
-      "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Google.json"
-      ]
-    },
-    {
-      "name": "👙 porn",
-      "outbound": "currentSelected",
-      "switch": true,
-      "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Porn.json"
-      ]
-    },
-    {
-      "name": "🎵 TikTok",
-      "outbound": "currentSelected",
-      "switch": true,
-      "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/bm7-TikTok.json"
-      ]
-    },
-    {
-      "name": "🎞️ 国内媒体",
-      "outbound": "direct",
-      "switch": true,
-      "rule_set": [
-        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/bm7-ChinaMedia.json"
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Spotify.json"
       ]
     },
     {
@@ -266,27 +188,195 @@
       ]
     },
     {
-      "name": "🎯 全球直连 ·4",
+      "name": "🎯 全球直连 ·2",
       "outbound": "direct",
       "switch": true,
-      "rule_set_build_in": [
-        "geosite:CN"
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-UnBan.json",
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-ChinaCompanyIp.json",
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Download.json"
       ]
     },
     {
-      "name": "🚀 节点选择 ·2",
+      "name": "📲 Telegram",
       "outbound": "currentSelected",
       "switch": true,
-      "rule_set_build_in": [
-        "geosite:geolocation-!cn"
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Telegram.json"
+      ]
+    },
+    {
+      "name": "📲 电报消息",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Telegram.json"
+      ]
+    },
+    {
+      "name": "👙 porn",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Porn.json"
+      ]
+    },
+    {
+      "name": "🎯 全球直连 ·3",
+      "outbound": "direct",
+      "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-LocalAreaNetwork.json"
+      ]
+    },
+    {
+      "name": "📢 谷歌FCM",
+      "outbound": "direct",
+      "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-GoogleFCM.json"
+      ]
+    },
+    {
+      "name": "🎯 全球直连 ·4",
+      "outbound": "direct",
+      "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-GoogleCN.json",
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-SteamCN.json"
+      ]
+    },
+    {
+      "name": "Ⓜ️ 微软云盘",
+      "outbound": "direct",
+      "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-OneDrive.json"
+      ]
+    },
+    {
+      "name": "Ⓜ️ 微软服务",
+      "outbound": "direct",
+      "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Microsoft.json"
+      ]
+    },
+    {
+      "name": "🍎 苹果服务",
+      "outbound": "direct",
+      "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Apple.json"
+      ]
+    },
+    {
+      "name": "📲 电报消息 ·2",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Telegram.json"
+      ]
+    },
+    {
+      "name": "🎶 网易音乐",
+      "outbound": "direct",
+      "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-NetEaseMusic.json"
+      ]
+    },
+    {
+      "name": "🎮 游戏平台 ·2",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Epic.json",
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Origin.json",
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Steam.json",
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Nintendo.json"
+      ]
+    },
+    {
+      "name": "📺 巴哈姆特",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Bahamut.json"
+      ]
+    },
+    {
+      "name": "📺 哔哩哔哩",
+      "outbound": "direct",
+      "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-BilibiliHMT.json",
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Bilibili.json"
+      ]
+    },
+    {
+      "name": "🌏 国内媒体",
+      "outbound": "direct",
+      "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-ChinaMedia.json"
+      ]
+    },
+    {
+      "name": "🚀 节点选择",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-ProxyGFWlist.json"
       ]
     },
     {
       "name": "🎯 全球直连 ·5",
       "outbound": "direct",
       "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-ChinaDomain.json"
+      ]
+    },
+    {
+      "name": "🍃 应用净化",
+      "outbound": "block",
+      "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-BanProgramAD.json"
+      ]
+    },
+    {
+      "name": "🛑 广告拦截",
+      "outbound": "block",
+      "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-BanAD.json"
+      ]
+    },
+    {
+      "name": "🎯 全球直连 ·6",
+      "outbound": "direct",
+      "switch": true,
       "rule_set_build_in": [
         "geoip:CN"
+      ],
+      "ip_cidr": [
+        "240e::/20",
+        "2408::/16",
+        "2409::/16",
+        "240c::/16",
+        "2001:da8::/32",
+        "2402:f000::/20",
+        "2401::/16"
+      ]
+    },
+    {
+      "name": "🐟 漏网之鱼",
+      "outbound": "currentSelected",
+      "switch": true,
+      "ip_cidr": [
+        "::/0"
       ]
     }
   ]

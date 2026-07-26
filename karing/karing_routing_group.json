@@ -8,12 +8,13 @@
       "groups": [
         {
           "groupid": "custom",
-          "name": "🟢 微信",
+          "name": "🖥 进程直连",
           "type": "",
           "or": true,
           "index": 0,
-          "rule_set": [
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Wechat.json"
+          "processName": [
+            "Keet",
+            "bare"
           ]
         },
         {
@@ -28,10 +29,20 @@
         },
         {
           "groupid": "custom",
-          "name": "🎯 全球直连",
+          "name": "🟢 微信",
           "type": "",
           "or": true,
           "index": 2,
+          "rule_set": [
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Wechat.json"
+          ]
+        },
+        {
+          "groupid": "custom",
+          "name": "🎯 全球直连",
+          "type": "",
+          "or": true,
+          "index": 3,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-XboxCDN.json"
           ]
@@ -41,7 +52,7 @@
           "name": "🎮 游戏平台",
           "type": "",
           "or": true,
-          "index": 3,
+          "index": 4,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Sony.json",
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Xbox.json",
@@ -50,62 +61,22 @@
         },
         {
           "groupid": "custom",
-          "name": "🎯 全球直连 ·2",
-          "type": "",
-          "or": true,
-          "index": 4,
-          "rule_set": [
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-Direct.json"
-          ]
-        },
-        {
-          "groupid": "custom",
-          "name": "🚀 节点选择",
+          "name": "🤖 AI",
           "type": "",
           "or": true,
           "index": 5,
-          "rule_set": [
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-ProxyLite.json"
+          "processName": [
+            "agy"
           ]
         },
         {
           "groupid": "custom",
-          "name": "🤖 AI",
+          "name": "💬 OpenAi",
           "type": "",
           "or": true,
           "index": 6,
           "rule_set": [
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-AI.json"
-          ]
-        },
-        {
-          "groupid": "custom",
-          "name": "📲 nostr",
-          "type": "",
-          "or": true,
-          "index": 7,
-          "rule_set": [
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-nostr.json"
-          ]
-        },
-        {
-          "groupid": "custom",
-          "name": "🖥 Work",
-          "type": "",
-          "or": true,
-          "index": 8,
-          "rule_set": [
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-work.json"
-          ]
-        },
-        {
-          "groupid": "custom",
-          "name": "📲 Telegram",
-          "type": "",
-          "or": true,
-          "index": 9,
-          "rule_set": [
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Telegram.json"
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-OpenAi.json"
           ]
         },
         {
@@ -113,9 +84,39 @@
           "name": "💧 Copilot",
           "type": "",
           "or": true,
-          "index": 10,
+          "index": 7,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Bing.json"
+          ]
+        },
+        {
+          "groupid": "custom",
+          "name": "🤖 AI ·2",
+          "type": "",
+          "or": true,
+          "index": 8,
+          "rule_set": [
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-AI.json"
+          ]
+        },
+        {
+          "groupid": "custom",
+          "name": "🤖 Nostr",
+          "type": "",
+          "or": true,
+          "index": 9,
+          "rule_set": [
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-nostr.json"
+          ]
+        },
+        {
+          "groupid": "custom",
+          "name": "👨🏿‍💻 GitHub",
+          "type": "",
+          "or": true,
+          "index": 10,
+          "rule_set": [
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-GitHub.json"
           ]
         },
         {
@@ -130,49 +131,42 @@
         },
         {
           "groupid": "custom",
-          "name": "🎯 全球直连 ·3",
+          "name": "🎵 TikTok",
           "type": "",
           "or": true,
           "index": 12,
           "rule_set": [
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-LocalAreaNetwork.json",
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-UnBan.json",
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-GoogleCN.json",
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-SteamCN.json",
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-ChinaDomain.json",
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-ChinaCompanyIp.json",
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Download.json",
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/bm7-China.json"
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/bm7-TikTok.json"
           ]
         },
         {
           "groupid": "custom",
-          "name": "📢 FCM",
+          "name": "📹 油管视频",
           "type": "",
           "or": true,
           "index": 13,
           "rule_set": [
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/bm7-GoogleFCM.json"
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-YouTube.json"
           ]
         },
         {
           "groupid": "custom",
-          "name": "👨🏿‍💻 GitHub",
+          "name": "🎥 奈飞视频",
           "type": "",
           "or": true,
           "index": 14,
           "rule_set": [
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-GitHub.json"
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Netflix.json"
           ]
         },
         {
           "groupid": "custom",
-          "name": "🪟 Microsoft",
+          "name": "🍃 Google",
           "type": "",
           "or": true,
           "index": 15,
           "rule_set": [
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Microsoft.json"
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Google.json"
           ]
         },
         {
@@ -187,62 +181,12 @@
         },
         {
           "groupid": "custom",
-          "name": "🍎 Apple",
+          "name": "🎥 DiscoveryPlus",
           "type": "",
           "or": true,
           "index": 17,
           "rule_set": [
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Apple.json"
-          ]
-        },
-        {
-          "groupid": "custom",
-          "name": "♻️ Speedtest",
-          "type": "",
-          "or": true,
-          "index": 18,
-          "rule_set": [
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Speedtest.json"
-          ]
-        },
-        {
-          "groupid": "custom",
-          "name": "📹 YouTube",
-          "type": "",
-          "or": true,
-          "index": 19,
-          "rule_set": [
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-YouTube.json"
-          ]
-        },
-        {
-          "groupid": "custom",
-          "name": "🎥 Netflix",
-          "type": "",
-          "or": true,
-          "index": 20,
-          "rule_set": [
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Netflix.json"
-          ]
-        },
-        {
-          "groupid": "custom",
-          "name": "🎥 DiscoveryPlus",
-          "type": "",
-          "or": true,
-          "index": 21,
-          "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-DiscoveryPlus.json"
-          ]
-        },
-        {
-          "groupid": "custom",
-          "name": "🎥 DisneyPlus",
-          "type": "",
-          "or": true,
-          "index": 22,
-          "rule_set": [
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-DisneyPlus.json"
           ]
         },
         {
@@ -250,7 +194,7 @@
           "name": "🎥 MAX美国",
           "type": "",
           "or": true,
-          "index": 23,
+          "index": 18,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-HBO.json"
           ]
@@ -260,7 +204,7 @@
           "name": "🎥 HBO香港亚洲",
           "type": "",
           "or": true,
-          "index": 24,
+          "index": 19,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-HBO_GO_HKG.json"
           ]
@@ -270,9 +214,9 @@
           "name": "🎥 PBS",
           "type": "",
           "or": true,
-          "index": 25,
+          "index": 20,
           "rule_set": [
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-PBS.json"
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-PBS.json"
           ]
         },
         {
@@ -280,49 +224,9 @@
           "name": "🎵 Spotify",
           "type": "",
           "or": true,
-          "index": 26,
+          "index": 21,
           "rule_set": [
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Spotify.json"
-          ]
-        },
-        {
-          "groupid": "custom",
-          "name": "🍀 Google",
-          "type": "",
-          "or": true,
-          "index": 27,
-          "rule_set": [
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Google.json"
-          ]
-        },
-        {
-          "groupid": "custom",
-          "name": "👙 porn",
-          "type": "",
-          "or": true,
-          "index": 28,
-          "rule_set": [
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Porn.json"
-          ]
-        },
-        {
-          "groupid": "custom",
-          "name": "🎵 TikTok",
-          "type": "",
-          "or": true,
-          "index": 29,
-          "rule_set": [
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/bm7-TikTok.json"
-          ]
-        },
-        {
-          "groupid": "custom",
-          "name": "🎞️ 国内媒体",
-          "type": "",
-          "or": true,
-          "index": 30,
-          "rule_set": [
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/bm7-ChinaMedia.json"
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Spotify.json"
           ]
         },
         {
@@ -330,9 +234,71 @@
           "name": "🌍 国外媒体",
           "type": "",
           "or": true,
-          "index": 31,
+          "index": 22,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-ProxyMedia.json"
+          ]
+        },
+        {
+          "groupid": "custom",
+          "name": "🎯 全球直连 ·2",
+          "type": "",
+          "or": true,
+          "index": 23,
+          "rule_set": [
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-UnBan.json",
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-ChinaCompanyIp.json",
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Download.json"
+          ]
+        },
+        {
+          "groupid": "custom",
+          "name": "📲 Telegram",
+          "type": "",
+          "or": true,
+          "index": 24,
+          "rule_set": [
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Telegram.json"
+          ]
+        },
+        {
+          "groupid": "custom",
+          "name": "📲 电报消息",
+          "type": "",
+          "or": true,
+          "index": 25,
+          "rule_set": [
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Telegram.json"
+          ]
+        },
+        {
+          "groupid": "custom",
+          "name": "👙 porn",
+          "type": "",
+          "or": true,
+          "index": 26,
+          "rule_set": [
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Porn.json"
+          ]
+        },
+        {
+          "groupid": "custom",
+          "name": "🎯 全球直连 ·3",
+          "type": "",
+          "or": true,
+          "index": 27,
+          "rule_set": [
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-LocalAreaNetwork.json"
+          ]
+        },
+        {
+          "groupid": "custom",
+          "name": "📢 谷歌FCM",
+          "type": "",
+          "or": true,
+          "index": 28,
+          "rule_set": [
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-GoogleFCM.json"
           ]
         },
         {
@@ -340,19 +306,114 @@
           "name": "🎯 全球直连 ·4",
           "type": "",
           "or": true,
-          "index": 32,
-          "rule_set_build_in": [
-            "geosite:CN"
+          "index": 29,
+          "rule_set": [
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-GoogleCN.json",
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-SteamCN.json"
           ]
         },
         {
           "groupid": "custom",
-          "name": "🚀 节点选择 ·2",
+          "name": "Ⓜ️ 微软云盘",
+          "type": "",
+          "or": true,
+          "index": 30,
+          "rule_set": [
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-OneDrive.json"
+          ]
+        },
+        {
+          "groupid": "custom",
+          "name": "Ⓜ️ 微软服务",
+          "type": "",
+          "or": true,
+          "index": 31,
+          "rule_set": [
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Microsoft.json"
+          ]
+        },
+        {
+          "groupid": "custom",
+          "name": "🍎 苹果服务",
+          "type": "",
+          "or": true,
+          "index": 32,
+          "rule_set": [
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Apple.json"
+          ]
+        },
+        {
+          "groupid": "custom",
+          "name": "📲 电报消息 ·2",
           "type": "",
           "or": true,
           "index": 33,
-          "rule_set_build_in": [
-            "geosite:geolocation-!cn"
+          "rule_set": [
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Telegram.json"
+          ]
+        },
+        {
+          "groupid": "custom",
+          "name": "🎶 网易音乐",
+          "type": "",
+          "or": true,
+          "index": 34,
+          "rule_set": [
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-NetEaseMusic.json"
+          ]
+        },
+        {
+          "groupid": "custom",
+          "name": "🎮 游戏平台 ·2",
+          "type": "",
+          "or": true,
+          "index": 35,
+          "rule_set": [
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Epic.json",
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Origin.json",
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Steam.json",
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Nintendo.json"
+          ]
+        },
+        {
+          "groupid": "custom",
+          "name": "📺 巴哈姆特",
+          "type": "",
+          "or": true,
+          "index": 36,
+          "rule_set": [
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Bahamut.json"
+          ]
+        },
+        {
+          "groupid": "custom",
+          "name": "📺 哔哩哔哩",
+          "type": "",
+          "or": true,
+          "index": 37,
+          "rule_set": [
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-BilibiliHMT.json",
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Bilibili.json"
+          ]
+        },
+        {
+          "groupid": "custom",
+          "name": "🌏 国内媒体",
+          "type": "",
+          "or": true,
+          "index": 38,
+          "rule_set": [
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-ChinaMedia.json"
+          ]
+        },
+        {
+          "groupid": "custom",
+          "name": "🚀 节点选择",
+          "type": "",
+          "or": true,
+          "index": 39,
+          "rule_set": [
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-ProxyGFWlist.json"
           ]
         },
         {
@@ -360,9 +421,58 @@
           "name": "🎯 全球直连 ·5",
           "type": "",
           "or": true,
-          "index": 34,
+          "index": 40,
+          "rule_set": [
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-ChinaDomain.json"
+          ]
+        },
+        {
+          "groupid": "custom",
+          "name": "🍃 应用净化",
+          "type": "",
+          "or": true,
+          "index": 41,
+          "rule_set": [
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-BanProgramAD.json"
+          ]
+        },
+        {
+          "groupid": "custom",
+          "name": "🛑 广告拦截",
+          "type": "",
+          "or": true,
+          "index": 42,
+          "rule_set": [
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-BanAD.json"
+          ]
+        },
+        {
+          "groupid": "custom",
+          "name": "🎯 全球直连 ·6",
+          "type": "",
+          "or": true,
+          "index": 43,
           "rule_set_build_in": [
             "geoip:CN"
+          ],
+          "ip_cidr": [
+            "240e::/20",
+            "2408::/16",
+            "2409::/16",
+            "240c::/16",
+            "2001:da8::/32",
+            "2402:f000::/20",
+            "2401::/16"
+          ]
+        },
+        {
+          "groupid": "custom",
+          "name": "🐟 漏网之鱼",
+          "type": "",
+          "or": true,
+          "index": 44,
+          "ip_cidr": [
+            "::/0"
           ]
         }
       ]
@@ -371,17 +481,17 @@
   "rule_set_items": [
     {
       "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Wechat.json",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-ByteDance.json",
       "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Wechat.json",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-ByteDance.json",
       "download_detour": "",
       "update_interval": 86400
     },
     {
       "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-ByteDance.json",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Wechat.json",
       "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-ByteDance.json",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Wechat.json",
       "download_detour": "",
       "update_interval": 86400
     },
@@ -419,17 +529,17 @@
     },
     {
       "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-Direct.json",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-OpenAi.json",
       "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-Direct.json",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-OpenAi.json",
       "download_detour": "",
       "update_interval": 86400
     },
     {
       "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-ProxyLite.json",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Bing.json",
       "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-ProxyLite.json",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Bing.json",
       "download_detour": "",
       "update_interval": 86400
     },
@@ -451,25 +561,9 @@
     },
     {
       "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-work.json",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-GitHub.json",
       "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-work.json",
-      "download_detour": "",
-      "update_interval": 86400
-    },
-    {
-      "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Telegram.json",
-      "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Telegram.json",
-      "download_detour": "",
-      "update_interval": 86400
-    },
-    {
-      "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Bing.json",
-      "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Bing.json",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-GitHub.json",
       "download_detour": "",
       "update_interval": 86400
     },
@@ -483,89 +577,33 @@
     },
     {
       "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-LocalAreaNetwork.json",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/bm7-TikTok.json",
       "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-LocalAreaNetwork.json",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/bm7-TikTok.json",
       "download_detour": "",
       "update_interval": 86400
     },
     {
       "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-UnBan.json",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-YouTube.json",
       "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-UnBan.json",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-YouTube.json",
       "download_detour": "",
       "update_interval": 86400
     },
     {
       "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-GoogleCN.json",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Netflix.json",
       "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-GoogleCN.json",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Netflix.json",
       "download_detour": "",
       "update_interval": 86400
     },
     {
       "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-SteamCN.json",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Google.json",
       "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-SteamCN.json",
-      "download_detour": "",
-      "update_interval": 86400
-    },
-    {
-      "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-ChinaDomain.json",
-      "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-ChinaDomain.json",
-      "download_detour": "",
-      "update_interval": 86400
-    },
-    {
-      "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-ChinaCompanyIp.json",
-      "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-ChinaCompanyIp.json",
-      "download_detour": "",
-      "update_interval": 86400
-    },
-    {
-      "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Download.json",
-      "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Download.json",
-      "download_detour": "",
-      "update_interval": 86400
-    },
-    {
-      "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/bm7-China.json",
-      "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/bm7-China.json",
-      "download_detour": "",
-      "update_interval": 86400
-    },
-    {
-      "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/bm7-GoogleFCM.json",
-      "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/bm7-GoogleFCM.json",
-      "download_detour": "",
-      "update_interval": 86400
-    },
-    {
-      "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-GitHub.json",
-      "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-GitHub.json",
-      "download_detour": "",
-      "update_interval": 86400
-    },
-    {
-      "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Microsoft.json",
-      "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Microsoft.json",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Google.json",
       "download_detour": "",
       "update_interval": 86400
     },
@@ -579,49 +617,9 @@
     },
     {
       "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Apple.json",
-      "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Apple.json",
-      "download_detour": "",
-      "update_interval": 86400
-    },
-    {
-      "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Speedtest.json",
-      "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Speedtest.json",
-      "download_detour": "",
-      "update_interval": 86400
-    },
-    {
-      "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-YouTube.json",
-      "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-YouTube.json",
-      "download_detour": "",
-      "update_interval": 86400
-    },
-    {
-      "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Netflix.json",
-      "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Netflix.json",
-      "download_detour": "",
-      "update_interval": 86400
-    },
-    {
-      "type": "remote",
       "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-DiscoveryPlus.json",
       "format": "source",
       "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-DiscoveryPlus.json",
-      "download_detour": "",
-      "update_interval": 86400
-    },
-    {
-      "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-DisneyPlus.json",
-      "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-DisneyPlus.json",
       "download_detour": "",
       "update_interval": 86400
     },
@@ -643,25 +641,65 @@
     },
     {
       "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-PBS.json",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-PBS.json",
       "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-PBS.json",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-PBS.json",
       "download_detour": "",
       "update_interval": 86400
     },
     {
       "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Spotify.json",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Spotify.json",
       "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Spotify.json",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Spotify.json",
       "download_detour": "",
       "update_interval": 86400
     },
     {
       "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Google.json",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-ProxyMedia.json",
       "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Google.json",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-ProxyMedia.json",
+      "download_detour": "",
+      "update_interval": 86400
+    },
+    {
+      "type": "remote",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-UnBan.json",
+      "format": "source",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-UnBan.json",
+      "download_detour": "",
+      "update_interval": 86400
+    },
+    {
+      "type": "remote",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-ChinaCompanyIp.json",
+      "format": "source",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-ChinaCompanyIp.json",
+      "download_detour": "",
+      "update_interval": 86400
+    },
+    {
+      "type": "remote",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Download.json",
+      "format": "source",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Download.json",
+      "download_detour": "",
+      "update_interval": 86400
+    },
+    {
+      "type": "remote",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Telegram.json",
+      "format": "source",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Telegram.json",
+      "download_detour": "",
+      "update_interval": 86400
+    },
+    {
+      "type": "remote",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Telegram.json",
+      "format": "source",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Telegram.json",
       "download_detour": "",
       "update_interval": 86400
     },
@@ -675,25 +713,161 @@
     },
     {
       "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/bm7-TikTok.json",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-LocalAreaNetwork.json",
       "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/bm7-TikTok.json",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-LocalAreaNetwork.json",
       "download_detour": "",
       "update_interval": 86400
     },
     {
       "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/bm7-ChinaMedia.json",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-GoogleFCM.json",
       "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/bm7-ChinaMedia.json",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-GoogleFCM.json",
       "download_detour": "",
       "update_interval": 86400
     },
     {
       "type": "remote",
-      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-ProxyMedia.json",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-GoogleCN.json",
       "format": "source",
-      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-ProxyMedia.json",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-GoogleCN.json",
+      "download_detour": "",
+      "update_interval": 86400
+    },
+    {
+      "type": "remote",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-SteamCN.json",
+      "format": "source",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-SteamCN.json",
+      "download_detour": "",
+      "update_interval": 86400
+    },
+    {
+      "type": "remote",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-OneDrive.json",
+      "format": "source",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-OneDrive.json",
+      "download_detour": "",
+      "update_interval": 86400
+    },
+    {
+      "type": "remote",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Microsoft.json",
+      "format": "source",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Microsoft.json",
+      "download_detour": "",
+      "update_interval": 86400
+    },
+    {
+      "type": "remote",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Apple.json",
+      "format": "source",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Apple.json",
+      "download_detour": "",
+      "update_interval": 86400
+    },
+    {
+      "type": "remote",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-NetEaseMusic.json",
+      "format": "source",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-NetEaseMusic.json",
+      "download_detour": "",
+      "update_interval": 86400
+    },
+    {
+      "type": "remote",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Epic.json",
+      "format": "source",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Epic.json",
+      "download_detour": "",
+      "update_interval": 86400
+    },
+    {
+      "type": "remote",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Origin.json",
+      "format": "source",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Origin.json",
+      "download_detour": "",
+      "update_interval": 86400
+    },
+    {
+      "type": "remote",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Steam.json",
+      "format": "source",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Steam.json",
+      "download_detour": "",
+      "update_interval": 86400
+    },
+    {
+      "type": "remote",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Nintendo.json",
+      "format": "source",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Nintendo.json",
+      "download_detour": "",
+      "update_interval": 86400
+    },
+    {
+      "type": "remote",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Bahamut.json",
+      "format": "source",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Bahamut.json",
+      "download_detour": "",
+      "update_interval": 86400
+    },
+    {
+      "type": "remote",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-BilibiliHMT.json",
+      "format": "source",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-BilibiliHMT.json",
+      "download_detour": "",
+      "update_interval": 86400
+    },
+    {
+      "type": "remote",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Bilibili.json",
+      "format": "source",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Bilibili.json",
+      "download_detour": "",
+      "update_interval": 86400
+    },
+    {
+      "type": "remote",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-ChinaMedia.json",
+      "format": "source",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-ChinaMedia.json",
+      "download_detour": "",
+      "update_interval": 86400
+    },
+    {
+      "type": "remote",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-ProxyGFWlist.json",
+      "format": "source",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-ProxyGFWlist.json",
+      "download_detour": "",
+      "update_interval": 86400
+    },
+    {
+      "type": "remote",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-ChinaDomain.json",
+      "format": "source",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-ChinaDomain.json",
+      "download_detour": "",
+      "update_interval": 86400
+    },
+    {
+      "type": "remote",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-BanProgramAD.json",
+      "format": "source",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-BanProgramAD.json",
+      "download_detour": "",
+      "update_interval": 86400
+    },
+    {
+      "type": "remote",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-BanAD.json",
+      "format": "source",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-BanAD.json",
       "download_detour": "",
       "update_interval": 86400
     }
