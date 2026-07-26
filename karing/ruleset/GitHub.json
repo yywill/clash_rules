@@ -1,0 +1,45 @@
+{
+  "version": 2,
+  "rules": [
+    {
+      "domain": [
+        "github-api.arkoselabs.com",
+        "github.map.fastly.net",
+        "github.global.ssl.fastly.net",
+        "github-cloud.s3.amazonaws.com",
+        "github-com.s3.amazonaws.com",
+        "github-production-release-asset-2e65be.s3.amazonaws.com",
+        "github-production-user-asset-6210df.s3.amazonaws.com",
+        "github-production-repository-file-5c1aeb.s3.amazonaws.com"
+      ],
+      "domain_suffix": [
+        "github.com",
+        "github.io",
+        "github.dev",
+        "githubusercontent.com",
+        "githubassets.com",
+        "githubapp.com",
+        "githubstatus.com",
+        "github.blog",
+        "github.community",
+        "github.ai",
+        "githubnext.com",
+        "githubuniverse.com",
+        "githubcopilot.com",
+        "githubpreview.dev",
+        "gh.io",
+        "git.io",
+        "repo.new",
+        "ghcr.io",
+        "ghe.com",
+        "npmjs.com",
+        "npmjs.org",
+        "octocaptcha.com",
+        "default.exp-tas.com",
+        "dependabot.com",
+        "rawgit.com",
+        "rawgithub.com"
+      ]
+    }
+  ]
+}

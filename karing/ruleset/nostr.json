@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "rules": [
+    {
+      "domain_suffix": [
+        "wirednet.jp",
+        "nostr-relay.org",
+        "relay.damus.io",
+        "nostr.wine",
+        "purplepag.es",
+        "nos.lol",
+        "rsslay.nostr.moe"
+      ],
+      "domain_keyword": [
+        "nostr",
+        "damus",
+        "yakki",
+        "hala",
+        "iris",
+        "irisapp",
+        "primal"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,361 @@
+{
+  "rules": [
+    {
+      "name": "🗑 字节网站",
+      "outbound": "direct",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:ByteDance"
+      ]
+    },
+    {
+      "name": "🟢 微信",
+      "outbound": "direct",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:Wechat"
+      ]
+    },
+    {
+      "name": "🎯 游戏下载直连",
+      "outbound": "direct",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:GameDownload",
+        "acl:PublicDirectCDN"
+      ]
+    },
+    {
+      "name": "🎮 游戏平台",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:Sony",
+        "acl:Xbox",
+        "acl:Epic",
+        "acl:Origin",
+        "acl:Steam",
+        "acl:Nintendo",
+        "acl:Blizzard"
+      ]
+    },
+    {
+      "name": "🤖 AI",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:AI",
+        "acl:OpenAi",
+        "acl:Claude",
+        "acl:ClaudeAI",
+        "acl:Gemini",
+        "acl:Bing",
+        "geosite:openai",
+        "geoip:openai",
+        "geosite:category-ai-!cn"
+      ],
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/AI.json"
+      ],
+      "processName": [
+        "ChatGPT",
+        "Claude",
+        "Cursor",
+        "Antigravity"
+      ]
+    },
+    {
+      "name": "📲 nostr",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/nostr.json"
+      ]
+    },
+    {
+      "name": "🖥 Work",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/work.json"
+      ],
+      "domain_suffix": [
+        "slack.com",
+        "googlevideo.com"
+      ]
+    },
+    {
+      "name": "👨🏿‍💻 GitHub",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:Github",
+        "geosite:github",
+        "geoip:github"
+      ],
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/GitHub.json"
+      ],
+      "processName": [
+        "GitHub Desktop",
+        "GitHub Desktop Helper"
+      ]
+    },
+    {
+      "name": "🪙 Crypto",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:Crypto",
+        "acl:Binance",
+        "geosite:category-cryptocurrency"
+      ]
+    },
+    {
+      "name": "🎵 TikTok",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set_build_in": [
+        "geosite:tiktok",
+        "acl:TikTok"
+      ]
+    },
+    {
+      "name": "📹 YouTube",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set_build_in": [
+        "geosite:youtube",
+        "acl:YouTube",
+        "acl:YouTubeMusic"
+      ],
+      "package": [
+        "com.google.android.youtube"
+      ]
+    },
+    {
+      "name": "🎥 Netflix",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set_build_in": [
+        "geosite:netflix",
+        "geoip:netflix",
+        "acl:Netflix",
+        "acl:NetflixIP"
+      ]
+    },
+    {
+      "name": "🍀 Google",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:Google",
+        "geosite:google",
+        "geoip:google"
+      ]
+    },
+    {
+      "name": "🍎 AppleNews",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:AppleNews"
+      ]
+    },
+    {
+      "name": "🎥 DiscoveryPlus",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:DiscoveryPlus"
+      ]
+    },
+    {
+      "name": "🎥 DisneyPlus",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:DisneyPlus"
+      ]
+    },
+    {
+      "name": "🎥 MAX美国",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:HBO"
+      ]
+    },
+    {
+      "name": "🎥 HBO香港亚洲",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:HBO_GO_HKG"
+      ]
+    },
+    {
+      "name": "🎥 PBS",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:PBS"
+      ]
+    },
+    {
+      "name": "🎵 Spotify",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:Spotify"
+      ]
+    },
+    {
+      "name": "👙 porn",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:Porn",
+        "acl:Pornhub"
+      ]
+    },
+    {
+      "name": "🌍 国外媒体",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:ProxyMedia"
+      ]
+    },
+    {
+      "name": "🎯 直连补充",
+      "outbound": "direct",
+      "switch": true,
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/Direct.json"
+      ]
+    },
+    {
+      "name": "🎯 全球直连",
+      "outbound": "direct",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:LocalAreaNetwork",
+        "acl:UnBan",
+        "acl:GoogleCN",
+        "acl:SteamCN",
+        "acl:ChinaDomain",
+        "acl:ChinaCompanyIp",
+        "acl:ChinaIp",
+        "acl:Download",
+        "acl:ChinaMedia",
+        "geosite:cn",
+        "geoip:cn"
+      ]
+    },
+    {
+      "name": "📢 FCM",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:GoogleFCM"
+      ]
+    },
+    {
+      "name": "🪟 Microsoft",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:Microsoft",
+        "geosite:microsoft",
+        "geosite:microsoft-dev",
+        "geosite:microsoft-pki"
+      ]
+    },
+    {
+      "name": "🍎 Apple",
+      "outbound": "direct",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:Apple",
+        "geosite:apple",
+        "geosite:apple-dev",
+        "geosite:apple-pki",
+        "geosite:apple-update"
+      ]
+    },
+    {
+      "name": "📲 Telegram",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:Telegram",
+        "geosite:telegram",
+        "geoip:telegram"
+      ],
+      "processName": [
+        "Telegram",
+        "Telegram.exe"
+      ],
+      "package": [
+        "org.telegram.messenger",
+        "org.telegram.messenger.web"
+      ]
+    },
+    {
+      "name": "🚀 代理补充",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:ProxyLite"
+      ],
+      "rule_set": [
+        "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ProxyLite.json"
+      ]
+    },
+    {
+      "name": "🚀 节点选择",
+      "outbound": "currentSelected",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:ProxyGFWlist",
+        "geosite:geolocation-!cn"
+      ]
+    },
+    {
+      "name": "🛑 广告拦截",
+      "outbound": "block",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:BanAD",
+        "geosite:category-ads"
+      ]
+    },
+    {
+      "name": "🍃 应用净化",
+      "outbound": "block",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:BanProgramAD",
+        "acl:BanADCompany"
+      ]
+    },
+    {
+      "name": "📺 哔哩哔哩",
+      "outbound": "direct",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:Bilibili",
+        "acl:BilibiliHMT"
+      ]
+    },
+    {
+      "name": "🎶 网易音乐",
+      "outbound": "direct",
+      "switch": true,
+      "rule_set_build_in": [
+        "acl:NetEaseMusic"
+      ]
+    }
+  ]
+}
