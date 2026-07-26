@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "rules": [
+    {
+      "domain": [
+        "open.feishu.cn",
+        "www.feishu.cn",
+        "www.larksuite.com",
+        "open.larksuite.com",
+        "internal-api-lark-api.feishu.cn",
+        "internal-api-drive-stream.feishu.cn"
+      ],
+      "domain_suffix": [
+        "feishu.cn",
+        "feishu.net",
+        "feishucdn.com",
+        "feishuusercontent.com",
+        "larksuite.com",
+        "lark.cn",
+        "larkenterprise.com",
+        "larkusercontent.com",
+        "larksuitecdn.com",
+        "larkeditor.com"
+      ],
+      "domain_keyword": [
+        "feishu",
+        "larksuite"
+      ]
+    }
+  ]
+}

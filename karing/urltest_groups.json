@@ -1,0 +1,270 @@
+{
+  "urltests": [
+    {
+      "remark": "🇭🇰 香港节点",
+      "regexs": [
+        "🇭🇰",
+        "港",
+        "Hong",
+        "HK",
+        "HongKong"
+      ]
+    },
+    {
+      "remark": "🇯🇵 日本节点",
+      "regexs": [
+        "🇯🇵",
+        "日",
+        "Japan",
+        "jp",
+        "JP",
+        "东京",
+        "大阪"
+      ]
+    },
+    {
+      "remark": "🇸🇬 狮城节点",
+      "regexs": [
+        "🇸🇬",
+        "狮",
+        "坡",
+        "Singapore",
+        "SG"
+      ]
+    },
+    {
+      "remark": "🇺🇲 美国节点",
+      "regexs": [
+        "🇺🇸",
+        "美",
+        "US",
+        "United States",
+        "States",
+        "洛杉矶",
+        "硅谷",
+        "西雅图",
+        "圣何塞",
+        "美西"
+      ]
+    }
+  ],
+  "bindings": {
+    "Ⓜ️ 微软云盘": [
+      "direct",
+      null
+    ],
+    "Ⓜ️ 微软服务": [
+      "direct",
+      null
+    ],
+    "♻️ 自动选择": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "美国": [
+      "direct",
+      null
+    ],
+    "🇨🇳 台湾节点": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "🇭🇰 香港节点": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "🇯🇵 日本节点": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "🇰🇷 韩国节点": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "🇸🇬 狮城节点": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "🇺🇲 美国节点": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "🌍 发达国家负载均衡": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "🌍 国外媒体": [
+      "urltest",
+      "🇺🇲 美国节点"
+    ],
+    "🌍 流媒体负载均衡-美国": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "🌍 流媒体负载均衡-香港": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "🌏 国内媒体": [
+      "direct",
+      null
+    ],
+    "🍃 Google": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "🍃 应用净化": [
+      "block",
+      null
+    ],
+    "🍎 AppleNews": [
+      "urltest",
+      "🇺🇲 美国节点"
+    ],
+    "🍎 苹果服务": [
+      "direct",
+      null
+    ],
+    "🎥 DiscoveryPlus": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "🎥 HBO香港亚洲": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "🎥 MAX美国": [
+      "urltest",
+      "🇺🇲 美国节点"
+    ],
+    "🎥 PBS": [
+      "urltest",
+      "🇺🇲 美国节点"
+    ],
+    "🎥 奈飞节点": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "🎥 奈飞视频": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "🎮 游戏平台": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "🎯 全球直连": [
+      "direct",
+      null
+    ],
+    "🎵 Spotify": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "🎵 TikTok": [
+      "urltest",
+      "🇸🇬 狮城节点"
+    ],
+    "🎵 TikTok负载均衡": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "🎶 网易音乐": [
+      "direct",
+      null
+    ],
+    "🐟 漏网之鱼": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "👙 porn": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "👨🏿‍💻 GitHub": [
+      "urltest",
+      "🇸🇬 狮城节点"
+    ],
+    "💧 Copilot": [
+      "urltest",
+      "🇺🇲 美国节点"
+    ],
+    "💬 OpenAi": [
+      "urltest",
+      "🇺🇲 美国节点"
+    ],
+    "📢 谷歌FCM": [
+      "direct",
+      null
+    ],
+    "📲 Nostr负载均衡": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "📲 Telegram": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "📲 Telegram负载均衡": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "📲 电报消息": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "📹 油管视频": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "📺 哔哩哔哩": [
+      "direct",
+      null
+    ],
+    "📺 巴哈姆特": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "🖥 进程直连": [
+      "direct",
+      null
+    ],
+    "🗑 字节网站": [
+      "direct",
+      null
+    ],
+    "🚀 手动切换": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "🚀 节点选择": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "🛑 广告拦截": [
+      "block",
+      null
+    ],
+    "🛰 卫星节点": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "🟢 微信": [
+      "direct",
+      null
+    ],
+    "🤖 AI": [
+      "urltest",
+      "🇺🇲 美国节点"
+    ],
+    "🤖 Nostr": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ],
+    "🪙 Crypto": [
+      "urltest",
+      "🇭🇰 香港节点"
+    ]
+  },
+  "ai_default": "🇺🇲 美国节点"
+}

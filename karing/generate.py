@@ -28,9 +28,30 @@ LOCAL_MAP = {
     / "work.list",
     "https://raw.githubusercontent.com/yywill/clash_rules/main/GitHub.list": ROOT
     / "GitHub.list",
+    "https://raw.githubusercontent.com/yywill/clash_rules/main/FeishuLark.list": ROOT
+    / "FeishuLark.list",
 }
 
 # Default Karing outbound = first option in surge.conf [Proxy Group] select lists.
+
+AI_PROCESS_NAMES = [
+    "agy",
+    "Antigravity",
+    "Antigravity Helper",
+    "Antigravity Helper (GPU)",
+    "Antigravity Helper (Plugin)",
+    "Antigravity Helper (Renderer)",
+    "language_server",
+    "Cursor",
+    "Cursor Helper",
+    "Cursor Helper (GPU)",
+    "Cursor Helper (Plugin)",
+    "Cursor Helper (Renderer)",
+    "Claude",
+    "ChatGPT",
+]
+
+
 DEFAULT_OUTBOUND = {
     "DIRECT": "direct",
     "🖥 进程直连": "direct",
@@ -577,6 +598,18 @@ def main() -> None:
         print(f"FAILED downloads: {len(failed)}")
         for url, err in failed:
             print(f"  {url}: {err}")
+
+    # Ensure AI process names are complete (Karing: exact match only)
+    for r in rules:
+        if r.get("name") == "🤖 AI" and "processName" in r:
+            r["processName"] = list(AI_PROCESS_NAMES)
+            break
+    # rewrite diversion file with updated process names
+    (OUT / "diversion_rules_custom.json").write_text(
+        json.dumps({"rules": rules}, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    write_runtime(rules)
 
     apply_local(rules)
 

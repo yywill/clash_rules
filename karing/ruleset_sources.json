@@ -2,6 +2,7 @@
   "source": "surge.conf",
   "url_to_slug": {
     "https://raw.githubusercontent.com/yywill/ACL4SSR/master/Clash/Ruleset/ByteDance.list": "acl-ByteDance",
+    "https://raw.githubusercontent.com/yywill/clash_rules/main/FeishuLark.list": "personal-FeishuLark",
     "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Wechat.list": "aclup-Wechat",
     "https://raw.githubusercontent.com/yywill/ACL4SSR/master/Clash/Ruleset/XboxCDN.list": "acl-XboxCDN",
     "https://raw.githubusercontent.com/yywill/ACL4SSR/master/Clash/Ruleset/Sony.list": "acl-Sony",

@@ -1,0 +1,24 @@
+# Feishu / Lark — must DIRECT (with 字节网站)
+# International Lark + CN Feishu + CDN / auth / docs
+
+DOMAIN-SUFFIX,feishu.cn
+DOMAIN-SUFFIX,feishu.net
+DOMAIN-SUFFIX,feishucdn.com
+DOMAIN-SUFFIX,feishuusercontent.com
+DOMAIN-SUFFIX,larksuite.com
+DOMAIN-SUFFIX,lark.cn
+DOMAIN-SUFFIX,larkenterprise.com
+DOMAIN-SUFFIX,larkusercontent.com
+DOMAIN-SUFFIX,larksuitecdn.com
+DOMAIN-SUFFIX,larkeditor.com
+
+DOMAIN-KEYWORD,feishu
+DOMAIN-KEYWORD,larksuite
+
+# Common API / status hosts
+DOMAIN,open.feishu.cn
+DOMAIN,www.feishu.cn
+DOMAIN,www.larksuite.com
+DOMAIN,open.larksuite.com
+DOMAIN,internal-api-lark-api.feishu.cn
+DOMAIN,internal-api-drive-stream.feishu.cn
