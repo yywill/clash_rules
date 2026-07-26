@@ -397,7 +397,9 @@ def build_rules(
 def write_runtime(rules: list[dict]) -> None:
     urltest_config = json.loads(URLTEST_CONFIG.read_text(encoding="utf-8"))
     bindings: dict[str, str] = urltest_config.get("bindings", {})
+    manual_select = set(urltest_config.get("manual_select", []))
     default_urltest = urltest_config["default_urltest"]
+    final_outbound = urltest_config.get("final_outbound", "urltest")
     valid_urltests = {item["remark"] for item in urltest_config["urltests"]}
     invalid = sorted(set(bindings.values()) - valid_urltests)
     if invalid:
@@ -463,6 +465,16 @@ def write_runtime(rules: list[dict]) -> None:
                     "dns_servers": [],
                 }
             )
+        elif r["name"] in manual_select:
+            diversion_use.append(
+                {
+                    "diversion_groupid": "custom",
+                    "diversion_name": r["name"],
+                    "server_groupid": "currentSelected",
+                    "server_name": "",
+                    "dns_servers": [],
+                }
+            )
         elif r["name"] in bindings:
             diversion_use.append(
                 {
@@ -484,15 +496,16 @@ def write_runtime(rules: list[dict]) -> None:
                 }
             )
 
-    diversion_use.append(
-        {
-            "diversion_groupid": "final",
-            "diversion_name": "",
-            "server_groupid": "urltest",
-            "server_name": default_urltest,
-            "dns_servers": [],
-        }
-    )
+    final = {
+        "diversion_groupid": "final",
+        "diversion_name": "",
+        "server_groupid": final_outbound,
+        "server_name": "",
+        "dns_servers": [],
+    }
+    if final_outbound == "urltest":
+        final["server_name"] = default_urltest
+    diversion_use.append(final)
 
     routing = {
         "items": [

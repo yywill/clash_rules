@@ -54,3 +54,6 @@ python3 karing/generate.py
 Karing/sing-box 的 `urltest` 是最低延迟自动选择，不是真正的轮询或连接级
 负载均衡。`全球 UDP 优选` 直接按订阅节点的协议字段筛选 `hysteria2` 和
 `tuic`（同时保留名称匹配作为兼容），不依赖节点名称必须带 `hy2`。
+
+`🚀 节点选择`、`🐟 漏网之鱼` 和最终兜底绑定 Karing 的“当前选择”
+（`currentSelected`）。可在首页手工选择具体服务器，也可选择任一自动组。

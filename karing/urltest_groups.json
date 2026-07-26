@@ -264,9 +264,12 @@
     "📲 Telegram": "🌐 全球 UDP 优选",
     "📲 电报消息": "🌐 全球 UDP 优选",
     "👙 porn": "🌐 全球 UDP 优选",
-    "📺 巴哈姆特": "🇭🇰 香港节点",
-    "🚀 节点选择": "🌐 全球 UDP 优选",
-    "🐟 漏网之鱼": "🌐 全球 UDP 优选"
+    "📺 巴哈姆特": "🇭🇰 香港节点"
   },
-  "default_urltest": "🌐 全球 UDP 优选"
+  "manual_select": [
+    "🚀 节点选择",
+    "🐟 漏网之鱼"
+  ],
+  "default_urltest": "🌐 全球 UDP 优选",
+  "final_outbound": "currentSelected"
 }

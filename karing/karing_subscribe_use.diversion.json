@@ -234,8 +234,8 @@
     {
       "diversion_groupid": "custom",
       "diversion_name": "🚀 节点选择",
-      "server_groupid": "urltest",
-      "server_name": "🌐 全球 UDP 优选",
+      "server_groupid": "currentSelected",
+      "server_name": "",
       "dns_servers": []
     },
     {
@@ -255,15 +255,15 @@
     {
       "diversion_groupid": "custom",
       "diversion_name": "🐟 漏网之鱼",
-      "server_groupid": "urltest",
-      "server_name": "🌐 全球 UDP 优选",
+      "server_groupid": "currentSelected",
+      "server_name": "",
       "dns_servers": []
     },
     {
       "diversion_groupid": "final",
       "diversion_name": "",
-      "server_groupid": "urltest",
-      "server_name": "🌐 全球 UDP 优选",
+      "server_groupid": "currentSelected",
+      "server_name": "",
       "dns_servers": []
     }
   ]
