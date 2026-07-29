@@ -32,6 +32,10 @@ LOCAL_MAP = {
     / "GitHub.list",
     "https://raw.githubusercontent.com/yywill/clash_rules/main/FeishuLark.list": ROOT
     / "FeishuLark.list",
+    "https://raw.githubusercontent.com/yywill/clash_rules/main/AppleNews.list": ROOT
+    / "AppleNews.list",
+    "https://raw.githubusercontent.com/yywill/clash_rules/main/AppleDirect.list": ROOT
+    / "AppleDirect.list",
 }
 
 # Default Karing outbound = first option in surge.conf [Proxy Group] select lists.
@@ -577,6 +581,7 @@ def apply_local(rules: list[dict]) -> None:
     setting_path = karing / "karing_setting.json"
     setting = json.loads(setting_path.read_text(encoding="utf-8"))
     setting["region_code"] = "CN"
+    setting.setdefault("dns", {})["enable_rule"] = True
     rs = setting.setdefault("rule_sets", {})
     rs["disable_custom_diversion_group"] = False
     rs["disable_isp_diversion_group"] = True

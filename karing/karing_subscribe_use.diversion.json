@@ -114,6 +114,13 @@
     },
     {
       "diversion_groupid": "custom",
+      "diversion_name": "🍎 苹果服务",
+      "server_groupid": "direct",
+      "server_name": "direct_out",
+      "dns_servers": []
+    },
+    {
+      "diversion_groupid": "custom",
       "diversion_name": "🎥 DiscoveryPlus",
       "server_groupid": "urltest",
       "server_name": "🇭🇰 香港节点",
@@ -192,13 +199,6 @@
     {
       "diversion_groupid": "custom",
       "diversion_name": "Ⓜ️ 微软服务",
-      "server_groupid": "direct",
-      "server_name": "direct_out",
-      "dns_servers": []
-    },
-    {
-      "diversion_groupid": "custom",
-      "diversion_name": "🍎 苹果服务",
       "server_groupid": "direct",
       "server_name": "direct_out",
       "dns_servers": []

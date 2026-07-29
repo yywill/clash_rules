@@ -29,6 +29,9 @@ python3 karing/generate.py
 - `PROCESS-NAME`（如 Keet/bare）写入 Karing 进程规则
 - `GEOIP,CN` / `IP-CIDR6` 写入对应分流组
 - 默认动作对齐 Surge 策略组的**第一项**（如苹果/微软默认直连，广告拦截）
+- Apple News 仅代理明确的新闻域名；iCloud、Apple Account、APNs、系统更新与
+  升级包 CDN 均由 `AppleDirect.list` 提前直连，避免大流量更新误走代理
+- 本地应用时开启 DNS 按分流规则解析，确保苹果直连域名不借道代理 DNS
 
 ## 自定义自动选择（地区与协议）
 

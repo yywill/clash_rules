@@ -3,16 +3,19 @@
   "rules": [
     {
       "domain": [
-        "apple.comscoreresearch.com"
+        "appldnld.apple.com.edgesuite.net"
       ],
       "domain_suffix": [
         "aaplimg.com",
-        "akadns.net",
+        "apple",
         "apple-cloudkit.com",
         "apple-dns.net",
+        "apple-livephotoskit.com",
         "apple-mapkit.com",
         "apple.co",
+        "apple.com",
         "apple.com.cn",
+        "apzones.com",
         "appstore.com",
         "cdn-apple.com",
         "crashlytics.com",
@@ -33,7 +36,10 @@
         "144.178.48.0/20",
         "192.35.50.0/24",
         "198.183.17.0/24",
-        "205.180.175.0/24"
+        "205.180.175.0/24",
+        "2403:300::/32",
+        "2620:149::/32",
+        "2a01:b740::/32"
       ]
     }
   ]
