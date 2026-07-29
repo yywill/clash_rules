@@ -611,13 +611,21 @@ def apply_local(rules: list[dict]) -> None:
             re.compile(pattern, re.IGNORECASE) for pattern in wanted.get("regexs", [])
         ]
         protocols = set(wanted.get("protocols", []))
+        transport_types = set(wanted.get("transport_types", []))
         tags: list[str] = []
         seen_tags: set[str] = set()
         for server in servers:
             tag = server["tag"]
             protocol_match = bool(protocols and server.get("type") in protocols)
+            transport_type = (server.get("transport") or {}).get("type", "")
+            transport_match = bool(
+                transport_types and transport_type in transport_types
+            )
             name_match = any(pattern.search(tag) for pattern in patterns)
-            if not (protocol_match or name_match) or tag in seen_tags:
+            structured_match = protocol_match and (
+                not transport_types or transport_match
+            )
+            if not (structured_match or name_match) or tag in seen_tags:
                 continue
             tags.append(tag)
             seen_tags.add(tag)

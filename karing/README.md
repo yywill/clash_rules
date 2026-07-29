@@ -46,7 +46,8 @@ python3 karing/generate.py
 | 🕌 中东节点 | |
 | 🌎 南美节点 | |
 | 🌏 大洋洲节点 | |
-| 🌐 全球 UDP 优选 | Hysteria2 / TUIC；全局兜底默认 |
+| 🌐 全球 UDP 优选 | Hysteria2 / TUIC；游戏平台默认 |
+| 🌐 全球 VLESS 稳定 TCP | 原生 VLESS TCP（排除 WS / gRPC）；通用流量默认 |
 
 分流会直接绑定到对应的自动组（例如 AI → 美国），而不是绑定到
 `currentSelected`。组内节点由 Karing 按延迟自动选择。
@@ -54,6 +55,10 @@ python3 karing/generate.py
 Karing/sing-box 的 `urltest` 是最低延迟自动选择，不是真正的轮询或连接级
 负载均衡。`全球 UDP 优选` 直接按订阅节点的协议字段筛选 `hysteria2` 和
 `tuic`（同时保留名称匹配作为兼容），不依赖节点名称必须带 `hy2`。
+`全球 VLESS 稳定 TCP` 按协议字段筛选 `vless`，并只保留未设置额外传输层
+（或显式为 TCP）的节点，避免把 VLESS over WebSocket / gRPC 混入稳定 TCP 组。
+GitHub、Nostr、Crypto、Telegram、porn 与未显式绑定的代理规则默认使用此组；
+游戏平台仍使用 UDP 优选，AI 与流媒体继续使用对应地区组。
 
-`🚀 节点选择`、`🐟 漏网之鱼` 和最终兜底绑定 Karing 的“当前选择”
+`🚀 节点选择`、`🐟 漏网之鱼`和最终兜底绑定 Karing 的“当前选择”
 （`currentSelected`）。可在首页手工选择具体服务器，也可选择任一自动组。

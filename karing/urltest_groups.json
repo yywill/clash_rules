@@ -240,6 +240,17 @@
         "hysteria2",
         "tuic"
       ]
+    },
+    {
+      "remark": "🌐 全球 VLESS 稳定 TCP",
+      "regexs": [],
+      "protocols": [
+        "vless"
+      ],
+      "transport_types": [
+        "",
+        "tcp"
+      ]
     }
   ],
   "bindings": {
@@ -247,9 +258,9 @@
     "🤖 AI": "🇺🇲 美国节点",
     "💬 OpenAi": "🇺🇲 美国节点",
     "💧 Copilot": "🇺🇲 美国节点",
-    "🤖 Nostr": "🇭🇰 香港节点",
-    "👨🏿‍💻 GitHub": "🌏 东南亚节点",
-    "🪙 Crypto": "🌐 全球 UDP 优选",
+    "🤖 Nostr": "🌐 全球 VLESS 稳定 TCP",
+    "👨🏿‍💻 GitHub": "🌐 全球 VLESS 稳定 TCP",
+    "🪙 Crypto": "🌐 全球 VLESS 稳定 TCP",
     "🎵 TikTok": "🌏 东南亚节点",
     "📹 油管视频": "🇭🇰 香港节点",
     "🎥 奈飞视频": "🇭🇰 香港节点",
@@ -261,15 +272,15 @@
     "🎥 PBS": "🇺🇲 美国节点",
     "🎵 Spotify": "🇭🇰 香港节点",
     "🌍 国外媒体": "🇺🇲 美国节点",
-    "📲 Telegram": "🌐 全球 UDP 优选",
-    "📲 电报消息": "🌐 全球 UDP 优选",
-    "👙 porn": "🌐 全球 UDP 优选",
+    "📲 Telegram": "🌐 全球 VLESS 稳定 TCP",
+    "📲 电报消息": "🌐 全球 VLESS 稳定 TCP",
+    "👙 porn": "🌐 全球 VLESS 稳定 TCP",
     "📺 巴哈姆特": "🇭🇰 香港节点"
   },
   "manual_select": [
     "🚀 节点选择",
     "🐟 漏网之鱼"
   ],
-  "default_urltest": "🌐 全球 UDP 优选",
+  "default_urltest": "🌐 全球 VLESS 稳定 TCP",
   "final_outbound": "currentSelected"
 }

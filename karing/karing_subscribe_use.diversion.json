@@ -60,21 +60,21 @@
       "diversion_groupid": "custom",
       "diversion_name": "🤖 Nostr",
       "server_groupid": "urltest",
-      "server_name": "🇭🇰 香港节点",
+      "server_name": "🌐 全球 VLESS 稳定 TCP",
       "dns_servers": []
     },
     {
       "diversion_groupid": "custom",
       "diversion_name": "👨🏿‍💻 GitHub",
       "server_groupid": "urltest",
-      "server_name": "🌏 东南亚节点",
+      "server_name": "🌐 全球 VLESS 稳定 TCP",
       "dns_servers": []
     },
     {
       "diversion_groupid": "custom",
       "diversion_name": "🪙 Crypto",
       "server_groupid": "urltest",
-      "server_name": "🌐 全球 UDP 优选",
+      "server_name": "🌐 全球 VLESS 稳定 TCP",
       "dns_servers": []
     },
     {
@@ -158,21 +158,21 @@
       "diversion_groupid": "custom",
       "diversion_name": "📲 Telegram",
       "server_groupid": "urltest",
-      "server_name": "🌐 全球 UDP 优选",
+      "server_name": "🌐 全球 VLESS 稳定 TCP",
       "dns_servers": []
     },
     {
       "diversion_groupid": "custom",
       "diversion_name": "📲 电报消息",
       "server_groupid": "urltest",
-      "server_name": "🌐 全球 UDP 优选",
+      "server_name": "🌐 全球 VLESS 稳定 TCP",
       "dns_servers": []
     },
     {
       "diversion_groupid": "custom",
       "diversion_name": "👙 porn",
       "server_groupid": "urltest",
-      "server_name": "🌐 全球 UDP 优选",
+      "server_name": "🌐 全球 VLESS 稳定 TCP",
       "dns_servers": []
     },
     {
