@@ -243,7 +243,9 @@
     },
     {
       "remark": "🌐 全球 VLESS 稳定 TCP",
-      "regexs": [],
+      "regexs": [
+        "(?i)(AWS|三网推荐|第三方专用|\\bISP\\b|避免晚高峰|BGP.*(?:CMCU|CUCM|CTCUCM)|(?:韩国|台湾)高速.*BGP.*流媒体)"
+      ],
       "protocols": [
         "vless"
       ],

@@ -57,6 +57,8 @@ Karing/sing-box 的 `urltest` 是最低延迟自动选择，不是真正的轮�
 `tuic`（同时保留名称匹配作为兼容），不依赖节点名称必须带 `hy2`。
 `全球 VLESS 稳定 TCP` 按协议字段筛选 `vless`，并只保留未设置额外传输层
 （或显式为 TCP）的节点，避免把 VLESS over WebSocket / gRPC 混入稳定 TCP 组。
+同时根据当前机场的 TCP 节点命名规律保留动态正则，新订阅刷新后符合相同命名
+约定的节点可由 Karing 自动加入；协议与传输字段仍用于脚本重新生成时的精确校验。
 GitHub、Nostr、Crypto、Telegram、porn 与未显式绑定的代理规则默认使用此组；
 游戏平台仍使用 UDP 优选，AI 与流媒体继续使用对应地区组。
 
