@@ -76,8 +76,6 @@ DEFAULT_OUTBOUND = {
     "🐟 漏网之鱼": "currentSelected",
     "🚀 节点选择": "currentSelected",
     "🎮 游戏平台": "currentSelected",
-    "💼 工作": "currentSelected",
-    "🔐 SSH": "currentSelected",
     "💬 OpenAi": "currentSelected",
     "💧 Copilot": "currentSelected",
     "🤖 AI": "currentSelected",

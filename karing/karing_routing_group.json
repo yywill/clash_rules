@@ -85,30 +85,10 @@
         },
         {
           "groupid": "custom",
-          "name": "💼 工作",
-          "type": "",
-          "or": true,
-          "index": 5,
-          "processName": [
-            "mosh-client",
-            "mosh-server"
-          ]
-        },
-        {
-          "groupid": "custom",
-          "name": "🔐 SSH",
-          "type": "",
-          "or": true,
-          "processName": [
-            "ssh"
-          ]
-        },
-        {
-          "groupid": "custom",
           "name": "🐳 OrbStack",
           "type": "",
           "or": true,
-          "index": 7,
+          "index": 5,
           "processName": [
             "OrbStack",
             "OrbStack Helper",
@@ -129,7 +109,7 @@
           "name": "🤖 AI",
           "type": "",
           "or": true,
-          "index": 8,
+          "index": 6,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-AI.json"
           ],
@@ -155,7 +135,7 @@
           "name": "💬 OpenAi",
           "type": "",
           "or": true,
-          "index": 9,
+          "index": 7,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-OpenAi.json"
           ]
@@ -165,7 +145,7 @@
           "name": "💧 Copilot",
           "type": "",
           "or": true,
-          "index": 10,
+          "index": 8,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Bing.json"
           ]
@@ -175,7 +155,7 @@
           "name": "🤖 Nostr",
           "type": "",
           "or": true,
-          "index": 11,
+          "index": 9,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-nostr.json"
           ]
@@ -185,7 +165,7 @@
           "name": "👨🏿‍💻 GitHub",
           "type": "",
           "or": true,
-          "index": 12,
+          "index": 10,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-GitHub.json"
           ]
@@ -195,7 +175,7 @@
           "name": "🪙 Crypto",
           "type": "",
           "or": true,
-          "index": 13,
+          "index": 11,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Crypto.json"
           ]
@@ -205,7 +185,7 @@
           "name": "🎵 TikTok",
           "type": "",
           "or": true,
-          "index": 14,
+          "index": 12,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/bm7-TikTok.json"
           ]
@@ -215,7 +195,7 @@
           "name": "📹 油管视频",
           "type": "",
           "or": true,
-          "index": 15,
+          "index": 13,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-YouTube.json"
           ]
@@ -225,7 +205,7 @@
           "name": "🎥 奈飞视频",
           "type": "",
           "or": true,
-          "index": 16,
+          "index": 14,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Netflix.json"
           ]
@@ -235,7 +215,7 @@
           "name": "🍃 Google",
           "type": "",
           "or": true,
-          "index": 17,
+          "index": 15,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Google.json"
           ]
@@ -245,7 +225,7 @@
           "name": "🍎 AppleNews",
           "type": "",
           "or": true,
-          "index": 18,
+          "index": 16,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-AppleNews.json"
           ]
@@ -255,7 +235,7 @@
           "name": "🍎 苹果服务",
           "type": "",
           "or": true,
-          "index": 19,
+          "index": 17,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-AppleDirect.json"
           ]
@@ -265,7 +245,7 @@
           "name": "🎥 DiscoveryPlus",
           "type": "",
           "or": true,
-          "index": 20,
+          "index": 18,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-DiscoveryPlus.json"
           ]
@@ -275,7 +255,7 @@
           "name": "🎥 MAX美国",
           "type": "",
           "or": true,
-          "index": 21,
+          "index": 19,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-HBO.json"
           ]
@@ -285,7 +265,7 @@
           "name": "🎥 HBO香港亚洲",
           "type": "",
           "or": true,
-          "index": 22,
+          "index": 20,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-HBO_GO_HKG.json"
           ]
@@ -295,7 +275,7 @@
           "name": "🎥 PBS",
           "type": "",
           "or": true,
-          "index": 23,
+          "index": 21,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-PBS.json"
           ]
@@ -305,7 +285,7 @@
           "name": "🎵 Spotify",
           "type": "",
           "or": true,
-          "index": 24,
+          "index": 22,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Spotify.json"
           ]
@@ -315,7 +295,7 @@
           "name": "🌍 国外媒体",
           "type": "",
           "or": true,
-          "index": 25,
+          "index": 23,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-ProxyMedia.json"
           ]
@@ -325,7 +305,7 @@
           "name": "📲 Telegram",
           "type": "",
           "or": true,
-          "index": 26,
+          "index": 24,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Telegram.json"
           ]
@@ -335,7 +315,7 @@
           "name": "📲 电报消息",
           "type": "",
           "or": true,
-          "index": 27,
+          "index": 25,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Telegram.json"
           ]
@@ -345,7 +325,7 @@
           "name": "👙 porn",
           "type": "",
           "or": true,
-          "index": 28,
+          "index": 26,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Porn.json"
           ]
@@ -355,7 +335,7 @@
           "name": "📢 谷歌FCM",
           "type": "",
           "or": true,
-          "index": 29,
+          "index": 27,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-GoogleFCM.json"
           ]
@@ -365,7 +345,7 @@
           "name": "Ⓜ️ 微软云盘",
           "type": "",
           "or": true,
-          "index": 30,
+          "index": 28,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-OneDrive.json"
           ]
@@ -375,7 +355,7 @@
           "name": "Ⓜ️ 微软服务",
           "type": "",
           "or": true,
-          "index": 31,
+          "index": 29,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Microsoft.json"
           ]
@@ -385,7 +365,7 @@
           "name": "🎶 网易音乐",
           "type": "",
           "or": true,
-          "index": 32,
+          "index": 30,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-NetEaseMusic.json"
           ]
@@ -395,7 +375,7 @@
           "name": "📺 巴哈姆特",
           "type": "",
           "or": true,
-          "index": 33,
+          "index": 31,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Bahamut.json"
           ]
@@ -405,7 +385,7 @@
           "name": "📺 哔哩哔哩",
           "type": "",
           "or": true,
-          "index": 34,
+          "index": 32,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-BilibiliHMT.json",
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Bilibili.json"
@@ -416,7 +396,7 @@
           "name": "🌏 国内媒体",
           "type": "",
           "or": true,
-          "index": 35,
+          "index": 33,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-ChinaMedia.json"
           ]
@@ -426,7 +406,7 @@
           "name": "🚀 节点选择",
           "type": "",
           "or": true,
-          "index": 36,
+          "index": 34,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-ProxyGFWlist.json"
           ]
@@ -436,7 +416,7 @@
           "name": "🍃 应用净化",
           "type": "",
           "or": true,
-          "index": 37,
+          "index": 35,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-BanProgramAD.json"
           ]
@@ -446,7 +426,7 @@
           "name": "🛑 广告拦截",
           "type": "",
           "or": true,
-          "index": 38,
+          "index": 36,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-BanAD.json"
           ]
@@ -456,7 +436,7 @@
           "name": "🐟 漏网之鱼",
           "type": "",
           "or": true,
-          "index": 39,
+          "index": 37,
           "ip_cidr": [
             "::/0"
           ]

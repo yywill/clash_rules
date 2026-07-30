@@ -26,8 +26,7 @@ python3 karing/generate.py
 ## 说明
 
 - 优先级与 Surge 一致（字节/微信置顶 → 游戏 CDN/平台 → AI → … → GFW/国内兜底 → 广告）
-- `PROCESS-NAME`（如 Keet/bare、`mosh-client`）写入 Karing 进程规则
-- 进程分流（不写 IP）：`mosh-client`/`mosh-server` → `💼 工作` → `🌐 全球 UDP 优选`；`ssh` → `🔐 SSH` → `🌐 全球 VLESS 稳定 TCP`
+- `PROCESS-NAME`（如 Keet/bare）写入 Karing 进程规则
 - `GEOIP,CN` / `IP-CIDR6` 写入对应分流组
 - 默认动作对齐 Surge 策略组的**第一项**（如苹果/微软默认直连，广告拦截）
 - Apple News 仅代理明确的新闻域名；iCloud、Apple Account、APNs、系统更新与
@@ -50,8 +49,8 @@ python3 karing/generate.py
 | 🕌 中东节点 | |
 | 🌎 南美节点 | |
 | 🌏 大洋洲节点 | |
-| 🌐 全球 UDP 优选 | Hysteria2 / TUIC；游戏平台 / Mosh 默认 |
-| 🌐 全球 VLESS 稳定 TCP | 原生 VLESS TCP（排除 WS / gRPC）；SSH / 通用流量默认 |
+| 🌐 全球 UDP 优选 | Hysteria2 / TUIC；游戏平台默认 |
+| 🌐 全球 VLESS 稳定 TCP | 原生 VLESS TCP（排除 WS / gRPC）；通用流量默认 |
 
 分流会直接绑定到对应的自动组（例如 AI → 美国），而不是绑定到
 `currentSelected`。组内节点由 Karing 按延迟自动选择。
