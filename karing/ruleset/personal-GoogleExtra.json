@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "rules": [
+    {
+      "domain_suffix": [
+        "google.com",
+        "meet.new",
+        "meet.google.com",
+        "hangouts.google.com",
+        "streamgate.google.com",
+        "workspace.google.com"
+      ]
+    }
+  ]
+}

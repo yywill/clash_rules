@@ -69,6 +69,7 @@ DOMAIN-SUFFIX,cdn.anthropic.com
 DOMAIN-SUFFIX,generativelanguage.googleapis.com
 DOMAIN-SUFFIX,ai.google.dev
 DOMAIN-SUFFIX,gemini-pa.googleapis.com
+DOMAIN-SUFFIX,proactivebackend-pa.googleapis.com
 DOMAIN-SUFFIX,gemini.google
 DOMAIN-SUFFIX,generativeai.google
 DOMAIN-SUFFIX,aistudio.google.com
@@ -77,10 +78,23 @@ DOMAIN-SUFFIX,alkalimakersuite-pa.clients6.google.com
 DOMAIN-SUFFIX,machinelearning.googleapis.com
 DOMAIN,notebooklm.google.com
 DOMAIN,notebooklm.google
+DOMAIN,generativelanguage.googleapis.com
+DOMAIN,ai.google.dev
+DOMAIN,gemini-pa.googleapis.com
+DOMAIN,proactivebackend-pa.googleapis.com
+DOMAIN,makersuite.google.com
+DOMAIN,bard.google.com
+DOMAIN,gemini.google.com
 
 # > AI Studio
 DOMAIN,aistudio.google.com
 DOMAIN,alkalimakersuite-pa.clients6.google.com
+
+# Gemini / AI Studio 关键字兜底
+DOMAIN-KEYWORD,generativelanguage
+DOMAIN-KEYWORD,gemini-pa
+DOMAIN-KEYWORD,aistudio
+DOMAIN-KEYWORD,makersuite
 
 # Microsoft
 # > Copilot

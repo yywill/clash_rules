@@ -36,6 +36,8 @@ LOCAL_MAP = {
     / "AppleNews.list",
     "https://raw.githubusercontent.com/yywill/clash_rules/main/AppleDirect.list": ROOT
     / "AppleDirect.list",
+    "https://raw.githubusercontent.com/yywill/clash_rules/main/GoogleExtra.list": ROOT
+    / "GoogleExtra.list",
 }
 
 # Default Karing outbound = first option in surge.conf [Proxy Group] select lists.
