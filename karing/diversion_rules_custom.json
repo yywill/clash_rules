@@ -68,6 +68,23 @@
       ]
     },
     {
+      "name": "💼 工作",
+      "outbound": "currentSelected",
+      "switch": true,
+      "processName": [
+        "mosh-client",
+        "mosh-server"
+      ]
+    },
+    {
+      "name": "🔐 SSH",
+      "outbound": "currentSelected",
+      "switch": true,
+      "processName": [
+        "ssh"
+      ]
+    },
+    {
       "name": "🐳 OrbStack",
       "outbound": "currentSelected",
       "switch": true,
@@ -79,15 +96,11 @@
         "OrbStack Helper (Renderer)",
         "OrbStack Helper (Network)",
         "privhelper",
-        "dev.orbstack.OrbStack.privhelper",
         "docker",
         "docker-compose",
         "compose",
-        "docker-credential-osxkeychain",
-        "com.docker.cli",
         "scli",
-        "pstramp",
-        "LaunchAtLoginHelper"
+        "pstramp"
       ]
     },
     {

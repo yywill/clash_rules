@@ -37,6 +37,20 @@
     },
     {
       "diversion_groupid": "custom",
+      "diversion_name": "💼 工作",
+      "server_groupid": "urltest",
+      "server_name": "🌐 全球 UDP 优选",
+      "dns_servers": []
+    },
+    {
+      "diversion_groupid": "custom",
+      "diversion_name": "🔐 SSH",
+      "server_groupid": "urltest",
+      "server_name": "🌐 全球 VLESS 稳定 TCP",
+      "dns_servers": []
+    },
+    {
+      "diversion_groupid": "custom",
       "diversion_name": "🐳 OrbStack",
       "server_groupid": "urltest",
       "server_name": "🇺🇲 美国节点",
