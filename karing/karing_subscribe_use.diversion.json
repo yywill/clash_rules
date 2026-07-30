@@ -37,6 +37,13 @@
     },
     {
       "diversion_groupid": "custom",
+      "diversion_name": "🐳 OrbStack",
+      "server_groupid": "urltest",
+      "server_name": "🇺🇲 美国节点",
+      "dns_servers": []
+    },
+    {
+      "diversion_groupid": "custom",
       "diversion_name": "🤖 AI",
       "server_groupid": "urltest",
       "server_name": "🇺🇲 美国节点",

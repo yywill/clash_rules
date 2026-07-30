@@ -39,7 +39,7 @@ python3 karing/generate.py
 |----|------|
 | 🇭🇰 香港节点 | |
 | 🇯🇵 日本节点 | |
-| 🇺🇲 美国节点 | AI / OpenAi / Copilot 默认；Apple News / 部分流媒体 |
+| 🇺🇲 美国节点 | AI / OpenAi / Copilot / 🐳 OrbStack 默认；Apple News / 部分流媒体 |
 | 🌏 东南亚节点 | 含新加坡；GitHub / TikTok 默认 |
 | 🇨🇳 台湾节点 | |
 | 🇰🇷 韩国节点 | |

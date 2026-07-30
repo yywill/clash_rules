@@ -68,6 +68,29 @@
       ]
     },
     {
+      "name": "🐳 OrbStack",
+      "outbound": "currentSelected",
+      "switch": true,
+      "processName": [
+        "OrbStack",
+        "OrbStack Helper",
+        "OrbStack Helper (GPU)",
+        "OrbStack Helper (Plugin)",
+        "OrbStack Helper (Renderer)",
+        "OrbStack Helper (Network)",
+        "privhelper",
+        "dev.orbstack.OrbStack.privhelper",
+        "docker",
+        "docker-compose",
+        "compose",
+        "docker-credential-osxkeychain",
+        "com.docker.cli",
+        "scli",
+        "pstramp",
+        "LaunchAtLoginHelper"
+      ]
+    },
+    {
       "name": "🤖 AI",
       "outbound": "currentSelected",
       "switch": true,
@@ -88,23 +111,7 @@
         "Cursor Helper (Plugin)",
         "Cursor Helper (Renderer)",
         "Claude",
-        "ChatGPT",
-        "OrbStack",
-        "OrbStack Helper",
-        "OrbStack Helper (GPU)",
-        "OrbStack Helper (Plugin)",
-        "OrbStack Helper (Renderer)",
-        "OrbStack Helper (Network)",
-        "privhelper",
-        "dev.orbstack.OrbStack.privhelper",
-        "docker",
-        "docker-compose",
-        "compose",
-        "docker-credential-osxkeychain",
-        "com.docker.cli",
-        "scli",
-        "pstramp",
-        "LaunchAtLoginHelper"
+        "ChatGPT"
       ]
     },
     {
