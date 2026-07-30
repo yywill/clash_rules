@@ -68,6 +68,24 @@
       ]
     },
     {
+      "name": "🔐 SSH",
+      "outbound": "currentSelected",
+      "switch": true,
+      "processName": [
+        "ssh"
+      ]
+    },
+    {
+      "name": "📡 mosh",
+      "outbound": "currentSelected",
+      "switch": true,
+      "processName": [
+        "mosh",
+        "mosh-client",
+        "mosh-server"
+      ]
+    },
+    {
       "name": "🐳 OrbStack",
       "outbound": "currentSelected",
       "switch": true,

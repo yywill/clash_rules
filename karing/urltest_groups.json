@@ -257,6 +257,8 @@
   ],
   "bindings": {
     "🎮 游戏平台": "🌐 全球 UDP 优选",
+    "🔐 SSH": "🌐 全球 VLESS 稳定 TCP",
+    "📡 mosh": "🌐 全球 UDP 优选",
     "🤖 AI": "🇺🇲 美国节点",
     "💬 OpenAi": "🇺🇲 美国节点",
     "💧 Copilot": "🇺🇲 美国节点",
@@ -278,12 +280,12 @@
     "📲 电报消息": "🌐 全球 VLESS 稳定 TCP",
     "👙 porn": "🌐 全球 VLESS 稳定 TCP",
     "📺 巴哈姆特": "🇭🇰 香港节点",
-    "🐳 OrbStack": "🇺🇲 美国节点"
+    "🐳 OrbStack": "🇺🇲 美国节点",
+    "🐟 漏网之鱼": "🌐 全球 UDP 优选"
   },
   "manual_select": [
-    "🚀 节点选择",
-    "🐟 漏网之鱼"
+    "🚀 节点选择"
   ],
   "default_urltest": "🌐 全球 VLESS 稳定 TCP",
-  "final_outbound": "currentSelected"
+  "final_outbound": "urltest"
 }

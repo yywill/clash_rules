@@ -2,13 +2,26 @@
   "version": 2,
   "rules": [
     {
+      "domain": [
+        "meet.turns.goog",
+        "workspace.turns.goog",
+        "stun.l.google.com",
+        "stun1.l.google.com",
+        "stun2.l.google.com",
+        "stun3.l.google.com",
+        "stun4.l.google.com"
+      ],
       "domain_suffix": [
         "google.com",
         "meet.new",
         "meet.google.com",
+        "stream.meet.google.com",
         "hangouts.google.com",
         "streamgate.google.com",
-        "workspace.google.com"
+        "workspace.google.com",
+        "meetings.googleapis.com",
+        "hangouts.googleapis.com",
+        "turns.goog"
       ]
     }
   ]

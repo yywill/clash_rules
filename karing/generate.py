@@ -78,6 +78,8 @@ DEFAULT_OUTBOUND = {
     "🐟 漏网之鱼": "currentSelected",
     "🚀 节点选择": "currentSelected",
     "🎮 游戏平台": "currentSelected",
+    "🔐 SSH": "currentSelected",
+    "📡 mosh": "currentSelected",
     "💬 OpenAi": "currentSelected",
     "💧 Copilot": "currentSelected",
     "🤖 AI": "currentSelected",
@@ -284,6 +286,47 @@ def convert_lists(entries: list[dict[str, str]]) -> tuple[dict[str, str], list]:
             old.unlink()
 
     return dict(url_to_slug), failed
+
+
+def merge_list_into_ruleset(slug: str, list_path: Path) -> None:
+    """Merge a local Clash .list into an already-generated ruleset JSON.
+
+    Used to patch upstream lists (e.g. inject google.com into ios-Google) without
+    attaching a second remote ruleset URL that some Karing imports drop.
+    """
+    out_path = OUT_RS / f"{slug}.json"
+    if not out_path.exists():
+        print(f"SKIP merge {list_path.name} -> {slug}.json (missing)")
+        return
+    if not list_path.exists():
+        print(f"SKIP merge {list_path.name} -> {slug}.json (list missing)")
+        return
+
+    data = json.loads(out_path.read_text(encoding="utf-8"))
+    extra = parse_clash_list(list_path.read_text(encoding="utf-8"))
+    if not data.get("rules"):
+        data["rules"] = [{}]
+    rule = data["rules"][0]
+    added = 0
+    for key in ("domain", "domain_suffix", "domain_keyword", "ip_cidr"):
+        vals = extra.get(key) or []
+        if not vals:
+            continue
+        existing = list(rule.get(key, []))
+        seen = set(existing)
+        for v in vals:
+            if v not in seen:
+                existing.append(v)
+                seen.add(v)
+                added += 1
+        if existing:
+            rule[key] = existing
+    data["rules"][0] = {k: v for k, v in rule.items() if v}
+    out_path.write_text(
+        json.dumps(data, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    print(f"MERGED {list_path.name} into {slug}.json (+{added} items)")
 
 
 def _group_has_matchers(g: dict[str, Any]) -> bool:
@@ -535,6 +578,83 @@ def write_runtime(rules: list[dict]) -> None:
     )
 
 
+# macOS absolute paths for process_path matching (Karing/sing-box).
+PROCESS_PATHS: dict[str, list[str]] = {
+    "ssh": ["/usr/bin/ssh"],
+    "mosh": ["/opt/homebrew/bin/mosh", "/usr/local/bin/mosh"],
+    "mosh-client": [
+        "/opt/homebrew/bin/mosh-client",
+        "/usr/local/bin/mosh-client",
+    ],
+    "mosh-server": [
+        "/opt/homebrew/bin/mosh-server",
+        "/usr/local/bin/mosh-server",
+    ],
+}
+
+
+def _outbound_tag_for_diversion(item: dict[str, Any]) -> str:
+    gid = item.get("server_groupid") or ""
+    if gid == "direct":
+        return "direct_out"
+    if gid == "block":
+        return "block_out"
+    if gid == "currentSelected":
+        return "urltest_out"
+    if gid == "urltest":
+        name = item.get("server_name") or ""
+        return f"urltest_out-{name}" if name else "urltest_out"
+    return "urltest_out"
+
+
+def inject_process_rules_into_service_core(
+    karing: Path, process_rules: list[dict[str, Any]]
+) -> None:
+    """Inject process_name / process_path rules into service_core.json.
+
+    Karing's UI often drops processName when rewriting routing_group after launch.
+    Writing into the generated sing-box core config makes process diversion actually
+    match until the next core rebuild.
+    """
+    path = karing / "service_core.json"
+    if not path.exists() or not process_rules:
+        return
+    data = json.loads(path.read_text(encoding="utf-8"))
+    route = data.setdefault("route", {})
+    route["find_process"] = True
+    rules: list[dict[str, Any]] = list(route.get("rules") or [])
+    marker = "[进程]"
+    rules = [
+        r
+        for r in rules
+        if not (isinstance(r.get("name"), str) and str(r["name"]).endswith(marker))
+    ]
+
+    inserts: list[dict[str, Any]] = []
+    for pr in process_rules:
+        rule: dict[str, Any] = {
+            "outbound": pr["outbound"],
+            "name": f"{pr['name']}{marker}",
+        }
+        if pr.get("process_name"):
+            rule["process_name"] = pr["process_name"]
+        if pr.get("process_path"):
+            rule["process_path"] = pr["process_path"]
+        inserts.append(rule)
+
+    insert_at = len(rules)
+    for i, r in enumerate(rules):
+        name = r.get("name")
+        if isinstance(name, str) and "[自定义]" in name:
+            insert_at = i
+            break
+    route["rules"] = rules[:insert_at] + inserts + rules[insert_at:]
+    path.write_text(
+        json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+    print(f"injected {len(inserts)} process rules into service_core.json")
+
+
 def apply_local(rules: list[dict]) -> None:
     """Apply to local Karing app config, inlining ruleset JSON so it works pre-push."""
     karing = Path.home() / "Library/Group Containers/group.com.nebula.karing"
@@ -566,6 +686,17 @@ def apply_local(rules: list[dict]) -> None:
                             existing.append(v)
                             seen.add(v)
                     g[key] = existing
+            # Also attach process_path for known macOS binaries.
+            procs = g.get("processName") or []
+            paths: list[str] = []
+            seen_paths: set[str] = set()
+            for proc in procs:
+                for path in PROCESS_PATHS.get(proc, []):
+                    if path not in seen_paths and Path(path).exists():
+                        paths.append(path)
+                        seen_paths.add(path)
+            if paths:
+                g["processPath"] = paths
 
     (karing / "karing_routing_group.json").write_text(
         json.dumps(routing, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
@@ -579,6 +710,31 @@ def apply_local(rules: list[dict]) -> None:
     use_path.write_text(
         json.dumps(use, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
+
+    # Map diversion name -> outbound tag for process rule injection.
+    outbound_by_name: dict[str, str] = {}
+    for item in div["diversion_group"]:
+        name = item.get("diversion_name") or ""
+        if name:
+            outbound_by_name[name] = _outbound_tag_for_diversion(item)
+
+    process_rules: list[dict[str, Any]] = []
+    for g in routing["items"][0]["groups"]:
+        procs = list(g.get("processName") or [])
+        if not procs:
+            continue
+        name = g["name"]
+        outbound = outbound_by_name.get(name, "urltest_out")
+        paths = list(g.get("processPath") or [])
+        process_rules.append(
+            {
+                "name": name,
+                "process_name": procs,
+                "process_path": paths,
+                "outbound": outbound,
+            }
+        )
+    inject_process_rules_into_service_core(karing, process_rules)
 
     setting_path = karing / "karing_setting.json"
     setting = json.loads(setting_path.read_text(encoding="utf-8"))

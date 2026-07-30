@@ -1,7 +1,9 @@
-# Google / Meet 补全
-# 上游 ios Google.list 只列了 google.com.xx / google.xx 等地区域名，
-# 漏了裸 google.com，导致 meet.google.com、www.google.com 等落到 GFW 兜底。
-# GoogleCN（直连）与 AI 专用域名优先级更高，不会被本规则抢走。
+# Google / Meet 补全（作为 🍃 Google 的第二条 ruleset）
+# 上游 Google.list 只列 google.com.xx / google.xx，漏了裸 google.com，
+# 导致 meet.google.com 落到 GFW 兜底。GoogleCN / AI 规则优先级更高，不受影响。
+#
+# Meet 媒体 TURN/TLS SNI 在 *.turns.goog（.goog 不在 google.com 下，必须单独写）。
+# 官方文档：meet.turns.goog / workspace.turns.goog
 
 # 覆盖 meet.google.com / mail / drive / workspace 等 *.google.com
 DOMAIN-SUFFIX,google.com
@@ -9,8 +11,25 @@ DOMAIN-SUFFIX,google.com
 # Meet 短链（上游已有，这里显式保留便于单独维护）
 DOMAIN-SUFFIX,meet.new
 
-# Meet / Hangouts / Workspace 相关（google.com 已覆盖其子域，再列便于可读）
+# Google Meet 信令 / 页面 / 直播（google.com 已覆盖子域，再列便于可读与排查）
 DOMAIN-SUFFIX,meet.google.com
+DOMAIN-SUFFIX,stream.meet.google.com
 DOMAIN-SUFFIX,hangouts.google.com
 DOMAIN-SUFFIX,streamgate.google.com
 DOMAIN-SUFFIX,workspace.google.com
+
+# Meet API（上游 Google.list 已有 googleapis.com；显式写出方便对照日志）
+DOMAIN-SUFFIX,meetings.googleapis.com
+DOMAIN-SUFFIX,hangouts.googleapis.com
+
+# Meet / Workspace 媒体 TURN（TLS SNI；.goog 顶域，google.com 盖不住）
+DOMAIN-SUFFIX,turns.goog
+DOMAIN,meet.turns.goog
+DOMAIN,workspace.turns.goog
+
+# WebRTC STUN（Meet 建连用；同样已被 google.com 覆盖）
+DOMAIN,stun.l.google.com
+DOMAIN,stun1.l.google.com
+DOMAIN,stun2.l.google.com
+DOMAIN,stun3.l.google.com
+DOMAIN,stun4.l.google.com

@@ -1,9 +1,27 @@
-# 内容：上班时，需要告诉保障的 例如视频会议等等
+# 内容：上班时，需要特别保障的 例如视频会议等等
+# 用于 Shadowrocket module / Clash Work 组；Surge 主配置走 GoogleExtra → 🍃 Google
 
-# Google Meeting
-DOMAIN-SUFFIX,googlevideo.com
-
+# Google Meet
+DOMAIN-SUFFIX,meet.google.com
+DOMAIN-SUFFIX,stream.meet.google.com
+DOMAIN-SUFFIX,meet.new
+DOMAIN-SUFFIX,meetings.googleapis.com
+DOMAIN-SUFFIX,hangouts.googleapis.com
+DOMAIN-SUFFIX,hangouts.google.com
+DOMAIN-SUFFIX,streamgate.google.com
+# Meet 媒体 TURN（TLS SNI；.goog 顶域）
+DOMAIN-SUFFIX,turns.goog
+DOMAIN,meet.turns.goog
+DOMAIN,workspace.turns.goog
+DOMAIN,stun.l.google.com
+DOMAIN,stun1.l.google.com
+DOMAIN,stun2.l.google.com
+DOMAIN,stun3.l.google.com
+DOMAIN,stun4.l.google.com
 
 # Slack
 DOMAIN-SUFFIX,slack.com
-
+DOMAIN-SUFFIX,slack-edge.com
+DOMAIN-SUFFIX,slack-msgs.com
+DOMAIN-SUFFIX,slackb.com
+DOMAIN-SUFFIX,slack-imgs.com
