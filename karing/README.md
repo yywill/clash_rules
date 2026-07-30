@@ -39,8 +39,7 @@ python3 karing/generate.py
 |----|------|
 | 🇭🇰 香港节点 | |
 | 🇯🇵 日本节点 | |
-| 🇯🇵 日本节点 | AI / OpenAi / Copilot 默认（Gemini location-sensitive） |
-| 🇺🇲 美国节点 | Apple News / 部分流媒体 |
+| 🇺🇲 美国节点 | AI / OpenAi / Copilot 默认；Apple News / 部分流媒体 |
 | 🌏 东南亚节点 | 含新加坡；GitHub / TikTok 默认 |
 | 🇨🇳 台湾节点 | |
 | 🇰🇷 韩国节点 | |
@@ -53,7 +52,7 @@ python3 karing/generate.py
 | 🌐 全球 UDP 优选 | Hysteria2 / TUIC；游戏平台默认 |
 | 🌐 全球 VLESS 稳定 TCP | 原生 VLESS TCP（排除 WS / gRPC）；通用流量默认 |
 
-分流会直接绑定到对应的自动组（例如 AI → 日本），而不是绑定到
+分流会直接绑定到对应的自动组（例如 AI → 美国），而不是绑定到
 `currentSelected`。组内节点由 Karing 按延迟自动选择。
 
 Karing/sing-box 的 `urltest` 是最低延迟自动选择，不是真正的轮询或连接级

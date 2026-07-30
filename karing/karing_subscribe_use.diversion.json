@@ -39,21 +39,21 @@
       "diversion_groupid": "custom",
       "diversion_name": "🤖 AI",
       "server_groupid": "urltest",
-      "server_name": "🇯🇵 日本节点",
+      "server_name": "🇺🇲 美国节点",
       "dns_servers": []
     },
     {
       "diversion_groupid": "custom",
       "diversion_name": "💬 OpenAi",
       "server_groupid": "urltest",
-      "server_name": "🇯🇵 日本节点",
+      "server_name": "🇺🇲 美国节点",
       "dns_servers": []
     },
     {
       "diversion_groupid": "custom",
       "diversion_name": "💧 Copilot",
       "server_groupid": "urltest",
-      "server_name": "🇯🇵 日本节点",
+      "server_name": "🇺🇲 美国节点",
       "dns_servers": []
     },
     {
