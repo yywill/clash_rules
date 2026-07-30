@@ -257,9 +257,9 @@
   ],
   "bindings": {
     "🎮 游戏平台": "🌐 全球 UDP 优选",
-    "🤖 AI": "🇺🇲 美国节点",
-    "💬 OpenAi": "🇺🇲 美国节点",
-    "💧 Copilot": "🇺🇲 美国节点",
+    "🤖 AI": "🇯🇵 日本节点",
+    "💬 OpenAi": "🇯🇵 日本节点",
+    "💧 Copilot": "🇯🇵 日本节点",
     "🤖 Nostr": "🌐 全球 VLESS 稳定 TCP",
     "👨🏿‍💻 GitHub": "🌐 全球 VLESS 稳定 TCP",
     "🪙 Crypto": "🌐 全球 VLESS 稳定 TCP",
