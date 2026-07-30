@@ -48,10 +48,10 @@
     "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/BilibiliHMT.list": "aclup-BilibiliHMT",
     "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Bilibili.list": "aclup-Bilibili",
     "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaMedia.list": "aclup-ChinaMedia",
-    "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list": "aclup-ProxyGFWlist",
     "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list": "aclup-ChinaDomain",
     "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list": "aclup-BanProgramAD",
-    "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list": "aclup-BanAD"
+    "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list": "aclup-BanAD",
+    "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list": "aclup-ProxyGFWlist"
   },
   "failed": [],
   "groups": [
@@ -91,9 +91,9 @@
     "📺 巴哈姆特",
     "📺 哔哩哔哩",
     "🌏 国内媒体",
-    "🚀 节点选择",
     "🍃 应用净化",
     "🛑 广告拦截",
+    "🚀 节点选择",
     "🐟 漏网之鱼"
   ]
 }

@@ -38,6 +38,14 @@ LOCAL_MAP = {
     / "AppleDirect.list",
     "https://raw.githubusercontent.com/yywill/clash_rules/main/GoogleExtra.list": ROOT
     / "GoogleExtra.list",
+    # Prefer sibling fork so local Meet / turns.goog edits are picked up before push.
+    "https://raw.githubusercontent.com/yywill/ios_rule_script/master/rule/Clash/Google/Google.list": Path.home()
+    / "git"
+    / "ios_rule_script"
+    / "rule"
+    / "Clash"
+    / "Google"
+    / "Google.list",
 }
 
 # Default Karing outbound = first option in surge.conf [Proxy Group] select lists.
@@ -810,11 +818,36 @@ def apply_local(rules: list[dict]) -> None:
     )
 
 
+def fold_google_extra_into_google(rules: list[dict]) -> None:
+    """Merge GoogleExtra.list into ios-Google and drop the second remote ruleset.
+
+    Karing often only reliably loads the first ruleset URL on a diversion group.
+    Meet domains (meet.google.com, turns.goog, …) must live inside ios-Google,
+    not a separate personal-GoogleExtra attachment.
+    """
+    merge_list_into_ruleset("ios-Google", ROOT / "GoogleExtra.list")
+    extra_slug = "personal-GoogleExtra"
+    for r in rules:
+        if r.get("name") != "🍃 Google":
+            continue
+        rs = r.get("rule_set") or []
+        filtered = [u for u in rs if extra_slug not in u]
+        if filtered:
+            r["rule_set"] = filtered
+        elif "rule_set" in r:
+            del r["rule_set"]
+        print(
+            f"folded GoogleExtra into ios-Google; "
+            f"🍃 Google rule_set count={len(r.get('rule_set') or [])}"
+        )
+
+
 def main() -> None:
     entries = parse_surge_rules()
     print(f"surge.conf [Rule] entries: {len(entries)}")
     url_to_slug, failed = convert_lists(entries)
     rules = build_rules(entries, url_to_slug)
+    fold_google_extra_into_google(rules)
 
     (OUT / "diversion_rules_custom.json").write_text(
         json.dumps({"rules": rules}, ensure_ascii=False, indent=2) + "\n",

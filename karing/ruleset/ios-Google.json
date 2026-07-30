@@ -3,7 +3,14 @@
   "rules": [
     {
       "domain": [
-        "voice.telephony.goog"
+        "voice.telephony.goog",
+        "meet.turns.goog",
+        "workspace.turns.goog",
+        "stun.l.google.com",
+        "stun1.l.google.com",
+        "stun2.l.google.com",
+        "stun3.l.google.com",
+        "stun4.l.google.com"
       ],
       "domain_suffix": [
         "docs.google.com",
@@ -548,6 +555,15 @@
         "material.io",
         "mdialog.com",
         "meet.new",
+        "google.com",
+        "meet.google.com",
+        "stream.meet.google.com",
+        "hangouts.google.com",
+        "streamgate.google.com",
+        "workspace.google.com",
+        "meetings.googleapis.com",
+        "hangouts.googleapis.com",
+        "turns.goog",
         "mfg-inspector.com",
         "mobileview.page",
         "monitoring.qpdp1.net",

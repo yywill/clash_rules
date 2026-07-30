@@ -254,13 +254,6 @@
     },
     {
       "diversion_groupid": "custom",
-      "diversion_name": "🚀 节点选择",
-      "server_groupid": "currentSelected",
-      "server_name": "",
-      "dns_servers": []
-    },
-    {
-      "diversion_groupid": "custom",
       "diversion_name": "🍃 应用净化",
       "server_groupid": "block",
       "server_name": "block_out",
@@ -271,6 +264,13 @@
       "diversion_name": "🛑 广告拦截",
       "server_groupid": "block",
       "server_name": "block_out",
+      "dns_servers": []
+    },
+    {
+      "diversion_groupid": "custom",
+      "diversion_name": "🚀 节点选择",
+      "server_groupid": "currentSelected",
+      "server_name": "",
       "dns_servers": []
     },
     {
