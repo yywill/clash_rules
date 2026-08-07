@@ -23,6 +23,31 @@ python3 karing/generate.py
 2. Karing → 设置 → 分流 → 分流规则 → 编辑 → ⋯ → **导入** → `diversion_rules_custom.json`  
 3. 添加订阅时关闭「启用 ISP 分流规则」
 
+## 灌入本机 Karing（macOS）
+
+Karing **重启时常会重写** `Group Containers/group.com.nebula.karing/` 下的
+`karing_routing_group.json` / `karing_subscribe_use.json` / `service_core.json`，
+导致手改或脚本写入的 **🔒 Proton** 等自定义组消失。
+
+本机重灌（推荐在 **完全退出 Karing** 后执行）：
+
+```bash
+cd /path/to/clash_rules   # 本仓库根目录
+python3 karing/apply_to_local_karing.py
+# 再打开 Karing → 连接；分流列表应有 🔒 Proton
+```
+
+若 UI 仍没有新组：应用内 **导入** `karing/diversion_rules_custom.json`（比只改 json 稳）。
+
+脚本会同步：
+
+| 组 | 本机行为 |
+|----|----------|
+| 🔒 Proton | 独立分流 → 🇭🇰 香港节点 |
+| 🍃 Google | Meet 等；不含 Proton |
+| 🗑 字节 / Lark 进程 | DIRECT（含音视频相关域名） |
+| 🤖 AI | Gemini 等；**无** 宽 `googleapis.com` |
+
 ## 说明
 
 - 优先级与 Surge 一致（字节/微信置顶 → 游戏 CDN/平台 → AI → … → GFW/国内兜底 → 广告）
