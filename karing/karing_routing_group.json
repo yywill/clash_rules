@@ -447,7 +447,18 @@
           "or": true,
           "index": 17,
           "rule_set": [
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Google.json",
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Google.json"
+          ],
+          "domain": [],
+          "domain_suffix": [],
+          "domain_keyword": []
+        },
+        {
+          "groupid": "custom",
+          "name": "🔒 Proton",
+          "type": "",
+          "or": true,
+          "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-Proton.json"
           ],
           "domain": [

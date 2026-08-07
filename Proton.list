@@ -1,6 +1,6 @@
-# Proton suite (Mail / Calendar / Drive / VPN / Pass / Wallet) — same path as
-# Google Meet: 🍃 Google → HK streaming first (see surge.conf RULE-SET).
-# Do NOT put on AI/US or DIRECT unless you intentionally want that.
+# Proton suite (Mail / Calendar / Drive / VPN / Pass / Wallet)
+# Own policy: 🔒 Proton (surge.conf / Karing diversion) — default HK streaming,
+# independent of 🍃 Google. Change the 🔒 Proton group if you want EU/US/DIRECT.
 
 DOMAIN-SUFFIX,proton.me
 DOMAIN-SUFFIX,protonmail.com

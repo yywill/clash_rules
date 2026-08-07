@@ -100,6 +100,7 @@ DEFAULT_OUTBOUND = {
     "📹 油管视频": "currentSelected",
     "🎥 奈飞视频": "currentSelected",
     "🍃 Google": "currentSelected",
+    "🔒 Proton": "currentSelected",
     "🍎 AppleNews": "currentSelected",
     "🎥 DiscoveryPlus": "currentSelected",
     "🎥 MAX美国": "currentSelected",

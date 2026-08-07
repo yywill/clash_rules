@@ -40,6 +40,7 @@ python3 karing/generate.py
 | 🇭🇰 香港节点 | |
 | 🇯🇵 日本节点 | |
 | 🇺🇲 美国节点 | AI / OpenAi / Copilot / 🐳 OrbStack 默认；Apple News / 部分流媒体。`exclude_regexs` 会丢掉 free / `0.01x` /「合适下载」/ 裸名 `🇺🇸 美国 N`，避免 urltest 抽到坏节点 |
+| 🇭🇰 香港节点 | Google Meet / 🔒 Proton（独立分流）默认；部分流媒体 |
 | 🌏 东南亚节点 | 含新加坡；GitHub / TikTok 默认 |
 | 🇨🇳 台湾节点 | |
 | 🇰🇷 韩国节点 | |
