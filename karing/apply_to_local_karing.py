@@ -303,8 +303,8 @@ def apply() -> None:
             b["domain_suffix"] = list(ass)
             b["domain_keyword"] = list(ak)
 
-    # Private LAN (10/8, 192.168/16, …) MUST beat process rules like mosh→UDP/hy2.
-    # Otherwise `mosh william@10.10.1.16` is forced through a remote HY2 node and fails.
+    # RFC1918 / link-local destinations must match before process→UDP (mosh/hy2),
+    # otherwise local mosh is forced onto a remote UDP outbound and fails.
     priv_i = next(
         (
             i
