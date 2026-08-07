@@ -781,6 +781,12 @@ def apply_local(rules: list[dict]) -> None:
         patterns = [
             re.compile(pattern, re.IGNORECASE) for pattern in wanted.get("regexs", [])
         ]
+        # Optional name filters: keep region match, drop free / junk nodes
+        # (e.g. USA Ipv6 Free, 0.01x download, bare "🇺🇸 美国 01").
+        exclude_patterns = [
+            re.compile(pattern, re.IGNORECASE)
+            for pattern in wanted.get("exclude_regexs", [])
+        ]
         protocols = set(wanted.get("protocols", []))
         transport_types = set(wanted.get("transport_types", []))
         tags: list[str] = []
@@ -798,15 +804,19 @@ def apply_local(rules: list[dict]) -> None:
             )
             if not (structured_match or name_match) or tag in seen_tags:
                 continue
+            if exclude_patterns and any(p.search(tag) for p in exclude_patterns):
+                continue
             tags.append(tag)
             seen_tags.add(tag)
-        new_urltests.append(
-            {
-                "remark": wanted["remark"],
-                "tags": tags,
-                "regexs": wanted["regexs"],
-            }
-        )
+        entry: dict[str, Any] = {
+            "remark": wanted["remark"],
+            "tags": tags,
+            "regexs": wanted["regexs"],
+        }
+        if wanted.get("exclude_regexs"):
+            # Stored for re-apply / docs; Karing core matches on tags+regexs.
+            entry["exclude_regexs"] = wanted["exclude_regexs"]
+        new_urltests.append(entry)
     custom["urltests"] = new_urltests
     subscribe_path.write_text(
         json.dumps(subscribe, ensure_ascii=False, indent=2) + "\n",
