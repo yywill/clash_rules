@@ -1,5 +1,7 @@
 # Feishu / Lark — must DIRECT (with 字节网站)
 # International Lark + CN Feishu + CDN / auth / docs
+# Process-name rules in surge.conf force the desktop app DIRECT even when
+# some sockets are IP-only (no SNI host for domain rules).
 
 DOMAIN-SUFFIX,feishu.cn
 DOMAIN-SUFFIX,feishu.net
@@ -11,14 +13,56 @@ DOMAIN-SUFFIX,larkenterprise.com
 DOMAIN-SUFFIX,larkusercontent.com
 DOMAIN-SUFFIX,larksuitecdn.com
 DOMAIN-SUFFIX,larkeditor.com
+# International rebrand / marketing / office hosts
+DOMAIN-SUFFIX,larkoffice.com
+DOMAIN-SUFFIX,larkoffice.cn
+DOMAIN-SUFFIX,larkofficialsite.com
+DOMAIN-SUFFIX,lark-frontier.com
 
 DOMAIN-KEYWORD,feishu
 DOMAIN-KEYWORD,larksuite
+DOMAIN-KEYWORD,larkoffice
+# frontier / jp / sg edge hosts often look like *-frontier-*.larksuite.com
+# (already covered by suffix). Keep keyword for non-suffix CDNs:
+DOMAIN-KEYWORD,lark-frontier
 
 # Common API / status hosts
 DOMAIN,open.feishu.cn
 DOMAIN,www.feishu.cn
 DOMAIN,www.larksuite.com
 DOMAIN,open.larksuite.com
+DOMAIN,www.larkoffice.com
 DOMAIN,internal-api-lark-api.feishu.cn
 DOMAIN,internal-api-drive-stream.feishu.cn
+
+# ---- Video / voice meetings (VC / RTC) — must stay DIRECT ----
+# Media often uses frontier / vc / rtc hosts (still under larksuite/feishu when
+# SNI is present). Explicit suffixes + keywords for conference edges.
+# Avoid bare KEYWORD "meeting" (would steal meeting.google.com).
+DOMAIN-SUFFIX,vc.feishu.cn
+DOMAIN-SUFFIX,vc.larksuite.com
+DOMAIN-SUFFIX,vc.larkoffice.com
+DOMAIN-SUFFIX,meeting.feishu.cn
+DOMAIN-SUFFIX,meeting.larksuite.com
+DOMAIN-SUFFIX,meetings.feishu.cn
+DOMAIN-SUFFIX,meetings.larksuite.com
+DOMAIN-SUFFIX,rtc.feishu.cn
+DOMAIN-SUFFIX,rtc.larksuite.com
+DOMAIN-SUFFIX,vchat.feishu.cn
+DOMAIN-SUFFIX,vchat.larksuite.com
+DOMAIN-KEYWORD,apply-vc
+DOMAIN-KEYWORD,vc-gateway
+DOMAIN-KEYWORD,vc-access
+DOMAIN-KEYWORD,lark-vc
+DOMAIN-KEYWORD,feishu-vc
+DOMAIN-KEYWORD,msg-frontier
+DOMAIN-KEYWORD,frontier-jp
+DOMAIN-KEYWORD,frontier-sg
+DOMAIN-KEYWORD,frontier-us
+DOMAIN-KEYWORD,frontier-eu
+DOMAIN-KEYWORD,jpsaas
+DOMAIN-KEYWORD,sgsaas
+DOMAIN-KEYWORD,eusaas
+# International meeting CDN edges sometimes leave *.larksuite.com — keep tight.
+DOMAIN-KEYWORD,slardar-bd
+DOMAIN-KEYWORD,ttnet-dig

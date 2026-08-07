@@ -7,6 +7,7 @@
         "www.feishu.cn",
         "www.larksuite.com",
         "open.larksuite.com",
+        "www.larkoffice.com",
         "internal-api-lark-api.feishu.cn",
         "internal-api-drive-stream.feishu.cn"
       ],
@@ -20,11 +21,43 @@
         "larkenterprise.com",
         "larkusercontent.com",
         "larksuitecdn.com",
-        "larkeditor.com"
+        "larkeditor.com",
+        "larkoffice.com",
+        "larkoffice.cn",
+        "larkofficialsite.com",
+        "lark-frontier.com",
+        "vc.feishu.cn",
+        "vc.larksuite.com",
+        "vc.larkoffice.com",
+        "meeting.feishu.cn",
+        "meeting.larksuite.com",
+        "meetings.feishu.cn",
+        "meetings.larksuite.com",
+        "rtc.feishu.cn",
+        "rtc.larksuite.com",
+        "vchat.feishu.cn",
+        "vchat.larksuite.com"
       ],
       "domain_keyword": [
         "feishu",
-        "larksuite"
+        "larksuite",
+        "larkoffice",
+        "lark-frontier",
+        "apply-vc",
+        "vc-gateway",
+        "vc-access",
+        "lark-vc",
+        "feishu-vc",
+        "msg-frontier",
+        "frontier-jp",
+        "frontier-sg",
+        "frontier-us",
+        "frontier-eu",
+        "jpsaas",
+        "sgsaas",
+        "eusaas",
+        "slardar-bd",
+        "ttnet-dig"
       ]
     }
   ]

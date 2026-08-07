@@ -32,6 +32,8 @@ LOCAL_MAP = {
     / "GitHub.list",
     "https://raw.githubusercontent.com/yywill/clash_rules/main/FeishuLark.list": ROOT
     / "FeishuLark.list",
+    "https://raw.githubusercontent.com/yywill/clash_rules/main/Proton.list": ROOT
+    / "Proton.list",
     "https://raw.githubusercontent.com/yywill/clash_rules/main/AppleNews.list": ROOT
     / "AppleNews.list",
     "https://raw.githubusercontent.com/yywill/clash_rules/main/AppleDirect.list": ROOT

@@ -1,0 +1,31 @@
+# Proton suite (Mail / Calendar / Drive / VPN / Pass / Wallet) — same path as
+# Google Meet: 🍃 Google → HK streaming first (see surge.conf RULE-SET).
+# Do NOT put on AI/US or DIRECT unless you intentionally want that.
+
+DOMAIN-SUFFIX,proton.me
+DOMAIN-SUFFIX,protonmail.com
+DOMAIN-SUFFIX,protonmail.ch
+DOMAIN-SUFFIX,proton.ch
+DOMAIN-SUFFIX,protonvpn.com
+DOMAIN-SUFFIX,protonweb.com
+DOMAIN-SUFFIX,protondrive.com
+DOMAIN-SUFFIX,protoncalendar.com
+DOMAIN-SUFFIX,protonstatus.com
+DOMAIN-SUFFIX,protontech.ch
+DOMAIN-SUFFIX,proton.black
+DOMAIN-SUFFIX,pm.me
+DOMAIN-SUFFIX,protonmailrmez3lotccipshtkleegetolb73fuirgj7r4o4vfu7ozyd.onion
+
+DOMAIN-KEYWORD,protonmail
+DOMAIN-KEYWORD,protonvpn
+DOMAIN-KEYWORD,protondrive
+DOMAIN-KEYWORD,proton.me
+
+DOMAIN,mail.proton.me
+DOMAIN,account.proton.me
+DOMAIN,calendar.proton.me
+DOMAIN,drive.proton.me
+DOMAIN,pass.proton.me
+DOMAIN,vpn.proton.me
+DOMAIN,account.protonmail.com
+DOMAIN,mail.protonmail.com

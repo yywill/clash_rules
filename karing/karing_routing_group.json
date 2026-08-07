@@ -26,6 +26,77 @@
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-ByteDance.json",
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-FeishuLark.json"
+          ],
+          "domain": [
+            "open.feishu.cn",
+            "www.feishu.cn",
+            "www.larksuite.com",
+            "open.larksuite.com",
+            "www.larkoffice.com",
+            "internal-api-lark-api.feishu.cn",
+            "internal-api-drive-stream.feishu.cn"
+          ],
+          "domain_suffix": [
+            "feishu.cn",
+            "feishu.net",
+            "feishucdn.com",
+            "feishuusercontent.com",
+            "larksuite.com",
+            "lark.cn",
+            "larkenterprise.com",
+            "larkusercontent.com",
+            "larksuitecdn.com",
+            "larkeditor.com",
+            "larkoffice.com",
+            "larkoffice.cn",
+            "larkofficialsite.com",
+            "lark-frontier.com",
+            "vc.feishu.cn",
+            "vc.larksuite.com",
+            "vc.larkoffice.com",
+            "meeting.feishu.cn",
+            "meeting.larksuite.com",
+            "meetings.feishu.cn",
+            "meetings.larksuite.com",
+            "rtc.feishu.cn",
+            "rtc.larksuite.com",
+            "vchat.feishu.cn",
+            "vchat.larksuite.com"
+          ],
+          "domain_keyword": [
+            "feishu",
+            "larksuite",
+            "larkoffice",
+            "lark-frontier",
+            "apply-vc",
+            "vc-gateway",
+            "vc-access",
+            "lark-vc",
+            "feishu-vc",
+            "msg-frontier",
+            "frontier-jp",
+            "frontier-sg",
+            "frontier-us",
+            "frontier-eu",
+            "jpsaas",
+            "sgsaas",
+            "eusaas",
+            "slardar-bd",
+            "ttnet-dig"
+          ],
+          "processName": [
+            "Lark",
+            "Lark Helper",
+            "Lark Helper (GPU)",
+            "Lark Helper (Plugin)",
+            "Lark Helper (Renderer)",
+            "Lark Helper (Network)",
+            "LarkSuite",
+            "Feishu",
+            "Feishu Helper",
+            "Feishu Helper (GPU)",
+            "Feishu Helper (Plugin)",
+            "Feishu Helper (Renderer)"
           ]
         },
         {
@@ -376,7 +447,39 @@
           "or": true,
           "index": 17,
           "rule_set": [
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Google.json"
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Google.json",
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-Proton.json"
+          ],
+          "domain": [
+            "mail.proton.me",
+            "account.proton.me",
+            "calendar.proton.me",
+            "drive.proton.me",
+            "pass.proton.me",
+            "vpn.proton.me",
+            "account.protonmail.com",
+            "mail.protonmail.com"
+          ],
+          "domain_suffix": [
+            "proton.me",
+            "protonmail.com",
+            "protonmail.ch",
+            "proton.ch",
+            "protonvpn.com",
+            "protonweb.com",
+            "protondrive.com",
+            "protoncalendar.com",
+            "protonstatus.com",
+            "protontech.ch",
+            "proton.black",
+            "pm.me",
+            "protonmailrmez3lotccipshtkleegetolb73fuirgj7r4o4vfu7ozyd.onion"
+          ],
+          "domain_keyword": [
+            "protonmail",
+            "protonvpn",
+            "protondrive",
+            "proton.me"
           ]
         },
         {

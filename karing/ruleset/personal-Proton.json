@@ -1,0 +1,38 @@
+{
+  "version": 2,
+  "rules": [
+    {
+      "domain": [
+        "mail.proton.me",
+        "account.proton.me",
+        "calendar.proton.me",
+        "drive.proton.me",
+        "pass.proton.me",
+        "vpn.proton.me",
+        "account.protonmail.com",
+        "mail.protonmail.com"
+      ],
+      "domain_suffix": [
+        "proton.me",
+        "protonmail.com",
+        "protonmail.ch",
+        "proton.ch",
+        "protonvpn.com",
+        "protonweb.com",
+        "protondrive.com",
+        "protoncalendar.com",
+        "protonstatus.com",
+        "protontech.ch",
+        "proton.black",
+        "pm.me",
+        "protonmailrmez3lotccipshtkleegetolb73fuirgj7r4o4vfu7ozyd.onion"
+      ],
+      "domain_keyword": [
+        "protonmail",
+        "protonvpn",
+        "protondrive",
+        "proton.me"
+      ]
+    }
+  ]
+}
