@@ -66,6 +66,10 @@ DOMAIN-SUFFIX,cdn.anthropic.com
 
 
 # Google Gemini and related AI services
+# Broad googleapis.com MUST win over 🍃 Google (HK) — backend report/chat hit
+# generativelanguage.googleapis.com and other *.googleapis.com AI endpoints.
+DOMAIN-SUFFIX,googleapis.com
+DOMAIN-KEYWORD,googleapis
 DOMAIN-SUFFIX,generativelanguage.googleapis.com
 DOMAIN-SUFFIX,ai.google.dev
 DOMAIN-SUFFIX,gemini-pa.googleapis.com
@@ -76,6 +80,8 @@ DOMAIN-SUFFIX,aistudio.google.com
 DOMAIN-SUFFIX,aistudio-pa.clients6.google.com
 DOMAIN-SUFFIX,alkalimakersuite-pa.clients6.google.com
 DOMAIN-SUFFIX,machinelearning.googleapis.com
+DOMAIN-SUFFIX,cloudcode-pa.googleapis.com
+DOMAIN-SUFFIX,clients6.google.com
 DOMAIN,notebooklm.google.com
 DOMAIN,notebooklm.google
 DOMAIN,generativelanguage.googleapis.com
@@ -95,6 +101,8 @@ DOMAIN-KEYWORD,generativelanguage
 DOMAIN-KEYWORD,gemini-pa
 DOMAIN-KEYWORD,aistudio
 DOMAIN-KEYWORD,makersuite
+DOMAIN-KEYWORD,cloudcode-pa
+DOMAIN-KEYWORD,generativeai
 
 # Microsoft
 # > Copilot
