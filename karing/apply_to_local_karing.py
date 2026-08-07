@@ -303,6 +303,31 @@ def apply() -> None:
             b["domain_suffix"] = list(ass)
             b["domain_keyword"] = list(ak)
 
+    # Private LAN (10/8, 192.168/16, …) MUST beat process rules like mosh→UDP/hy2.
+    # Otherwise `mosh william@10.10.1.16` is forced through a remote HY2 node and fails.
+    priv_i = next(
+        (
+            i
+            for i, r in enumerate(new_rules)
+            if r.get("ip_is_private") or rname(r) == "ip_is_private"
+        ),
+        None,
+    )
+    if priv_i is not None:
+        priv = new_rules.pop(priv_i)
+        insert_at = next(
+            (
+                i
+                for i, r in enumerate(new_rules)
+                if "process_name" in json.dumps(r) or "processName" in json.dumps(r)
+            ),
+            11,
+        )
+        new_rules.insert(insert_at, priv)
+        print(
+            f"✓ service_core.json — ip_is_private → direct before process rules (@{insert_at})"
+        )
+
     core["route"]["rules"] = new_rules
     core_path.write_text(
         json.dumps(core, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
