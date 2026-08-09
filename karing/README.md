@@ -46,12 +46,13 @@ python3 karing/apply_to_local_karing.py
 | 🔒 Proton | 独立分流 → 🇭🇰 香港节点 |
 | 🍃 Google | Meet 等；不含 Proton |
 | 🗑 字节 / Lark 进程 | DIRECT（含音视频相关域名） |
+| p2p | 本机置顶：Keet / Keet Helper / bare → DIRECT（`apply_to_local_karing.py` 会钉死；worker 进程名是小写 `bare`） |
 | 🤖 AI | Gemini 等；**无** 宽 `googleapis.com` |
 
 ## 说明
 
 - 优先级与 Surge 一致（字节/微信置顶 → 游戏 CDN/平台 → AI → … → GFW/国内兜底 → 广告）
-- `PROCESS-NAME`（如 Keet/bare）写入 Karing 进程规则
+- `PROCESS-NAME`（如 `p2p` 组的 Keet/bare）写入 Karing 进程规则
 - `GEOIP,CN` / `IP-CIDR6` 写入对应分流组
 - 默认动作对齐 Surge 策略组的**第一项**（如苹果/微软默认直连，广告拦截）
 - Apple News 仅代理明确的新闻域名；iCloud、Apple Account、APNs、系统更新与

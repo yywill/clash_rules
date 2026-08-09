@@ -57,6 +57,22 @@ LARK_PROCS = [
     "Feishu Helper (Renderer)",
 ]
 
+# Keet / Hyperswarm — exact macOS process names from `ps` / lsof COMMAND.
+# Note: worker is lowercase "bare", not "Bare". NetworkService lives in "Keet Helper".
+P2P_PROCS = [
+    "Keet",
+    "Keet Helper",
+    "Keet Helper (Renderer)",
+    "bare",
+]
+P2P_PATHS = [
+    "/Applications/Keet.app/Contents/MacOS/Keet",
+    "/Applications/Keet.app/Contents/Frameworks/Keet Helper.app/Contents/MacOS/Keet Helper",
+    "/Applications/Keet.app/Contents/Frameworks/Keet Helper (Renderer).app/Contents/MacOS/Keet Helper (Renderer)",
+    "/Applications/Keet.app/Contents/Resources/app/node_modules/bare-sidecar/prebuilds/darwin-arm64/bare",
+    "/Applications/Keet.app/Contents/Resources/app/node_modules/bare-sidecar/prebuilds/darwin-x64/bare",
+]
+
 
 def die(msg: str, code: int = 1) -> None:
     print(f"ERROR: {msg}", file=sys.stderr)
@@ -128,7 +144,12 @@ def apply() -> None:
     # ----- routing_group -----
     live_rg = json.loads((KARING / "karing_routing_group.json").read_text(encoding="utf-8"))
     repo_rg = json.loads(REPO_ROUTING.read_text(encoding="utf-8"))
-    groups = [g for g in live_rg["items"][0]["groups"] if g.get("name") != "🔒 Proton"]
+    # Drop groups we pin ourselves so re-apply is idempotent.
+    groups = [
+        g
+        for g in live_rg["items"][0]["groups"]
+        if g.get("name") not in ("🔒 Proton", "p2p")
+    ]
 
     repo_proton = next(
         (g for g in repo_rg["items"][0]["groups"] if g.get("name") == "🔒 Proton"),
@@ -157,6 +178,30 @@ def apply() -> None:
             list(repo_proton.get("domain_keyword") or []) + pk
         )
 
+    # Local p2p group (process-name → direct). Prefer repo definition, force proc list.
+    repo_p2p = next(
+        (g for g in repo_rg["items"][0]["groups"] if g.get("name") == "p2p"),
+        None,
+    )
+    p2p_paths = [p for p in P2P_PATHS if Path(p).exists()]
+    p2p_group = {
+        "groupid": "custom",
+        "name": "p2p",
+        "type": "",
+        "or": True,
+        "processName": list(P2P_PROCS),
+        # Karing UI/macOS rewrite reads this field; keep exact process names.
+        "process_name_macos": list(P2P_PROCS),
+    }
+    if p2p_paths:
+        p2p_group["processPath"] = p2p_paths
+        p2p_group["process_path_macos"] = p2p_paths
+    if repo_p2p is not None:
+        # Preserve any extra fields from repo, then force process matchers.
+        merged = json.loads(json.dumps(repo_p2p))
+        merged.update(p2p_group)
+        p2p_group = merged
+
     for g in groups:
         name = g.get("name")
         if name == "🍃 Google":
@@ -182,14 +227,18 @@ def apply() -> None:
             g["domain_suffix"] = list(ass)
             g["domain_keyword"] = list(ak)
 
+    # p2p first (highest priority among custom groups), Proton after Google.
+    groups.insert(0, p2p_group)
     names = [g.get("name") for g in groups]
     idx = names.index("🍃 Google") + 1 if "🍃 Google" in names else len(groups)
     groups.insert(idx, repo_proton)
+    for i, g in enumerate(groups):
+        g["index"] = i
     live_rg["items"][0]["groups"] = groups
     (KARING / "karing_routing_group.json").write_text(
         json.dumps(live_rg, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    print(f"✓ karing_routing_group.json — 🔒 Proton @ index {idx}")
+    print(f"✓ karing_routing_group.json — p2p @ index 0, 🔒 Proton @ index {idx}")
 
     # ----- diversion bindings -----
     use_path = KARING / "karing_subscribe_use.json"
@@ -219,24 +268,43 @@ def apply() -> None:
                 "dns_servers": [],
             }
         )
+    # Guarantee p2p → direct at the front of diversion bindings.
+    p2p_bind = {
+        "diversion_groupid": "custom",
+        "diversion_name": "p2p",
+        "server_groupid": "direct",
+        "server_name": "direct_out",
+        "dns_servers": [],
+    }
+    merged = [d for d in merged if d.get("diversion_name") != "p2p"]
+    merged.insert(0, p2p_bind)
+    # Keep final last if present.
+    finals = [d for d in merged if d.get("diversion_groupid") == "final"]
+    non_final = [d for d in merged if d.get("diversion_groupid") != "final"]
+    merged = non_final + finals
+
     use["diversion_group"] = merged
     use_path.write_text(
         json.dumps(use, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     proton_bind = next(d for d in merged if d.get("diversion_name") == "🔒 Proton")
     print(
-        f"✓ karing_subscribe_use.json — 🔒 Proton → "
+        f"✓ karing_subscribe_use.json — p2p → direct; 🔒 Proton → "
         f"{proton_bind.get('server_name')} ({proton_bind.get('server_groupid')})"
     )
 
     # ----- service_core -----
     core_path = KARING / "service_core.json"
     core = json.loads(core_path.read_text(encoding="utf-8"))
+    core.setdefault("route", {})["find_process"] = True
     rules = core["route"]["rules"]
     new_rules: list[dict] = []
     for r in rules:
         n = rname(r)
         if "Proton" in n:
+            continue
+        # Drop stale p2p rules (Karing may rewrite with wrong "Bare" casing).
+        if n.startswith("p2p"):
             continue
         if "Google" in n:
             for b in r.get("rules") or [r]:
@@ -250,6 +318,37 @@ def apply() -> None:
                             and x != "pm.me"
                         ]
         new_rules.append(r)
+
+    p2p_paths_exist = [p for p in P2P_PATHS if Path(p).exists()]
+    p2p_process_rule: dict = {
+        "outbound": "direct_out",
+        "name": "p2p[进程]",
+        "process_name": list(P2P_PROCS),
+    }
+    if p2p_paths_exist:
+        p2p_process_rule["process_path"] = p2p_paths_exist
+    p2p_custom_rule = {
+        "rules": [
+            {
+                "process_name": list(P2P_PROCS),
+                **({"process_path": p2p_paths_exist} if p2p_paths_exist else {}),
+            }
+        ],
+        "outbound": "direct_out",
+        "action": None,
+        "name": "p2p[自定义]",
+        "type": "logical",
+        "mode": "or",
+    }
+
+    # Insert p2p at highest practical priority: right before first [自定义] rule
+    # (after sniff / karing built-ins).
+    insert_at = next(
+        (i for i, r in enumerate(new_rules) if "[自定义]" in rname(r)),
+        len(new_rules),
+    )
+    new_rules[insert_at:insert_at] = [p2p_process_rule, p2p_custom_rule]
+    print(f"✓ service_core.json — p2p[进程]/p2p[自定义] → direct_out @{insert_at}")
 
     proton_rule = {
         "rules": [
@@ -315,7 +414,7 @@ def apply() -> None:
     )
     if priv_i is not None:
         priv = new_rules.pop(priv_i)
-        insert_at = next(
+        insert_priv = next(
             (
                 i
                 for i, r in enumerate(new_rules)
@@ -323,12 +422,47 @@ def apply() -> None:
             ),
             11,
         )
-        new_rules.insert(insert_at, priv)
+        new_rules.insert(insert_priv, priv)
         print(
-            f"✓ service_core.json — ip_is_private → direct before process rules (@{insert_at})"
+            f"✓ service_core.json — ip_is_private → direct before process rules (@{insert_priv})"
         )
 
     core["route"]["rules"] = new_rules
+
+    # Fix process names everywhere in core (route + dns). Karing sometimes
+    # rewrites bare as "Bare", which never matches the real process.
+    def _fix_process_names(obj: object) -> int:
+        changed = 0
+        if isinstance(obj, dict):
+            for key, val in list(obj.items()):
+                if key in ("process_name", "processName", "process_name_macos") and isinstance(
+                    val, list
+                ):
+                    new: list[str] = []
+                    for x in val:
+                        if x == "Bare":
+                            new.append("bare")
+                            changed += 1
+                        else:
+                            new.append(x)
+                    # If this looks like a Keet/p2p matcher, force the full set.
+                    if any(x in new for x in ("Keet", "Keet Helper", "bare")):
+                        for w in P2P_PROCS:
+                            if w not in new:
+                                new.append(w)
+                                changed += 1
+                    obj[key] = new
+                else:
+                    changed += _fix_process_names(val)
+        elif isinstance(obj, list):
+            for item in obj:
+                changed += _fix_process_names(item)
+        return changed
+
+    fixed = _fix_process_names(core)
+    if fixed:
+        print(f"✓ service_core.json — fixed {fixed} process-name entries (Bare→bare / p2p set)")
+
     core_path.write_text(
         json.dumps(core, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
@@ -338,6 +472,11 @@ def apply() -> None:
     rg = json.loads((KARING / "karing_routing_group.json").read_text(encoding="utf-8"))
     use2 = json.loads(use_path.read_text(encoding="utf-8"))
     core2 = json.loads(core_path.read_text(encoding="utf-8"))
+    ok_p2p_r = any(g.get("name") == "p2p" for g in rg["items"][0]["groups"])
+    ok_p2p_d = any(d.get("diversion_name") == "p2p" for d in use2.get("diversion_group") or [])
+    ok_p2p_c = any(rname(r).startswith("p2p") for r in core2["route"]["rules"])
+    p2p_g = next(g for g in rg["items"][0]["groups"] if g.get("name") == "p2p")
+    ok_procs = set(p2p_g.get("processName") or []) >= set(P2P_PROCS)
     ok_r = any(g.get("name") == "🔒 Proton" for g in rg["items"][0]["groups"])
     ok_d = any(
         d.get("diversion_name") == "🔒 Proton"
@@ -346,17 +485,21 @@ def apply() -> None:
     ok_c = any("Proton" in rname(r) for r in core2["route"]["rules"])
     print()
     print("VERIFY")
+    print(f"  routing_group has p2p: {ok_p2p_r} procs={p2p_g.get('processName')}")
+    print(f"  diversion_group has p2p→direct: {ok_p2p_d}")
+    print(f"  service_core has p2p rule: {ok_p2p_c}")
     print(f"  routing_group has 🔒 Proton: {ok_r}")
     print(f"  diversion_group has 🔒 Proton: {ok_d}")
     print(f"  service_core has Proton rule: {ok_c}")
-    if not (ok_r and ok_d and ok_c):
+    if not (ok_p2p_r and ok_p2p_d and ok_p2p_c and ok_procs and ok_r and ok_d and ok_c):
         die("apply incomplete")
 
     print()
     print("Next:")
-    print("  1. If Karing is open: 断开再连接 (or Quit → open again).")
-    print("  2. 分流列表 should show 🔒 Proton (after 🍃 Google).")
-    print("  3. If UI still empty after restart, Karing rewrote files again — run:")
+    print("  1. Prefer: fully Quit Karing, then reopen → connect.")
+    print("     (If Karing is open it may rewrite files on exit.)")
+    print("  2. 分流列表 first custom group should be p2p (Keet/bare → 直连).")
+    print("  3. If UI still empty after restart, run again:")
     print("       python3 karing/apply_to_local_karing.py")
     print("     or import in UI:")
     print(f"       {KARING_DIR / 'diversion_rules_custom.json'}")

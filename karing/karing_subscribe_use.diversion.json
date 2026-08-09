@@ -2,7 +2,7 @@
   "diversion_group": [
     {
       "diversion_groupid": "custom",
-      "diversion_name": "🖥 进程直连",
+      "diversion_name": "p2p",
       "server_groupid": "direct",
       "server_name": "direct_out",
       "dns_servers": []

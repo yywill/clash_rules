@@ -73,6 +73,7 @@ AI_PROCESS_NAMES = [
 DEFAULT_OUTBOUND = {
     "DIRECT": "direct",
     "🖥 进程直连": "direct",
+    "p2p": "direct",
     "🎯 全球直连": "direct",
     "🗑 字节网站": "direct",
     "🟢 微信": "direct",
@@ -601,6 +602,18 @@ PROCESS_PATHS: dict[str, list[str]] = {
         "/opt/homebrew/bin/mosh-server",
         "/usr/local/bin/mosh-server",
     ],
+    "Keet": ["/Applications/Keet.app/Contents/MacOS/Keet"],
+    "Keet Helper": [
+        "/Applications/Keet.app/Contents/Frameworks/Keet Helper.app/Contents/MacOS/Keet Helper",
+    ],
+    "Keet Helper (Renderer)": [
+        "/Applications/Keet.app/Contents/Frameworks/Keet Helper (Renderer).app/Contents/MacOS/Keet Helper (Renderer)",
+    ],
+    # Hyperswarm worker — process name is lowercase "bare".
+    "bare": [
+        "/Applications/Keet.app/Contents/Resources/app/node_modules/bare-sidecar/prebuilds/darwin-arm64/bare",
+        "/Applications/Keet.app/Contents/Resources/app/node_modules/bare-sidecar/prebuilds/darwin-x64/bare",
+    ],
 }
 
 
@@ -708,6 +721,14 @@ def apply_local(rules: list[dict]) -> None:
                         seen_paths.add(path)
             if paths:
                 g["processPath"] = paths
+            # Karing macOS UI rewrites process matchers from these fields.
+            if procs:
+                g["process_name_macos"] = list(procs)
+            if paths:
+                g["process_path_macos"] = list(paths)
+            # p2p must stay first among custom groups (local priority).
+            if g.get("name") == "p2p":
+                g["or"] = True
 
     (karing / "karing_routing_group.json").write_text(
         json.dumps(routing, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"

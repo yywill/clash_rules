@@ -8,12 +8,20 @@
       "groups": [
         {
           "groupid": "custom",
-          "name": "🖥 进程直连",
+          "name": "p2p",
           "type": "",
           "or": true,
           "index": 0,
           "processName": [
             "Keet",
+            "Keet Helper",
+            "Keet Helper (Renderer)",
+            "bare"
+          ],
+          "process_name_macos": [
+            "Keet",
+            "Keet Helper",
+            "Keet Helper (Renderer)",
             "bare"
           ]
         },
@@ -26,63 +34,6 @@
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-ByteDance.json",
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-FeishuLark.json"
-          ],
-          "domain": [
-            "open.feishu.cn",
-            "www.feishu.cn",
-            "www.larksuite.com",
-            "open.larksuite.com",
-            "www.larkoffice.com",
-            "internal-api-lark-api.feishu.cn",
-            "internal-api-drive-stream.feishu.cn"
-          ],
-          "domain_suffix": [
-            "feishu.cn",
-            "feishu.net",
-            "feishucdn.com",
-            "feishuusercontent.com",
-            "larksuite.com",
-            "lark.cn",
-            "larkenterprise.com",
-            "larkusercontent.com",
-            "larksuitecdn.com",
-            "larkeditor.com",
-            "larkoffice.com",
-            "larkoffice.cn",
-            "larkofficialsite.com",
-            "lark-frontier.com",
-            "vc.feishu.cn",
-            "vc.larksuite.com",
-            "vc.larkoffice.com",
-            "meeting.feishu.cn",
-            "meeting.larksuite.com",
-            "meetings.feishu.cn",
-            "meetings.larksuite.com",
-            "rtc.feishu.cn",
-            "rtc.larksuite.com",
-            "vchat.feishu.cn",
-            "vchat.larksuite.com"
-          ],
-          "domain_keyword": [
-            "feishu",
-            "larksuite",
-            "larkoffice",
-            "lark-frontier",
-            "apply-vc",
-            "vc-gateway",
-            "vc-access",
-            "lark-vc",
-            "feishu-vc",
-            "msg-frontier",
-            "frontier-jp",
-            "frontier-sg",
-            "frontier-us",
-            "frontier-eu",
-            "jpsaas",
-            "sgsaas",
-            "eusaas",
-            "slardar-bd",
-            "ttnet-dig"
           ],
           "processName": [
             "Lark",
@@ -136,169 +87,6 @@
             "2001:da8::/32",
             "2402:f000::/20",
             "2401::/16"
-          ]
-        },
-        {
-          "groupid": "custom",
-          "name": "🤖 AI",
-          "type": "",
-          "or": true,
-          "index": 8,
-          "rule_set": [
-            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-AI.json"
-          ],
-          "processName": [
-            "agy",
-            "Antigravity",
-            "Antigravity Helper",
-            "Antigravity Helper (GPU)",
-            "Antigravity Helper (Plugin)",
-            "Antigravity Helper (Renderer)",
-            "language_server",
-            "Cursor",
-            "Cursor Helper",
-            "Cursor Helper (GPU)",
-            "Cursor Helper (Plugin)",
-            "Cursor Helper (Renderer)",
-            "Claude",
-            "ChatGPT"
-          ],
-          "domain": [
-            "api.statsig.com",
-            "api-iam.intercom.io",
-            "chatgpt.livekit.cloud",
-            "o33249.ingest.sentry.io",
-            "sfo3.turn.livekit.cloud",
-            "notebooklm.google.com",
-            "notebooklm.google",
-            "generativelanguage.googleapis.com",
-            "ai.google.dev",
-            "gemini-pa.googleapis.com",
-            "proactivebackend-pa.googleapis.com",
-            "makersuite.google.com",
-            "bard.google.com",
-            "gemini.google.com",
-            "aistudio.google.com",
-            "alkalimakersuite-pa.clients6.google.com",
-            "copilot.microsoft.com",
-            "sydney.bing.com",
-            "www.bing.com",
-            "auth.meta.com",
-            "ai.meta.com",
-            "imagine.meta.com",
-            "llama.meta.com",
-            "www.meta.com",
-            "accountscenter.meta.com",
-            "daily-cloudcode-pa.googleapis.com",
-            "cloudcode-pa.googleapis.com",
-            "autopush-cloudcode-pa.sandbox.googleapis.com",
-            "daily-cloudcode-pa.sandbox.googleapis.com",
-            "storage.googleapis.com",
-            "play.googleapis.com",
-            "oauth2.googleapis.com",
-            "www.googleapis.com",
-            "lh3.googleusercontent.com",
-            "api.segment.io"
-          ],
-          "domain_suffix": [
-            "perplexity.ai",
-            "chatgpt.com",
-            "auth0.com",
-            "client-api.arkoselabs.com",
-            "events.statsigapi.net",
-            "featuregates.org",
-            "identrust.com",
-            "intercom.io",
-            "intercomcdn.com",
-            "oaistatic.com",
-            "oaiusercontent.com",
-            "openai.com",
-            "openaiapi-site.azureedge.net",
-            "sentry.io",
-            "stripe.com",
-            "bard.google.com",
-            "gemini.google.com",
-            "makersuite.google.com",
-            "anthropic.com",
-            "grazie.aws.intellij.net",
-            "githubcopilot.com",
-            "copilot-proxy.githubusercontent.com",
-            "copilot-telemetry-service.githubusercontent.com",
-            "api.app.prod.grazie.aws.intellij.net",
-            "grazie.ai",
-            "notebooklm.google.com",
-            "notebooklm.google",
-            "cursor.sh",
-            "grammarly.com",
-            "grammarly.ai",
-            "warp.dev",
-            "claude.ai",
-            "claudeusercontent.com",
-            "s-cdn.anthropic.com",
-            "console.anthropic.com",
-            "api.anthropic.com",
-            "claude-api.anthropic.com",
-            "files.anthropic.com",
-            "telemetry.anthropic.com",
-            "cdn.anthropic.com",
-            "generativelanguage.googleapis.com",
-            "ai.google.dev",
-            "gemini-pa.googleapis.com",
-            "proactivebackend-pa.googleapis.com",
-            "gemini.google",
-            "generativeai.google",
-            "aistudio.google.com",
-            "aistudio-pa.clients6.google.com",
-            "alkalimakersuite-pa.clients6.google.com",
-            "machinelearning.googleapis.com",
-            "cloudcode-pa.googleapis.com",
-            "meta.ai",
-            "llama.com",
-            "openrouter.ai",
-            "pplx-api.com",
-            "perplexity.cloud",
-            "discover-audio.perplexity.ai",
-            "app-analytics-services.com",
-            "datadoghq.com",
-            "datadoghq.eu",
-            "datadog-browser-agent.com",
-            "segment.io",
-            "segment.com",
-            "ingest.sentry.io",
-            "statsig.com",
-            "statsigapi.net",
-            "amplitude.com",
-            "mixpanel.com",
-            "posthog.com",
-            "i.posthog.com",
-            "heap.io",
-            "heapanalytics.com",
-            "fullstory.com",
-            "bugsnag.com",
-            "rollbar.com",
-            "launchdarkly.com"
-          ],
-          "domain_keyword": [
-            "openai",
-            "anthropic",
-            "claude",
-            "copilot",
-            "grazie",
-            "openaicom",
-            "notebooklm",
-            "analytics",
-            "perplexity",
-            "generativelanguage",
-            "gemini-pa",
-            "aistudio",
-            "makersuite",
-            "cloudcode-pa",
-            "generativeai",
-            "antigravity",
-            "telemetry",
-            "datadog",
-            "segment",
-            "statsig"
           ]
         },
         {
@@ -358,6 +146,32 @@
             "compose",
             "scli",
             "pstramp"
+          ]
+        },
+        {
+          "groupid": "custom",
+          "name": "🤖 AI",
+          "type": "",
+          "or": true,
+          "index": 8,
+          "rule_set": [
+            "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-AI.json"
+          ],
+          "processName": [
+            "agy",
+            "Antigravity",
+            "Antigravity Helper",
+            "Antigravity Helper (GPU)",
+            "Antigravity Helper (Plugin)",
+            "Antigravity Helper (Renderer)",
+            "language_server",
+            "Cursor",
+            "Cursor Helper",
+            "Cursor Helper (GPU)",
+            "Cursor Helper (Plugin)",
+            "Cursor Helper (Renderer)",
+            "Claude",
+            "ChatGPT"
           ]
         },
         {
@@ -448,49 +262,16 @@
           "index": 17,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Google.json"
-          ],
-          "domain": [],
-          "domain_suffix": [],
-          "domain_keyword": []
+          ]
         },
         {
           "groupid": "custom",
           "name": "🔒 Proton",
           "type": "",
           "or": true,
+          "index": 18,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-Proton.json"
-          ],
-          "domain": [
-            "mail.proton.me",
-            "account.proton.me",
-            "calendar.proton.me",
-            "drive.proton.me",
-            "pass.proton.me",
-            "vpn.proton.me",
-            "account.protonmail.com",
-            "mail.protonmail.com"
-          ],
-          "domain_suffix": [
-            "proton.me",
-            "protonmail.com",
-            "protonmail.ch",
-            "proton.ch",
-            "protonvpn.com",
-            "protonweb.com",
-            "protondrive.com",
-            "protoncalendar.com",
-            "protonstatus.com",
-            "protontech.ch",
-            "proton.black",
-            "pm.me",
-            "protonmailrmez3lotccipshtkleegetolb73fuirgj7r4o4vfu7ozyd.onion"
-          ],
-          "domain_keyword": [
-            "protonmail",
-            "protonvpn",
-            "protondrive",
-            "proton.me"
           ]
         },
         {
@@ -498,7 +279,7 @@
           "name": "🍎 AppleNews",
           "type": "",
           "or": true,
-          "index": 18,
+          "index": 19,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-AppleNews.json"
           ]
@@ -508,7 +289,7 @@
           "name": "🍎 苹果服务",
           "type": "",
           "or": true,
-          "index": 19,
+          "index": 20,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-AppleDirect.json"
           ]
@@ -518,7 +299,7 @@
           "name": "🎥 DiscoveryPlus",
           "type": "",
           "or": true,
-          "index": 20,
+          "index": 21,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-DiscoveryPlus.json"
           ]
@@ -528,7 +309,7 @@
           "name": "🎥 MAX美国",
           "type": "",
           "or": true,
-          "index": 21,
+          "index": 22,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-HBO.json"
           ]
@@ -538,7 +319,7 @@
           "name": "🎥 HBO香港亚洲",
           "type": "",
           "or": true,
-          "index": 22,
+          "index": 23,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-HBO_GO_HKG.json"
           ]
@@ -548,7 +329,7 @@
           "name": "🎥 PBS",
           "type": "",
           "or": true,
-          "index": 23,
+          "index": 24,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-PBS.json"
           ]
@@ -558,7 +339,7 @@
           "name": "🎵 Spotify",
           "type": "",
           "or": true,
-          "index": 24,
+          "index": 25,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Spotify.json"
           ]
@@ -568,7 +349,7 @@
           "name": "🌍 国外媒体",
           "type": "",
           "or": true,
-          "index": 25,
+          "index": 26,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-ProxyMedia.json"
           ]
@@ -578,7 +359,7 @@
           "name": "📲 Telegram",
           "type": "",
           "or": true,
-          "index": 26,
+          "index": 27,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Telegram.json"
           ]
@@ -588,7 +369,7 @@
           "name": "📲 电报消息",
           "type": "",
           "or": true,
-          "index": 27,
+          "index": 28,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Telegram.json"
           ]
@@ -598,7 +379,7 @@
           "name": "👙 porn",
           "type": "",
           "or": true,
-          "index": 28,
+          "index": 29,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/acl-Porn.json"
           ]
@@ -608,7 +389,7 @@
           "name": "📢 谷歌FCM",
           "type": "",
           "or": true,
-          "index": 29,
+          "index": 30,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-GoogleFCM.json"
           ]
@@ -618,7 +399,7 @@
           "name": "Ⓜ️ 微软云盘",
           "type": "",
           "or": true,
-          "index": 30,
+          "index": 31,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-OneDrive.json"
           ]
@@ -628,7 +409,7 @@
           "name": "Ⓜ️ 微软服务",
           "type": "",
           "or": true,
-          "index": 31,
+          "index": 32,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Microsoft.json"
           ]
@@ -638,7 +419,7 @@
           "name": "🎶 网易音乐",
           "type": "",
           "or": true,
-          "index": 32,
+          "index": 33,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-NetEaseMusic.json"
           ]
@@ -648,7 +429,7 @@
           "name": "📺 巴哈姆特",
           "type": "",
           "or": true,
-          "index": 33,
+          "index": 34,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Bahamut.json"
           ]
@@ -658,7 +439,7 @@
           "name": "📺 哔哩哔哩",
           "type": "",
           "or": true,
-          "index": 34,
+          "index": 35,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-BilibiliHMT.json",
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-Bilibili.json"
@@ -669,7 +450,7 @@
           "name": "🌏 国内媒体",
           "type": "",
           "or": true,
-          "index": 35,
+          "index": 36,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-ChinaMedia.json"
           ]
@@ -679,7 +460,7 @@
           "name": "🍃 应用净化",
           "type": "",
           "or": true,
-          "index": 36,
+          "index": 37,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-BanProgramAD.json"
           ]
@@ -689,7 +470,7 @@
           "name": "🛑 广告拦截",
           "type": "",
           "or": true,
-          "index": 37,
+          "index": 38,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-BanAD.json"
           ]
@@ -699,7 +480,7 @@
           "name": "🚀 节点选择",
           "type": "",
           "or": true,
-          "index": 38,
+          "index": 39,
           "rule_set": [
             "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/aclup-ProxyGFWlist.json"
           ]
@@ -709,7 +490,7 @@
           "name": "🐟 漏网之鱼",
           "type": "",
           "or": true,
-          "index": 39,
+          "index": 40,
           "ip_cidr": [
             "::/0"
           ]
@@ -939,6 +720,14 @@
       "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Google.json",
       "format": "source",
       "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/ios-Google.json",
+      "download_detour": "",
+      "update_interval": 86400
+    },
+    {
+      "type": "remote",
+      "tag": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-Proton.json",
+      "format": "source",
+      "url": "https://raw.githubusercontent.com/yywill/clash_rules/main/karing/ruleset/personal-Proton.json",
       "download_detour": "",
       "update_interval": 86400
     },
