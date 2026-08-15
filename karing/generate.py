@@ -23,7 +23,8 @@ LOCAL_MAP = {
     / "Direct.list",
     "https://raw.githubusercontent.com/yywill/clash_rules/main/ProxyLite.list": ROOT
     / "ProxyLite.list",
-    "https://raw.githubusercontent.com/yywill/clash_rules/main/AI.list": ROOT / "AI.list",
+    "https://raw.githubusercontent.com/yywill/clash_rules/main/AI.list": ROOT
+    / "AI.list",
     "https://raw.githubusercontent.com/yywill/clash_rules/main/nostr.list": ROOT
     / "nostr.list",
     "https://raw.githubusercontent.com/yywill/clash_rules/main/work.list": ROOT
@@ -67,6 +68,31 @@ AI_PROCESS_NAMES = [
     "Cursor Helper (Renderer)",
     "Claude",
     "ChatGPT",
+]
+
+# GitKraken / GitHub Desktop / gh — exact names (Karing has no wildcards).
+# gk_3_1_* are versioned GitKraken CLI cores under ~/.local/share/GitKrakenCLI.
+GITHUB_PROCESS_NAMES = [
+    "GitKraken",
+    "GitKraken Helper",
+    "GitKraken Helper (GPU)",
+    "GitKraken Helper (Plugin)",
+    "GitKraken Helper (Renderer)",
+    "gk",
+    "gkc",
+    "gk_3_1_66",
+    "gk_3_1_67",
+    "gk_3_1_68",
+    "gk_3_1_69",
+    "gk_3_1_70",
+    "gk_3_1_71",
+    "gk_3_1_72",
+    "GitHub Desktop",
+    "GitHub Desktop Helper",
+    "GitHub Desktop Helper (GPU)",
+    "GitHub Desktop Helper (Plugin)",
+    "GitHub Desktop Helper (Renderer)",
+    "gh",
 ]
 
 
@@ -144,9 +170,7 @@ def parse_surge_rules() -> list[dict[str, str]]:
                 continue
             entries.append({"kind": "ruleset", "policy": policy, "value": url})
         elif typ == "PROCESS-NAME" and len(parts) >= 3:
-            entries.append(
-                {"kind": "process", "policy": parts[2], "value": parts[1]}
-            )
+            entries.append({"kind": "process", "policy": parts[2], "value": parts[1]})
         elif typ == "GEOIP" and len(parts) >= 3:
             entries.append({"kind": "geoip", "policy": parts[2], "value": parts[1]})
         elif typ in ("IP-CIDR", "IP-CIDR6") and len(parts) >= 3:
@@ -433,6 +457,10 @@ def build_rules(
             for p in AI_PROCESS_NAMES:
                 if p not in g["processName"]:
                     g["processName"].append(p)
+        if key == "👨🏿‍💻 GitHub":
+            for p in GITHUB_PROCESS_NAMES:
+                if p not in g["processName"]:
+                    g["processName"].append(p)
         if not _group_has_matchers(g):
             continue
         r: dict = {
@@ -614,7 +642,78 @@ PROCESS_PATHS: dict[str, list[str]] = {
         "/Applications/Keet.app/Contents/Resources/app/node_modules/bare-sidecar/prebuilds/darwin-arm64/bare",
         "/Applications/Keet.app/Contents/Resources/app/node_modules/bare-sidecar/prebuilds/darwin-x64/bare",
     ],
+    "GitKraken": ["/Applications/GitKraken.app/Contents/MacOS/GitKraken"],
+    "GitKraken Helper": [
+        "/Applications/GitKraken.app/Contents/Frameworks/GitKraken Helper.app/Contents/MacOS/GitKraken Helper",
+    ],
+    "GitKraken Helper (GPU)": [
+        "/Applications/GitKraken.app/Contents/Frameworks/GitKraken Helper (GPU).app/Contents/MacOS/GitKraken Helper (GPU)",
+    ],
+    "GitKraken Helper (Plugin)": [
+        "/Applications/GitKraken.app/Contents/Frameworks/GitKraken Helper (Plugin).app/Contents/MacOS/GitKraken Helper (Plugin)",
+    ],
+    "GitKraken Helper (Renderer)": [
+        "/Applications/GitKraken.app/Contents/Frameworks/GitKraken Helper (Renderer).app/Contents/MacOS/GitKraken Helper (Renderer)",
+    ],
+    "gk": [
+        "/Applications/GitKraken.app/Contents/Resources/app.asar.unpacked/gkcli/gk",
+    ],
+    "gkc": [
+        "/Applications/GitKraken.app/Contents/Resources/app.asar.unpacked/resources/cli/unix/gkc",
+    ],
+    "GitHub Desktop": [
+        "/Applications/GitHub Desktop.app/Contents/MacOS/GitHub Desktop",
+    ],
+    "GitHub Desktop Helper": [
+        "/Applications/GitHub Desktop.app/Contents/Frameworks/GitHub Desktop Helper.app/Contents/MacOS/GitHub Desktop Helper",
+    ],
+    "GitHub Desktop Helper (GPU)": [
+        "/Applications/GitHub Desktop.app/Contents/Frameworks/GitHub Desktop Helper (GPU).app/Contents/MacOS/GitHub Desktop Helper (GPU)",
+    ],
+    "GitHub Desktop Helper (Plugin)": [
+        "/Applications/GitHub Desktop.app/Contents/Frameworks/GitHub Desktop Helper (Plugin).app/Contents/MacOS/GitHub Desktop Helper (Plugin)",
+    ],
+    "GitHub Desktop Helper (Renderer)": [
+        "/Applications/GitHub Desktop.app/Contents/Frameworks/GitHub Desktop Helper (Renderer).app/Contents/MacOS/GitHub Desktop Helper (Renderer)",
+    ],
+    "gh": ["/opt/homebrew/bin/gh"],
 }
+
+
+def _discover_gitkraken_cli() -> None:
+    """Pick up installed GitKraken CLI / GitLens gk binaries on this Mac."""
+    roots = [
+        Path.home() / ".local/share/GitKrakenCLI",
+        Path.home() / "Library/Application Support/GitKrakenCLI",
+        Path.home()
+        / "Library/Application Support/Cursor/User/globalStorage/eamodio.gitlens",
+        Path.home()
+        / "Library/Application Support/Code/User/globalStorage/eamodio.gitlens",
+    ]
+    for root in roots:
+        gk = root / "gk"
+        if gk.is_file():
+            paths = PROCESS_PATHS.setdefault("gk", [])
+            loc = str(gk)
+            if loc not in paths:
+                paths.append(loc)
+        versions = root / "versions"
+        if not versions.is_dir():
+            continue
+        for child in sorted(versions.iterdir()):
+            name = child.name
+            exe = child / name
+            if not (name.startswith("gk_") and exe.is_file()):
+                continue
+            paths = PROCESS_PATHS.setdefault(name, [])
+            loc = str(exe)
+            if loc not in paths:
+                paths.append(loc)
+            if name not in GITHUB_PROCESS_NAMES:
+                GITHUB_PROCESS_NAMES.append(name)
+
+
+_discover_gitkraken_cli()
 
 
 def _outbound_tag_for_diversion(item: dict[str, Any]) -> str:
@@ -692,7 +791,9 @@ def apply_local(rules: list[dict]) -> None:
         rule = data["rules"][0] if data.get("rules") else {}
         rulesets[p.stem] = rule
 
-    routing = json.loads((OUT / "karing_routing_group.json").read_text(encoding="utf-8"))
+    routing = json.loads(
+        (OUT / "karing_routing_group.json").read_text(encoding="utf-8")
+    )
     for item in routing["items"]:
         for g in item["groups"]:
             for url in g.get("rule_set", []):
@@ -788,7 +889,11 @@ def apply_local(rules: list[dict]) -> None:
     subscribe = json.loads(subscribe_path.read_text(encoding="utf-8"))
     urltest_config = json.loads(URLTEST_CONFIG.read_text(encoding="utf-8"))
     custom = next(
-        (item for item in subscribe.get("items", []) if item.get("groupid") == "custom"),
+        (
+            item
+            for item in subscribe.get("items", [])
+            if item.get("groupid") == "custom"
+        ),
         None,
     )
     if custom is None:

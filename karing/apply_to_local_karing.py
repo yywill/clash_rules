@@ -41,6 +41,7 @@ REPO_DIV = KARING_DIR / "karing_subscribe_use.diversion.json"
 PROTON_LIST = ROOT / "Proton.list"
 FEISHU_LIST = ROOT / "FeishuLark.list"
 AI_LIST = ROOT / "AI.list"
+GITHUB_LIST = ROOT / "GitHub.list"
 
 LARK_PROCS = [
     "Lark",
@@ -72,6 +73,78 @@ P2P_PATHS = [
     "/Applications/Keet.app/Contents/Resources/app/node_modules/bare-sidecar/prebuilds/darwin-arm64/bare",
     "/Applications/Keet.app/Contents/Resources/app/node_modules/bare-sidecar/prebuilds/darwin-x64/bare",
 ]
+
+GITHUB_PROCS = [
+    "GitKraken",
+    "GitKraken Helper",
+    "GitKraken Helper (GPU)",
+    "GitKraken Helper (Plugin)",
+    "GitKraken Helper (Renderer)",
+    "gk",
+    "gkc",
+    "gk_3_1_66",
+    "gk_3_1_67",
+    "gk_3_1_68",
+    "gk_3_1_69",
+    "gk_3_1_70",
+    "gk_3_1_71",
+    "gk_3_1_72",
+    "GitHub Desktop",
+    "GitHub Desktop Helper",
+    "GitHub Desktop Helper (GPU)",
+    "GitHub Desktop Helper (Plugin)",
+    "GitHub Desktop Helper (Renderer)",
+    "gh",
+]
+
+GITHUB_PATHS = [
+    "/Applications/GitKraken.app/Contents/MacOS/GitKraken",
+    "/Applications/GitKraken.app/Contents/Frameworks/GitKraken Helper.app/Contents/MacOS/GitKraken Helper",
+    "/Applications/GitKraken.app/Contents/Frameworks/GitKraken Helper (GPU).app/Contents/MacOS/GitKraken Helper (GPU)",
+    "/Applications/GitKraken.app/Contents/Frameworks/GitKraken Helper (Plugin).app/Contents/MacOS/GitKraken Helper (Plugin)",
+    "/Applications/GitKraken.app/Contents/Frameworks/GitKraken Helper (Renderer).app/Contents/MacOS/GitKraken Helper (Renderer)",
+    "/Applications/GitKraken.app/Contents/Resources/app.asar.unpacked/gkcli/gk",
+    "/Applications/GitKraken.app/Contents/Resources/app.asar.unpacked/resources/cli/unix/gkc",
+    "/Applications/GitHub Desktop.app/Contents/MacOS/GitHub Desktop",
+    "/Applications/GitHub Desktop.app/Contents/Frameworks/GitHub Desktop Helper.app/Contents/MacOS/GitHub Desktop Helper",
+    "/Applications/GitHub Desktop.app/Contents/Frameworks/GitHub Desktop Helper (GPU).app/Contents/MacOS/GitHub Desktop Helper (GPU)",
+    "/Applications/GitHub Desktop.app/Contents/Frameworks/GitHub Desktop Helper (Plugin).app/Contents/MacOS/GitHub Desktop Helper (Plugin)",
+    "/Applications/GitHub Desktop.app/Contents/Frameworks/GitHub Desktop Helper (Renderer).app/Contents/MacOS/GitHub Desktop Helper (Renderer)",
+    "/opt/homebrew/bin/gh",
+]
+
+
+def github_cli_paths() -> tuple[list[str], list[str]]:
+    """Installed GitKraken CLI / GitLens gk binaries and versioned process names."""
+    names: list[str] = []
+    paths: list[str] = []
+    roots = [
+        Path.home() / ".local/share/GitKrakenCLI",
+        Path.home() / "Library/Application Support/GitKrakenCLI",
+        Path.home()
+        / "Library/Application Support/Cursor/User/globalStorage/eamodio.gitlens",
+        Path.home()
+        / "Library/Application Support/Code/User/globalStorage/eamodio.gitlens",
+    ]
+    for root in roots:
+        gk = root / "gk"
+        if gk.is_file():
+            loc = str(gk)
+            if loc not in paths:
+                paths.append(loc)
+        versions = root / "versions"
+        if not versions.is_dir():
+            continue
+        for child in sorted(versions.iterdir()):
+            exe = child / child.name
+            if not (child.name.startswith("gk_") and exe.is_file()):
+                continue
+            loc = str(exe)
+            if loc not in paths:
+                paths.append(loc)
+            if child.name not in names:
+                names.append(child.name)
+    return names, paths
 
 
 def die(msg: str, code: int = 1) -> None:
@@ -139,16 +212,23 @@ def apply() -> None:
     pd, ps, pk = parse_list(PROTON_LIST)
     fd, fs, fk = parse_list(FEISHU_LIST)
     ad, ass, ak = parse_list(AI_LIST)
+    gd, gs, gkw = parse_list(GITHUB_LIST)
     proton_markers = set(pd + ps + pk)
+    extra_gk_names, extra_gk_paths = github_cli_paths()
+    github_procs = uniq(GITHUB_PROCS + extra_gk_names)
+    github_paths = [p for p in uniq(GITHUB_PATHS + extra_gk_paths) if Path(p).exists()]
 
     # ----- routing_group -----
-    live_rg = json.loads((KARING / "karing_routing_group.json").read_text(encoding="utf-8"))
+    live_rg = json.loads(
+        (KARING / "karing_routing_group.json").read_text(encoding="utf-8")
+    )
     repo_rg = json.loads(REPO_ROUTING.read_text(encoding="utf-8"))
     # Drop groups we pin ourselves so re-apply is idempotent.
     groups = [
         g
         for g in live_rg["items"][0]["groups"]
         if g.get("name") not in ("🔒 Proton", "p2p")
+        and "GitHub" not in (g.get("name") or "")
     ]
 
     repo_proton = next(
@@ -202,6 +282,35 @@ def apply() -> None:
         merged.update(p2p_group)
         p2p_group = merged
 
+    repo_github = next(
+        (g for g in repo_rg["items"][0]["groups"] if "GitHub" in (g.get("name") or "")),
+        None,
+    )
+    github_group = {
+        "groupid": "custom",
+        "name": (repo_github or {}).get("name") or "👨‍💻 GitHub",
+        "type": "",
+        "or": True,
+        "rule_set": list((repo_github or {}).get("rule_set") or []),
+        "domain": uniq(list((repo_github or {}).get("domain") or []) + gd),
+        "domain_suffix": uniq(
+            list((repo_github or {}).get("domain_suffix") or []) + gs
+        ),
+        "domain_keyword": uniq(
+            list((repo_github or {}).get("domain_keyword") or []) + gkw
+        ),
+        "processName": list(github_procs),
+        "process_name_macos": list(github_procs),
+    }
+    if github_paths:
+        github_group["processPath"] = list(github_paths)
+        github_group["process_path_macos"] = list(github_paths)
+    if repo_github is not None:
+        merged_gh = json.loads(json.dumps(repo_github))
+        merged_gh.update(github_group)
+        github_group = merged_gh
+    github_name = github_group["name"]
+
     for g in groups:
         name = g.get("name")
         if name == "🍃 Google":
@@ -214,9 +323,7 @@ def apply() -> None:
                     and "proton" not in x.lower()
                     and x != "pm.me"
                 ]
-            g["rule_set"] = [
-                u for u in (g.get("rule_set") or []) if "Proton" not in u
-            ]
+            g["rule_set"] = [u for u in (g.get("rule_set") or []) if "Proton" not in u]
         elif name == "🗑 字节网站":
             g["domain"] = uniq(list(g.get("domain") or []) + fd)
             g["domain_suffix"] = uniq(list(g.get("domain_suffix") or []) + fs)
@@ -232,13 +339,19 @@ def apply() -> None:
     names = [g.get("name") for g in groups]
     idx = names.index("🍃 Google") + 1 if "🍃 Google" in names else len(groups)
     groups.insert(idx, repo_proton)
+    names = [g.get("name") for g in groups]
+    gh_idx = names.index("🤖 Nostr") + 1 if "🤖 Nostr" in names else len(groups)
+    groups.insert(gh_idx, github_group)
     for i, g in enumerate(groups):
         g["index"] = i
     live_rg["items"][0]["groups"] = groups
     (KARING / "karing_routing_group.json").write_text(
         json.dumps(live_rg, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    print(f"✓ karing_routing_group.json — p2p @ index 0, 🔒 Proton @ index {idx}")
+    print(
+        f"✓ karing_routing_group.json — p2p @ 0, 🔒 Proton @ {idx}, "
+        f"{github_name} @ {gh_idx} procs={len(github_procs)}"
+    )
 
     # ----- diversion bindings -----
     use_path = KARING / "karing_subscribe_use.json"
@@ -305,6 +418,8 @@ def apply() -> None:
             continue
         # Drop stale p2p rules (Karing may rewrite with wrong "Bare" casing).
         if n.startswith("p2p"):
+            continue
+        if "GitHub" in n:
             continue
         if "Google" in n:
             for b in r.get("rules") or [r]:
@@ -402,6 +517,50 @@ def apply() -> None:
             b["domain_suffix"] = list(ass)
             b["domain_keyword"] = list(ak)
 
+    github_bind = next(
+        (
+            d
+            for d in repo_div.get("diversion_group") or []
+            if "GitHub" in (d.get("diversion_name") or "")
+        ),
+        None,
+    )
+    github_outbound = "urltest_out-🌐 全球 VLESS 稳定 TCP"
+    if github_bind and github_bind.get("server_groupid") == "urltest":
+        sname = github_bind.get("server_name") or ""
+        github_outbound = f"urltest_out-{sname}" if sname else "urltest_out"
+    elif github_bind and github_bind.get("server_groupid") == "direct":
+        github_outbound = "direct_out"
+    github_process_rule: dict = {
+        "outbound": github_outbound,
+        "name": f"{github_name}[进程]",
+        "process_name": list(github_procs),
+    }
+    if github_paths:
+        github_process_rule["process_path"] = list(github_paths)
+    github_custom_rule = {
+        "rules": [
+            {
+                "domain": list(gd),
+                "domain_suffix": list(gs),
+                "domain_keyword": list(gkw),
+                "process_name": list(github_procs),
+                **({"process_path": list(github_paths)} if github_paths else {}),
+            }
+        ],
+        "outbound": github_outbound,
+        "action": None,
+        "name": f"{github_name}[自定义]",
+        "type": "logical",
+        "mode": "or",
+    }
+    nostr_i = next((i for i, r in enumerate(new_rules) if "Nostr" in rname(r)), None)
+    insert_gh = (nostr_i + 1) if nostr_i is not None else insert_at
+    new_rules[insert_gh:insert_gh] = [github_process_rule, github_custom_rule]
+    print(
+        f"✓ service_core.json — {github_name}[进程]/[自定义] → {github_outbound} @{insert_gh}"
+    )
+
     # RFC1918 / link-local destinations must match before process→UDP (mosh/hy2),
     # otherwise local mosh is forced onto a remote UDP outbound and fails.
     priv_i = next(
@@ -435,9 +594,11 @@ def apply() -> None:
         changed = 0
         if isinstance(obj, dict):
             for key, val in list(obj.items()):
-                if key in ("process_name", "processName", "process_name_macos") and isinstance(
-                    val, list
-                ):
+                if key in (
+                    "process_name",
+                    "processName",
+                    "process_name_macos",
+                ) and isinstance(val, list):
                     new: list[str] = []
                     for x in val:
                         if x == "Bare":
@@ -461,7 +622,9 @@ def apply() -> None:
 
     fixed = _fix_process_names(core)
     if fixed:
-        print(f"✓ service_core.json — fixed {fixed} process-name entries (Bare→bare / p2p set)")
+        print(
+            f"✓ service_core.json — fixed {fixed} process-name entries (Bare→bare / p2p set)"
+        )
 
     core_path.write_text(
         json.dumps(core, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
@@ -473,7 +636,9 @@ def apply() -> None:
     use2 = json.loads(use_path.read_text(encoding="utf-8"))
     core2 = json.loads(core_path.read_text(encoding="utf-8"))
     ok_p2p_r = any(g.get("name") == "p2p" for g in rg["items"][0]["groups"])
-    ok_p2p_d = any(d.get("diversion_name") == "p2p" for d in use2.get("diversion_group") or [])
+    ok_p2p_d = any(
+        d.get("diversion_name") == "p2p" for d in use2.get("diversion_group") or []
+    )
     ok_p2p_c = any(rname(r).startswith("p2p") for r in core2["route"]["rules"])
     p2p_g = next(g for g in rg["items"][0]["groups"] if g.get("name") == "p2p")
     ok_procs = set(p2p_g.get("processName") or []) >= set(P2P_PROCS)
@@ -483,6 +648,24 @@ def apply() -> None:
         for d in use2.get("diversion_group") or []
     )
     ok_c = any("Proton" in rname(r) for r in core2["route"]["rules"])
+    gh_g = next(
+        (g for g in rg["items"][0]["groups"] if "GitHub" in (g.get("name") or "")),
+        None,
+    )
+    ok_gh_r = gh_g is not None
+    ok_gh_d = any(
+        "GitHub" in (d.get("diversion_name") or "")
+        for d in use2.get("diversion_group") or []
+    )
+    ok_gh_c = any("GitHub" in rname(r) for r in core2["route"]["rules"])
+    ok_gh_procs = bool(gh_g) and set(gh_g.get("processName") or []) >= {
+        "GitKraken",
+        "gk",
+        "gk_3_1_72",
+    }
+    ok_gh_dom = bool(gh_g) and {"gitkraken.com", "gitkraken.dev"} <= set(
+        gh_g.get("domain_suffix") or []
+    )
     print()
     print("VERIFY")
     print(f"  routing_group has p2p: {ok_p2p_r} procs={p2p_g.get('processName')}")
@@ -491,7 +674,26 @@ def apply() -> None:
     print(f"  routing_group has 🔒 Proton: {ok_r}")
     print(f"  diversion_group has 🔒 Proton: {ok_d}")
     print(f"  service_core has Proton rule: {ok_c}")
-    if not (ok_p2p_r and ok_p2p_d and ok_p2p_c and ok_procs and ok_r and ok_d and ok_c):
+    print(
+        f"  routing_group has GitHub: {ok_gh_r} "
+        f"procs={ok_gh_procs} gitkraken={ok_gh_dom}"
+    )
+    print(f"  diversion_group has GitHub: {ok_gh_d}")
+    print(f"  service_core has GitHub rule: {ok_gh_c}")
+    if not (
+        ok_p2p_r
+        and ok_p2p_d
+        and ok_p2p_c
+        and ok_procs
+        and ok_r
+        and ok_d
+        and ok_c
+        and ok_gh_r
+        and ok_gh_d
+        and ok_gh_c
+        and ok_gh_procs
+        and ok_gh_dom
+    ):
         die("apply incomplete")
 
     print()
