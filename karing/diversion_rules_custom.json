@@ -12,6 +12,14 @@
       ]
     },
     {
+      "name": "办公中转",
+      "outbound": "currentSelected",
+      "switch": true,
+      "processName": [
+        "openvpn"
+      ]
+    },
+    {
       "name": "🗑 字节网站",
       "outbound": "direct",
       "switch": true,

@@ -114,6 +114,7 @@ DEFAULT_OUTBOUND = {
     "🍃 应用净化": "block",
     "🐟 漏网之鱼": "currentSelected",
     "🚀 节点选择": "currentSelected",
+    "办公中转": "currentSelected",
     "🎮 游戏平台": "currentSelected",
     "🔐 SSH": "currentSelected",
     "📡 mosh": "currentSelected",

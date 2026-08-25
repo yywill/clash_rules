@@ -43,6 +43,7 @@ python3 karing/apply_to_local_karing.py
 
 | 组 | 本机行为 |
 |----|----------|
+| 办公中转 | `openvpn` 进程 → 🌏 东南亚节点（默认新加坡；可在 Karing 中改选台湾或日本组） |
 | 🔒 Proton | 独立分流 → 🇭🇰 香港节点 |
 | 🍃 Google | Meet 等；不含 Proton |
 | 🗑 字节 / Lark 进程 | DIRECT（含音视频相关域名） |

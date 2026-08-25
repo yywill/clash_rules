@@ -9,6 +9,13 @@
     },
     {
       "diversion_groupid": "custom",
+      "diversion_name": "办公中转",
+      "server_groupid": "urltest",
+      "server_name": "🌏 东南亚节点",
+      "dns_servers": []
+    },
+    {
+      "diversion_groupid": "custom",
       "diversion_name": "🗑 字节网站",
       "server_groupid": "direct",
       "server_name": "direct_out",
