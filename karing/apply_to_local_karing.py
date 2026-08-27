@@ -46,6 +46,7 @@ GITHUB_LIST = ROOT / "GitHub.list"
 LARK_PROCS = [
     "Lark",
     "Lark Helper",
+    "Lark Helper (Iron)",
     "Lark Helper (GPU)",
     "Lark Helper (Plugin)",
     "Lark Helper (Renderer)",
